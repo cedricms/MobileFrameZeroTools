@@ -10,7 +10,7 @@ public class MobileFrameZeroToolsMainActivity extends DroidGap {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_mobile_frame_zero_tools_main);
-        super.loadUrl("file:///android_asset/www/index.html");
+        super.loadUrl("file:///android_asset/www/menu.html");
     }
 
 //    @Override
