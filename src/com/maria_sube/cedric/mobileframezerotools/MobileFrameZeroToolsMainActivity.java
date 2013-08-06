@@ -3,8 +3,6 @@ package com.maria_sube.cedric.mobileframezerotools;
 import org.apache.cordova.DroidGap;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 
 public class MobileFrameZeroToolsMainActivity extends DroidGap {
 
