@@ -1,5 +1,26 @@
-.pageSection {
+.largeButton {
+  margin : 5px;
+}
+
+a.largeButton {
   border : 2px solid;
+  border-color : #bc252a;
+  border-top-left-radius: 20px 20px;
+  border-bottom-right-radius: 20px 20px;
+  font-weight : bold;
+  margin : 15px;
+  /*min-width : 500px;*/
+  padding : 15px;
+  /*width : 95%;*/
+}
+
+.largeRow {
+  margin : 30px;
+}
+
+.pageSection {
+  border-width : 6px;
+  border-style : double;
   border-color : #bc252a;
   border-top-right-radius: 20px 20px;
   border-bottom-left-radius: 20px 20px;

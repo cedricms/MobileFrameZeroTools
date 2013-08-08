@@ -26,15 +26,19 @@
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    document.getElementById('applicationTitle').innerHTML=applicationTitleMessage;
 		    jQuery.i18n.prop('createFrameMessage');
-		    document.getElementById('createFrame').innerHTML='<a href="">' + createFrameMessage + '</a>';
+		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
-		    document.getElementById('listFrames').innerHTML='<a href="">' + listFramesMessage + '</a>';
+		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="">' + listFramesMessage + '</a>';
 		    jQuery.i18n.prop('createCompanyMessage');
-		    document.getElementById('createCompany').innerHTML='<a href="">' + createCompanyMessage + '</a>';
+		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="">' + createCompanyMessage + '</a>';
 		    jQuery.i18n.prop('listCompaniesMessage');
-		    document.getElementById('listCompanies').innerHTML='<a href="">' + listCompaniesMessage + '</a>';
+		    document.getElementById('listCompanies').innerHTML='<a class="largeButton" href="">' + listCompaniesMessage + '</a>';
 		    jQuery.i18n.prop('playGameMessage');
-		    document.getElementById('playGame').innerHTML='<a href="">' + playGameMessage + '</a>';
+		    document.getElementById('playGame').innerHTML='<a class="largeButton" href="">' + playGameMessage + '</a>';
+			jQuery.i18n.prop('faqMessage');
+		    document.getElementById('faq').innerHTML='<a class="largeButton" href="">' + faqMessage + '</a>';
+			jQuery.i18n.prop('playGameMessage');
+		    document.getElementById('about').innerHTML='<a class="largeButton" href="">' + aboutMessage + '</a>';
 	      }
 	    });
 	  }
@@ -51,21 +55,27 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12 text-center" id="createFrame"></div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createFrame"></div>
           </div>
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12 text-center" id="listFrames"></div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="listFrames"></div>
           </div>
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12 text-center" id="createCompany"></div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
           </div>
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12 text-center" id="listCompanies"></div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="listCompanies"></div>
           </div>
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12 text-center" id="playGame"></div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="playGame"></div>
           </div>
+		  <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="faq"></div>
+          </div>
+		  <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="about"></div>
+          </div
       </div>
     </div>
   </body>
