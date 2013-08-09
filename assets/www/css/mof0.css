@@ -34,13 +34,17 @@ a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
 
 .pageSection {
   background-color : #e2e2e2;
+  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection.png');
+  background-repeat : no-repeat;
+  /*background-attachment : fixed;*/
+  background-position : left center; 
   border-width : 6px;
   border-style : double;
   border-color : #bc252a;
   border-top-right-radius: 20px 20px;
   border-bottom-left-radius: 20px 20px;
   margin : 5px;
-  padding : 5px;
+  /*padding : 5px;*/
   width : 95%;
 }
 

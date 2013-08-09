@@ -24,7 +24,7 @@
 		  language:lang, 
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
-		    document.getElementById('applicationTitle').innerHTML=applicationTitleMessage;
+		    document.getElementById('applicationTitle').innerHTML='<a href="./menu.html"><img border="0" src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitleMessage + '"></a>' + applicationTitleMessage;
 		    jQuery.i18n.prop('createFrameMessage');
 		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
