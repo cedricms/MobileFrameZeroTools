@@ -3,6 +3,7 @@
 }
 
 a.largeButton {
+  background-color : #ffffff;
   border : 2px solid;
   border-color : #bc252a;
   border-top-left-radius: 20px 20px;
@@ -14,11 +15,25 @@ a.largeButton {
   /*width : 95%;*/
 }
 
+a.largeButton:active, a.largeButton:hover {
+  border-color : #cc353a;
+  color: #cc353a;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
+  color: #bc252a;
+  font-weight : bold;
+  text-decoration: none;
+}
+
 .largeRow {
   margin : 30px;
 }
 
 .pageSection {
+  background-color : #e2e2e2;
   border-width : 6px;
   border-style : double;
   border-color : #bc252a;
