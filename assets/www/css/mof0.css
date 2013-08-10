@@ -1,17 +1,43 @@
-a.active {
+/*{
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+}*/
+
+/*a.active {
  background: #AAA;
 }
 element.addEventListener('touchstart',function(e) {
  e.currentTarget.className = "active";
-});
+});*/
 
 .backButton {
+  background-color : #e2e2e2;
   border : 2px solid;
   border-color : #bc252a;
   border-top-left-radius: 20px 20px;
   border-bottom-right-radius: 20px 20px;
-  margin : 5px;
-  padding : 5px;
+  margin-bottom : 30px;
+  margin-left : 0px;
+  margin-right : 5px;
+  margin-top : 30px;
+  padding-bottom : 15px;
+  padding-left : 10px;
+  padding-right : 10px;
+  padding-top : 12px;  
+}
+
+a.backButton:hover {
+  background-color : #666;
+  border : 4px solid;
+  border-color : #f99;
+  color: #f99;
+}
+
+a.backButton:active {
+  border-color : #bc252a;
+  color: #bc252a;
 }
 
 .columnLabel {
@@ -23,11 +49,13 @@ element.addEventListener('touchstart',function(e) {
 }
 
 a.largeButton {
-  background-color : #ffffff;
+  background-color : #fff;
   border : 2px solid;
   border-color : #bc252a;
   border-top-left-radius: 20px 20px;
   border-bottom-right-radius: 20px 20px;
+  color: #bc252a;
+  font-size : 2rem;
   font-weight : bold;
   margin : 15px;
   /*min-width : 500px;*/
@@ -35,17 +63,35 @@ a.largeButton {
   /*width : 95%;*/
 }
 
-a.largeButton:active, a.largeButton:hover {
-  border-color : #cc353a;
-  color: #cc353a;
+a.largeButton:focus {
+
+}
+
+/* Activated on tap */
+a.largeButton:hover {
+  background-color : #666;
+  border : 4px solid;
+  border-color : #f99;
+  color: #f99;
+  /*font-size : 2.5rem;*/
   font-weight : bold;
   text-decoration: none;
 }
 
-a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
+a.largeButton:active {
+  border-color : #bc252a;
   color: #bc252a;
+  /*font-size : 2rem;*/
   font-weight : bold;
   text-decoration: none;
+}
+
+a.largeButton:link {
+
+}
+
+a.largeButton:visited {
+
 }
 
 .largeRow {
@@ -82,5 +128,7 @@ a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
   font-size : 3.5rem;
   font-weight : bold;
   margin : 5px;
+  padding-bottom : 15px;
+  padding-top : 15px;
   width : 90%;
 }
