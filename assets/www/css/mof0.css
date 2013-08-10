@@ -1,3 +1,23 @@
+a.active {
+ background: #AAA;
+}
+element.addEventListener('touchstart',function(e) {
+ e.currentTarget.className = "active";
+});
+
+.backButton {
+  border : 2px solid;
+  border-color : #bc252a;
+  border-top-left-radius: 20px 20px;
+  border-bottom-right-radius: 20px 20px;
+  margin : 5px;
+  padding : 5px;
+}
+
+.columnLabel {
+  font-weight : bold;
+}
+
 .largeButton {
   margin : 5px;
 }
@@ -32,6 +52,10 @@ a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
   margin : 30px;
 }
 
+.mediumBackground {
+  background-color : #ccc;
+}
+
 .pageSection {
   background-color : #e2e2e2;
   background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection.png');
@@ -55,7 +79,7 @@ a.largeButton:focus, a.largeButton:link, a.largeButton:visited {
   border-right-width : 0px;
   border-top-width : 0px;
   color : #bc252a;
-  font-size : 4rem;
+  font-size : 3.5rem;
   font-weight : bold;
   margin : 5px;
   width : 90%;

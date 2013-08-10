@@ -8,12 +8,15 @@
     <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
     
     <script type="text/javascript">
+    
       // load I18N bundles
       jQuery(document).ready(function() {
-	    var userLang = navigator.language || navigator.userLanguage; 
-	    loadBundles(userLang);
+    	initLanguages()
+
+	    initDb();
 	  });
 		
 	  function loadBundles(lang) {
@@ -24,7 +27,7 @@
 		  language:lang, 
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
-		    document.getElementById('applicationTitle').innerHTML='<a href="./menu.html"><img border="0" src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitleMessage + '"></a>' + applicationTitleMessage;
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage;
 		    jQuery.i18n.prop('createFrameMessage');
 		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
@@ -38,7 +41,7 @@
 			jQuery.i18n.prop('faqMessage');
 		    document.getElementById('faq').innerHTML='<a class="largeButton" href="">' + faqMessage + '</a>';
 			jQuery.i18n.prop('playGameMessage');
-		    document.getElementById('about').innerHTML='<a class="largeButton" href="">' + aboutMessage + '</a>';
+		    document.getElementById('about').innerHTML='<a class="largeButton" href="./about.html">' + aboutMessage + '</a>';
 	      }
 	    });
 	  }
