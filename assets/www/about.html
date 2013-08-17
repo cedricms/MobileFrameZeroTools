@@ -25,20 +25,23 @@
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('aboutMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + aboutMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + aboutMessage;
 
 		    jQuery.i18n.prop('originalGameDesignMessage');
-		    document.getElementById('originalGameDesignLabel').innerHTML= originalGameDesignMessage;
+		    document.getElementById('originalGameDesignLabel').innerHTML = originalGameDesignMessage;
 		    
 		    jQuery.i18n.prop('writingPublicationDesignMessage');
-		    document.getElementById('writingPublicationDesignLabel').innerHTML= writingPublicationDesignMessage;
+		    document.getElementById('writingPublicationDesignLabel').innerHTML = writingPublicationDesignMessage;
+		    
+		    jQuery.i18n.prop('legoMobileFrameSettingDesignMessage');
+		    document.getElementById('legoMobileFrameSettingDesignLabel').innerHTML = legoMobileFrameSettingDesignMessage;
 		    
 		    jQuery.i18n.prop('applicationDesignMessage');
-		    document.getElementById('applicationDesignLabel').innerHTML= applicationDesignMessage;
+		    document.getElementById('applicationDesignLabel').innerHTML = applicationDesignMessage;
 		    
 		    jQuery.i18n.prop('dbVersionMessage');
 		    document.getElementById('dbVersionLabel').innerHTML= dbVersionMessage;
-		    document.getElementById('dbVersion').innerHTML= getDbVersion();
+		    document.getElementById('dbVersion').innerHTML = getDbVersion();
 	      }
 	    });
 	  }
@@ -69,8 +72,12 @@
                 <td><div class="">Joshua A.C. Newman</div></td>
               </tr>
               <tr>
+                <td><div class="columnLabel" id="legoMobileFrameSettingDesignLabel"></div></td>
+                <td><div class="">Soren Roberts</div></td>
+              </tr>
+              <tr>
               <td><div class="columnLabel" id="applicationDesignLabel"></div></td>
-              <td><div class="">Cédric Maria-Sube</div></td>
+              <td><div class="">C&eacute;dric Maria-Sube</div></td>
             </tr>
               <tr>
                 <td><div class="columnLabel" id="dbVersionLabel"></div></td>
