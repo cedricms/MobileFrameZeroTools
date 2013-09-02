@@ -28,8 +28,10 @@
 		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + usefulLinksMessage;
 
 		    jQuery.i18n.prop('officialSiteMessage');
-		    document.getElementById('officialSiteLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'http://mobileframezero.com/mfz/\', \'_system\');">' +officialSiteMessage + '</a>';
-		    
+		    document.getElementById('officialSiteLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'http://mobileframezero.com/mfz/\', \'_system\');">' + officialSiteMessage + '</a>';
+
+		    jQuery.i18n.prop('mf0OnGPlusMessage');
+		    document.getElementById('mf0OnGPlusLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'https://plus.google.com/communities/100668943555945875233\', \'_system\');">' + mf0OnGPlusMessage + '</a>';
 	      }
 	    });
 	  }
@@ -48,6 +50,9 @@
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
           <div class="row largeRow">
             <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="officialSiteLabel"></div>
+          </div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mf0OnGPlusLabel"></div>
           </div>
         </div>
       </div>
