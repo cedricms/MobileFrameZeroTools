@@ -26,6 +26,21 @@
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('frameDetailMessage');
 		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + frameDetailMessage;
+		    
+		    jQuery.i18n.prop('frameNameMessage');
+		    document.getElementById('frameNameLabel').innerHTML= frameNameMessage;
+
+		    jQuery.i18n.prop('systemsMessage');
+		    document.getElementById('systemsLabel').innerHTML= systemsMessage;
+
+		    jQuery.i18n.prop('diceMessage');
+		    document.getElementById('diceLabel').innerHTML= diceMessage;
+		    
+		    jQuery.i18n.prop('okMessage');
+		    document.getElementById('okLabel').innerHTML= okMessage;
+
+		    jQuery.i18n.prop('resetMessage');
+		    document.getElementById('resetLabel').innerHTML= resetMessage;
 	      }
 	    });
 	  }
@@ -42,9 +57,79 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-          </div>
+          <form class="navbar-form pull-left mof0Form" name="frameForm">
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	          <div class="row">
+	            <div class="col-4 col-sm-4 col-lg-4 formLabel" id="frameNameLabel"></div>
+	            <div class="col-8 col-sm-8 col-lg-8"><input class="span4" name="frameName" type="text"/></div>
+	          </div>
+	          <fieldset>
+	              <legend class="mof0Legend" id="systemsLabel">Systems</legend>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Defensive</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Movement</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Surveillance/communication</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Hand-to-hand weapon</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Direct fire weapon</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		          <div class="row">
+		            <div class="col-3 col-sm-3 col-lg-3">Artillery range weapon</div>
+		            <div class="col-3 col-sm-3 col-lg-3">0</div>
+		            <div class="col-3 col-sm-3 col-lg-3">1</div>
+		            <div class="col-3 col-sm-3 col-lg-3">2</div>
+		          </div>
+		      </fieldset>
+		      <fieldset>
+                  <legend class="mof0Legend" id="diceLabel">Dice</legend>
+	              <div class="row">
+	                  <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	              </div>
+	          </fieldset>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+		      <div class="row">
+	              <div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div>
+		          <div class="col-6 col-sm-6 col-lg-6"><button type="submit" class="btn formButton" id="okLabel">OK</button></div>
+		      </div>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	      </form>
         </div>
       </div>
     </div>

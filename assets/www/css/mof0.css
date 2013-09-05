@@ -44,6 +44,20 @@ a.backButton:active {
   font-weight : bold;
 }
 
+.formButton {
+  border : 2px solid;
+  border-color : #bc252a;
+  color: #bc252a;
+  font-size : 2rem;
+  font-weight : bold;
+}
+
+.formLabel {
+  color: #bc252a;
+  font-size : 2rem;
+  font-weight : bold;
+}
+
 .largeButton {
   margin : 5px;
 }
@@ -102,6 +116,15 @@ a.largeButton:visited {
 
 .mediumBackground {
   background-color : #ccc;
+}
+
+.mof0Form {
+	width : 100%;
+}
+
+.mof0Legend {
+  color: #bc252a;
+  font-weight : bold;
 }
 
 .pageSection {
