@@ -158,6 +158,17 @@ a.largeButton:visited {
   width : 90%;
 }
 
+.systemDiceZone {
+  background-color : #fff;
+  border : 2px solid;
+  border-radius: 10px 10px;
+  color : #bc252a;
+  float : left;
+  margin : 10px 10px 10px 10px;
+  padding : 5px;
+}
+
+
 .systemRow {
   background-color : #fff;
   border : 2px solid;
