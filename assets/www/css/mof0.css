@@ -157,3 +157,15 @@ a.largeButton:visited {
   padding-top : 15px;
   width : 90%;
 }
+
+.systemRow {
+  background-color : #fff;
+  border : 2px solid;
+  border-radius: 10px 10px;
+  color : #bc252a;
+  /*display: block;
+  margin : 0px auto 10px 10px;*/
+  margin : 10px 10px 10px 10px;
+  padding : 5px;
+  /*width : 90%;*/
+}

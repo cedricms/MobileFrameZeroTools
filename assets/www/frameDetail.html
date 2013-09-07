@@ -9,6 +9,7 @@
     <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0FrameDetail.js"></script>
     
     <script type="text/javascript">
       // load I18N bundles
@@ -31,7 +32,7 @@
 		    document.getElementById('frameNameLabel').innerHTML= frameNameMessage;
 
 		    jQuery.i18n.prop('systemsMessage');
-		    document.getElementById('systemsLabel').innerHTML= systemsMessage;
+		    document.getElementById('systemsLabel').innerHTML= getSystemsLabel(systemsMessage);
 
 		    jQuery.i18n.prop('diceMessage');
 		    document.getElementById('diceLabel').innerHTML= diceMessage;
@@ -62,43 +63,43 @@
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>
 	          <div class="row">
-	            <div class="col-4 col-sm-4 col-lg-4 formLabel" id="frameNameLabel"></div>
-	            <div class="col-8 col-sm-8 col-lg-8"><input class="span4" name="frameName" type="text"/></div>
+	            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="frameNameLabel"></div>
+	            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="frameName" type="text"/></div>
 	          </div>
 	          <fieldset>
 	              <legend class="mof0Legend" id="systemsLabel">Systems</legend>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Defensive</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
 		          </div>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Movement</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Movement" src="./img/dice/Move.png"/></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
 		          </div>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Surveillance/communication</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
 		          </div>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Hand-to-hand weapon</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
 		          </div>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Direct fire weapon</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
 		          </div>
-		          <div class="row">
-		            <div class="col-3 col-sm-3 col-lg-3">Artillery range weapon</div>
+		          <div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
 		            <div class="col-3 col-sm-3 col-lg-3">0</div>
 		            <div class="col-3 col-sm-3 col-lg-3">1</div>
 		            <div class="col-3 col-sm-3 col-lg-3">2</div>
@@ -117,9 +118,6 @@
 	              <div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div>
 		          <div class="col-6 col-sm-6 col-lg-6"><button type="submit" class="btn formButton" id="okLabel">OK</button></div>
 		      </div>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
 	          <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>
