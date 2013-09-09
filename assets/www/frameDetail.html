@@ -58,7 +58,7 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <form class="navbar-form pull-left mof0Form" name="frameForm">
+          <form class="navbar-form pull-left mof0Form" id="frameForm" name="frameForm">
 	          <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>
@@ -70,39 +70,39 @@
 	              <legend class="mof0Legend" id="systemsLabel">Systems</legend>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="defensiveSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="defensiveSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="defensiveSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="2">2</label></div>
 		          </div>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Movement" src="./img/dice/Move.png"/></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="movementSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="movementSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="movementSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="2">2</label></div>
 		          </div>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="surveillanceCommunicationSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="surveillanceCommunicationSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="surveillanceCommunicationSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="2">2</label></div>
 		          </div>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="handToHandWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="handToHandWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="handToHandWeaponSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="2">2</label></div>
 		          </div>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="directFireWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="directFireWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="directFireWeaponSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="2">2</label></div>
 		          </div>
 		          <div class="row systemRow">
 		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="artilleryRangeWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="artilleryRangeWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label><input type="radio" name="artilleryRangeWeaponSystem" value="2">2</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="2">2</label></div>
 		          </div>
 		      </fieldset>
 		      <fieldset>
