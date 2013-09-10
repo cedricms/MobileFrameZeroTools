@@ -42,6 +42,11 @@
 
 		    /*jQuery.i18n.prop('resetMessage');
 		    document.getElementById('resetLabel').innerHTML= resetMessage;*/
+		    
+		    // Init values
+		    
+		    // Update dice visibility factor
+		    showHideDice();
 	      }
 	    });
 	  }
@@ -110,36 +115,36 @@
 	              <div class="row">
 	                  <div class="col-12 col-sm-12 col-lg-12">
 	                      <div class="systemDiceZone">
-	                          <img alt="Wild" src="./img/dice/White Die.png">
-	                          <img alt="Wild" src="./img/dice/White Die.png">
+	                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
+	                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
 	                      </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Defensive" src="./img/dice/Defense.png"/>
-                              <img alt="Defensive" src="./img/dice/Defense.png"/>
+	                      <div class="systemDiceZone" id="defensiveDice">
+	                          <div class="systemDie" id="defensive1"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
+	                          <div class="systemDie" id="defensive2"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
                           </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Movement" src="./img/dice/Move.png"/>
-	                          <img alt="Movement" src="./img/dice/Move.png"/>
-	                          <img alt="Movement" src="./img/dice/Move D8.png"/>
+	                      <div class="systemDiceZone" id="moveDice">
+	                          <div class="systemDie" id="move1"><img alt="Movement" src="./img/dice/Move.png"/></div>
+	                          <div class="systemDie" id="move2"><img alt="Movement" src="./img/dice/Move.png"/></div>
+	                          <div class="systemDie" id="moveD8"><img alt="Movement" src="./img/dice/Move D8.png"/></div>
                           </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Surveillance/communication" src="./img/dice/Spotting.png">
-	                          <img alt="Surveillance/communication" src="./img/dice/Spotting.png">
+	                      <div class="systemDiceZone" id="spottingDice">
+	                          <div class="systemDie" id="spotting1"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
+	                          <div class="systemDie" id="spotting2"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
                           </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Hand-to-hand weapon" src="./img/dice/HtH.png">
-	                          <img alt="Hand-to-hand weapon" src="./img/dice/HtH.png">
-	                          <img alt="Hand-to-hand weapon" src="./img/dice/HtH D8.png">
+	                      <div class="systemDiceZone" id="hthDice">
+	                          <div class="systemDie" id="hth1"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
+	                          <div class="systemDie" id="hth2"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
+	                          <div class="systemDie" id="hthD8"><img alt="Hand-to-hand weapon" src="./img/dice/HtH D8.png"></div>
                           </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Direct fire weapon" src="./img/dice/Direct.png">
-	                          <img alt="Direct fire weapon" src="./img/dice/Direct.png">
-	                          <img alt="Direct fire weapon" src="./img/dice/Direct D8.png">
+	                      <div class="systemDiceZone" id="directDice">
+	                          <div class="systemDie" id="direct1"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
+	                          <div class="systemDie" id="direct2"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
+	                          <div class="systemDie" id="directD8"><img alt="Direct fire weapon" src="./img/dice/Direct D8.png"></div>
                           </div>
-	                      <div class="systemDiceZone">
-	                          <img alt="Artillery range weapon" src="./img/dice/Artillery.png">
-	                          <img alt="Artillery range weapon" src="./img/dice/Artillery.png">
-	                          <img alt="Artillery range weapon" src="./img/dice/Artillery D8.png">
+	                      <div class="systemDiceZone" id="artilleryDice">
+	                          <div class="systemDie" id="artillery1"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
+	                          <div class="systemDie" id="artillery2"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
+	                          <div class="systemDie" id="artilleryD8"><img alt="Artillery range weapon" src="./img/dice/Artillery D8.png"></div>
                           </div>
 	                  </div>
 	              </div>
@@ -151,12 +156,6 @@
 	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
 		          <div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div>
 		      </div>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
 	          <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>
