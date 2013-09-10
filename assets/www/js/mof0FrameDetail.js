@@ -46,21 +46,23 @@ function getRadioIntValue(nodeList) {
 
 function getSystemsLabel(pSystemsMessage) {
 	systemsMessage = pSystemsMessage;
-	return systemsMessage + " (" + getNbSystems() + " / 4)";
+	
+	nbSystems = getNbSystems();
+	
+	prefix = "";
+	suffix = "";
+	
+	if (nbSystems > 4) {
+		prefix = "!!! ";
+		suffix = " !!!";
+	} // if
+	
+	return prefix + systemsMessage + " (" + nbSystems + " / 4)" + suffix;
 }
 
 function updateFrame() {
 	// Update dice
 	
 	// Update system count
-	//$("#systemsLabel").text(htmlToSpecialCharacters(getSystemsLabel(systemsMessage))).html();
 	$("#systemsLabel").text(getSystemsLabel(systemsMessage));
-}
-
-function htmlToSpecialCharacters(htmlString) {
-	result = htmlString;
-	
-	result = result.replace("&egrave;", "è");
-	
-	return result;
 }
