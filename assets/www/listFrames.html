@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Mobile Frame Zero Tools</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0ListFrames.js"></script>
+    
+    <script type="text/javascript">
+      // load I18N bundles
+      jQuery(document).ready(function() {
+    	initLanguages();
+    	
+    	listFrames();
+	  });
+		
+	  function loadBundles(lang) {
+	    jQuery.i18n.properties({
+	      name:'MoF0', 
+          path:'i18n/', 
+		  mode:'both',
+		  language:lang, 
+		  callback: function() {
+		    jQuery.i18n.prop('applicationTitleMessage');
+		    jQuery.i18n.prop('listFramesMessage');
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + listFramesMessage;
+		    
+		    jQuery.i18n.prop('frameMessage');
+		    document.getElementById('frameLabel').innerHTML = frameMessage;
+		    
+		    jQuery.i18n.prop('diceMessage');
+		    document.getElementById('diceLabel').innerHTML = diceMessage;
+	      }
+	    });
+	  }
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/respond.min.js"></script>
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/mof0.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
+      <div class="row text-center">
+        <div class="col-12 col-sm-12 col-lg-12 pageSection">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+          <div class="mediumBackground">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th><div class="" id="frameLabel"></div></td>
+                  <th><div class="" id="diceLabel"></div></td>
+                </tr>
+              </thead>
+              <tbody>
+              
+              </tbody>
+            </table>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

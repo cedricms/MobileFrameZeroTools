@@ -38,20 +38,22 @@ function initDb() {
 			else {
 				localStorageDbVersion = localStorage.getItem("localStorageDbVersion");
 				// To reset the initial version
-				// localStorage.setItem("localStorageDbVersion", localStorageDbVersion);
+				//localStorage.setItem("localStorageDbVersion", localStorageDbVersion);
 			} // if
 			
 			if (localStorageDbVersion === "0.0") {
 				//tx.executeSql('DROP TABLE IF EXISTS FRAME');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS frame (id unique, name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets)');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS company (id unique, name');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id_company, id_frame');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS frame (id unique, name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range)');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS company (id unique, name)');
+				//tx.executeSql('DROP TABLE IF EXISTS company_frame');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id_company, id_frame, nb_rockets)');
 				//    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
 				//    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
 				localStorage.setItem("localStorageDbVersion", "1.0");
 			} // if
 			
 			if (localStorageDbVersion === "1.0") {
+				// To update the next version
 				
 			} // if
 		}
