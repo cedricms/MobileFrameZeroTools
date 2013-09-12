@@ -26,6 +26,20 @@ function getNbSystems() {
 	return result;
 }
 
+function validateFrame() {
+	frameForm = document.getElementById("frameForm");
+
+	frameName = frameForm.elements["frameName"].value;
+	
+	if ((frameName === null) || (frameName === "")) {
+		jQuery.i18n.prop('youNeedToSetTheFramesNameMessage');
+		alert(youNeedToSetTheFramesNameMessage);
+	}
+	else {
+		
+	} // if
+}
+
 function getRadioIntValue(nodeList) {
   result = 0;
 

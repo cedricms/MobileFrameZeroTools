@@ -63,8 +63,9 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <form class="navbar-form pull-left mof0Form" id="frameForm" name="frameForm">
-	          <div class="row">
+          <form action="" class="navbar-form pull-left mof0Form" id="frameForm" method="post" name="frameForm">
+          	  <input name="frameId" type="hidden"/>
+          	  <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>
 	          <div class="row">
@@ -154,7 +155,8 @@
 	          </div>
 		      <div class="row">
 	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
-		          <div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div>
+		          <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
+		          <div class="col-12 col-sm-12 col-lg-12"><a class="largeButton" href="JavaScript:validateFrame();" id="okLabel">OK</a></div>
 		      </div>
 	          <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
