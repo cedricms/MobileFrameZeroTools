@@ -36,8 +36,32 @@ function validateFrame() {
 		alert(youNeedToSetTheFramesNameMessage);
 	}
 	else {
-		
+		// Check if creation or modification
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		db.transaction(queryIsFrameUnique, errorDB);
 	} // if
+}
+
+// Query the database
+function queryIsFrameUnique(tx) {
+	frameForm = document.getElementById("frameForm");
+
+	frameName = frameForm.elements["frameName"].value;
+	
+    tx.executeSql("SELECT id FROM frame WHERE upper(name)='" + frameName.toUpperCase() +"'", [], queryIsFrameUniqueSuccess, errorDB);
+}
+
+// Query the success callback
+function queryIsFrameUniqueSuccess(tx, results) {
+    var len = results.rows.length;
+            
+    if (len > 0) {
+    	jQuery.i18n.prop('thatFrameAlreadyExistsMessage');
+		alert(thatFrameAlreadyExistsMessage);
+    }
+    else {
+    	
+    }
 }
 
 function getRadioIntValue(nodeList) {
