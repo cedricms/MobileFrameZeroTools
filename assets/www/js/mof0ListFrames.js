@@ -16,10 +16,9 @@ function listFrames() {
     // Query the success callback
     function querySuccess(tx, results) {
         var len = results.rows.length;
-        //console.log("DEMO table: " + len + " rows found.");
-        //alert("len : " + len);
+                
         for (var i=0; i<len; i++){
-            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+            $( "#frameTable" ).append( "<tr><td>" + results.rows.item(i).id + "</td><td>" + results.rows.item(i).data + "</td></tr>" );
         } // for
     }
 
