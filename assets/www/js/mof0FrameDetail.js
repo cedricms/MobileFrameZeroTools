@@ -36,7 +36,7 @@ function validateFrame() {
 		alert(youNeedToSetTheFramesNameMessage);
 	}
 	else {
-		// Check if creation or modification
+		// Check if creation or modification and save
 		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
 		db.transaction(queryIsFrameUnique, errorDB);
 	} // if
@@ -60,8 +60,69 @@ function queryIsFrameUniqueSuccess(tx, results) {
 		alert(thatFrameAlreadyExistsMessage);
     }
     else {
+    	frameForm = document.getElementById("frameForm");
+
+    	frameId = frameForm.elements["frameId"].value;
     	
-    }
+    	if ((frameId === null) || (frameId === "")) {
+    		// Create
+    		createFrame();
+    	}
+    	else {
+    		// Modify
+    		modifyFrame();
+    	} // if
+    	
+    	window.location.href = "./listFrames.html";
+    } // if
+}
+
+//Transaction error callback
+function errorDB(tx, err) {
+	alert("Error processing SQL: "+err);
+}
+
+function createFrame() {
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	db.transaction(queryCreateFrame, errorDB);
+}
+
+function queryCreateFrame(tx) {
+	frameForm = document.getElementById("frameForm");
+
+	frameName = frameForm.elements["frameName"].value;
+	
+	defensiveSystem = frameForm.elements["defensiveSystem"];	
+	defensiveSystemValue = getRadioIntValue(defensiveSystem);
+
+	movementSystem = frameForm.elements["movementSystem"];
+	movementSystemValue = getRadioIntValue(movementSystem);
+
+	surveillanceCommunicationSystem = frameForm.elements["surveillanceCommunicationSystem"];
+	surveillanceCommunicationSystemValue = getRadioIntValue(surveillanceCommunicationSystem);
+
+	handToHandWeaponSystem = frameForm.elements["handToHandWeaponSystem"];
+	handToHandWeaponSystemValue = getRadioIntValue(handToHandWeaponSystem);
+
+	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];
+	directFireWeaponSystemValue = getRadioIntValue(directFireWeaponSystem);
+
+	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
+	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
+	
+	tx.executeSql('INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range) VALUES ("' + 
+			frameName + '", ' + 
+			defensiveSystemValue + ', ' +
+			movementSystemValue + ', ' +
+			surveillanceCommunicationSystemValue + ', ' +
+			handToHandWeaponSystemValue + ', ' +
+			directFireWeaponSystemValue + ', ' +
+			artilleryRangeWeaponSystemValue
+			 + ')');
+}
+
+function modifyFrame() {
+	alert("modifyFrame");
 }
 
 function getRadioIntValue(nodeList) {
