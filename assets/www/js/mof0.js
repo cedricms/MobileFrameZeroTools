@@ -42,13 +42,12 @@ function initDb() {
 			} // if
 			
 			if (localStorageDbVersion === "0.0") {
-				//tx.executeSql('DROP TABLE IF EXISTS FRAME');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS frame (id unique, name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range)');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS company (id unique, name)');
+				//tx.executeSql('DROP TABLE IF EXISTS frame');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS frame (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, nb_defensive INT, nb_movement INT, nb_surveillance_communication INT, nb_hand_to_hand INT, nb_direct_fire INT, nb_artillery_range INT)');
+				//tx.executeSql('DROP TABLE IF EXISTS company');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS company (id INTEGER PRIMARY KEY AUTOINCREMENT, name)');
 				//tx.executeSql('DROP TABLE IF EXISTS company_frame');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id_company, id_frame, nb_rockets)');
-				//    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-				//    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id_company INTEGER NOT NULL, id_frame INTEGER NOT NULL, nb_rockets INT)');
 				localStorage.setItem("localStorageDbVersion", "1.0");
 			} // if
 			
