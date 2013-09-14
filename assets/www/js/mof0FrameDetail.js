@@ -122,7 +122,46 @@ function queryCreateFrame(tx) {
 }
 
 function modifyFrame() {
-	alert("modifyFrame");
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	db.transaction(queryModifyFrame, errorDB);
+}
+
+function queryModifyFrame(tx) {
+	frameForm = document.getElementById("frameForm");
+
+	frameId = frameForm.elements["frameId"].value;
+	
+	frameName = frameForm.elements["frameName"].value;
+	
+	defensiveSystem = frameForm.elements["defensiveSystem"];	
+	defensiveSystemValue = getRadioIntValue(defensiveSystem);
+
+	movementSystem = frameForm.elements["movementSystem"];
+	movementSystemValue = getRadioIntValue(movementSystem);
+
+	surveillanceCommunicationSystem = frameForm.elements["surveillanceCommunicationSystem"];
+	surveillanceCommunicationSystemValue = getRadioIntValue(surveillanceCommunicationSystem);
+
+	handToHandWeaponSystem = frameForm.elements["handToHandWeaponSystem"];
+	handToHandWeaponSystemValue = getRadioIntValue(handToHandWeaponSystem);
+
+	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];
+	directFireWeaponSystemValue = getRadioIntValue(directFireWeaponSystem);
+
+	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
+	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
+	
+	updateQuery = 'UPDATE frame SET name="' + frameName + '"' +
+			', nb_defensive=' + defensiveSystemValue +
+			', nb_movement=' + movementSystemValue +
+			', nb_surveillance_communication=' + surveillanceCommunicationSystemValue +
+			', nb_hand_to_hand=' + handToHandWeaponSystemValue +
+			', nb_direct_fire=' + directFireWeaponSystemValue +
+			', nb_artillery_range=' + artilleryRangeWeaponSystemValue +
+			' WHERE id=' + frameId;
+	//alert(updateQuery);
+	
+	tx.executeSql(updateQuery);
 }
 
 function getRadioIntValue(nodeList) {
@@ -141,6 +180,15 @@ function getRadioIntValue(nodeList) {
   //alert(nodeList.name + " : " + result);
   
   return result;
+}
+
+function setRadioValue(nodeList, nodeValue) {
+	for (i=0; i < nodeList.length; i++) {
+		if (nodeList[i].value == nodeValue) {
+			nodeList[i].checked = true;
+			break;
+		} // if
+    } // for
 }
 
 function getSystemsLabel(pSystemsMessage) {
@@ -350,4 +398,61 @@ function showHideDice() {
 		$('#moveDice').show('fast');
 		$('#moveD8').show('fast');
 	} // if
+}
+
+function loadFrame(urlFrameId) {
+	frameForm = document.getElementById("frameForm");
+	
+	frameId = frameForm.elements["frameId"];
+	
+	frameId.value = urlFrameId;
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+    db.transaction(queryFrameById, errorDB);
+}
+
+// Query the database
+function queryFrameById(tx) {
+	frameForm = document.getElementById("frameForm");
+    frameId = frameForm.elements["frameId"];
+    
+    tx.executeSql('SELECT * FROM frame WHERE id=' + frameId.value, [], queryFrameByIdSuccess, errorDB);
+}
+
+// Query the success callback
+function queryFrameByIdSuccess(tx, results) {
+    var len = results.rows.length;
+    
+    frameForm = document.getElementById("frameForm");
+    
+    for (var i=0; i<len; i++){
+    	var row = results.rows.item(i);
+    	
+    	frameName = frameForm.elements["frameName"];
+    	frameName.value = row.name;
+    	
+    	defensiveSystem = frameForm.elements["defensiveSystem"];
+    	setRadioValue(defensiveSystem, row.nb_defensive);
+    	
+    	movementSystem = frameForm.elements["movementSystem"];
+    	setRadioValue(movementSystem, row.nb_movement);
+    	
+    	surveillanceCommunicationSystem = frameForm.elements["surveillanceCommunicationSystem"];
+    	setRadioValue(surveillanceCommunicationSystem, row.nb_surveillance_communication);
+    	
+    	handToHandWeaponSystem = frameForm.elements["handToHandWeaponSystem"];
+    	setRadioValue(handToHandWeaponSystem, row.nb_hand_to_hand);
+    	
+    	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];
+    	setRadioValue(directFireWeaponSystem, row.nb_direct_fire);
+    	
+    	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
+    	setRadioValue(artilleryRangeWeaponSystem, row.nb_artillery_range);
+    	
+    	break;
+    } // for
+}
+
+// Transaction error callback
+function errorDB(tx, err) {
+	alert("Error processing SQL: "+err);
 }
