@@ -158,6 +158,15 @@ a.largeButton:visited {
   width : 90%;
 }
 
+.systemDiceList {
+  background-color : #fff;
+  border : 2px solid;
+  border-radius: 10px 10px;
+  color : #bc252a;
+  margin : 10px 10px 10px 10px;
+  padding : 5px;
+}
+
 .systemDiceZone {
   background-color : #fff;
   border : 2px solid;
@@ -185,4 +194,8 @@ a.largeButton:visited {
   margin : 10px 10px 10px 10px;
   padding : 5px;
   /*width : 90%;*/
+}
+
+.tableHeader {
+  text-align : center;
 }
