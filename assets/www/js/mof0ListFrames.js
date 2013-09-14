@@ -93,7 +93,12 @@ function listFrames() {
                        directFireDice + 
                        artilleryRangeDice;
             
-            $('#frameTable').append( '<tr><td><a href="./frameDetail.html?frameId=' + row.id + '">' + row.name + '</a></td><td><div class="systemDiceList">' + dice + '</div></td></tr>' );
+            var tooManySystems = '';
+            if (nbDefensive + nbMovement + nbSurveillanceCommunication + nbHandToHand + nbDirectFire + nbArtilleryRange > 4) {
+                tooManySystems = '/!\\';
+            } // if
+            
+            $('#frameTable').append( '<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + tooManySystems + " " + row.name + " " + tooManySystems + '</a></td><td><div class="systemDiceList">' + dice + '</div></td></tr>' );
         } // for
     }
 

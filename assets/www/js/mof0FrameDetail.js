@@ -152,8 +152,8 @@ function getSystemsLabel(pSystemsMessage) {
 	suffix = "";
 	
 	if (nbSystems > 4) {
-		prefix = "!!! ";
-		suffix = " !!!";
+		prefix = "/!\\ ";
+		suffix = " /!\\";
 	} // if
 	
 	return prefix + systemsMessage + " (" + nbSystems + " / 4)" + suffix;

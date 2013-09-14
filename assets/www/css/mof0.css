@@ -58,6 +58,24 @@ a.backButton:active {
   font-weight : bold;
 }
 
+a.frameNameLink {
+  color: #bc252a;
+  display:inline-block;
+  font-weight : bold;
+  padding : 5px;
+  text-decoration: underline;
+  vertical-align:middle;
+}
+
+
+a.frameNameLink:hover {
+  border : 2px solid;
+  border-radius: 5px 5px 5px 5px;
+  color: #bc252a;
+  font-weight : bold;
+  text-decoration: none;
+}
+
 .largeButton {
   margin : 5px;
 }
@@ -163,7 +181,7 @@ a.largeButton:visited {
   border : 2px solid;
   border-radius: 10px 10px;
   color : #bc252a;
-  margin : 10px 10px 10px 10px;
+  margin : 5px 5px 5px 5px;
   padding : 5px;
 }
 
