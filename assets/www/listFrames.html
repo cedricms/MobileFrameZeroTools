@@ -34,6 +34,9 @@
 		    jQuery.i18n.prop('frameMessage');
 		    document.getElementById('frameLabel').innerHTML = frameMessage;
 		    
+		    jQuery.i18n.prop('nbSystemsMessage');
+		    document.getElementById('nbSystemsLabel').innerHTML = nbSystemsMessage;
+		    
 		    jQuery.i18n.prop('diceMessage');
 		    document.getElementById('diceLabel').innerHTML = diceMessage;
 	      }
@@ -59,8 +62,9 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th width="25%"><div class="tableHeader" id="frameLabel"></div></th>
-                  <th width="75%"><div class="tableHeader" id="diceLabel"></div></th>
+                  <th width="20%"><div class="tableHeader" id="frameLabel"></div></th>
+                  <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
+                  <th width="60%"><div class="tableHeader" id="diceLabel"></div></th>
                 </tr>
               </thead>
               <tbody id="frameTable">
