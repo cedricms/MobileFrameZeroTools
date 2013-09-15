@@ -10,7 +10,7 @@ function listFrames() {
 	
     // Query the database
     function queryDB(tx) {
-        tx.executeSql('SELECT * FROM frame ORDER BY name', [], querySuccess, errorDB);
+        tx.executeSql('SELECT * FROM frame ORDER BY upper(name) asc', [], querySuccess, errorDB);
     }
 
     // Query the success callback

@@ -29,16 +29,31 @@ function getNbSystems() {
 function validateFrame() {
 	frameForm = document.getElementById("frameForm");
 
-	frameName = frameForm.elements["frameName"].value;
-	
-	if ((frameName === null) || (frameName === "")) {
-		jQuery.i18n.prop('youNeedToSetTheFramesNameMessage');
-		alert(youNeedToSetTheFramesNameMessage);
+	frameId = frameForm.elements["frameId"].value;
+	if ((frameId === null) || (frameId === "")) {
+		frameName = frameForm.elements["frameName"].value;
+		
+		if ((frameName === null) || (frameName === "")) {
+			jQuery.i18n.prop('youNeedToSetTheFramesNameMessage');
+			alert(youNeedToSetTheFramesNameMessage);
+		}
+		else {
+			// Check if creation or modification and save
+			var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+			db.transaction(queryIsFrameUnique, errorDB);
+		} // if
 	}
 	else {
-		// Check if creation or modification and save
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
-		db.transaction(queryIsFrameUnique, errorDB);
+		frameName = frameForm.elements["frameName"].value;
+		
+		if ((frameName === null) || (frameName === "")) {
+			jQuery.i18n.prop('youNeedToSetTheFramesNameMessage');
+			alert(youNeedToSetTheFramesNameMessage);
+		}
+		else {
+			modifyFrame();
+			window.location.href = "./listFrames.html";
+		} // if
 	} // if
 }
 
@@ -48,7 +63,7 @@ function queryIsFrameUnique(tx) {
 
 	frameName = frameForm.elements["frameName"].value;
 	
-    tx.executeSql("SELECT id FROM frame WHERE upper(name)='" + frameName.toUpperCase() +"'", [], queryIsFrameUniqueSuccess, errorDB);
+    tx.executeSql('SELECT id FROM frame WHERE upper(name)="' + frameName.toUpperCase() +'"', [], queryIsFrameUniqueSuccess, errorDB);
 }
 
 // Query the success callback
@@ -159,7 +174,6 @@ function queryModifyFrame(tx) {
 			', nb_direct_fire=' + directFireWeaponSystemValue +
 			', nb_artillery_range=' + artilleryRangeWeaponSystemValue +
 			' WHERE id=' + frameId;
-	//alert(updateQuery);
 	
 	tx.executeSql(updateQuery);
 }
@@ -176,8 +190,6 @@ function getRadioIntValue(nodeList) {
       } // if
     } // if
   } // for
-  
-  //alert(nodeList.name + " : " + result);
   
   return result;
 }

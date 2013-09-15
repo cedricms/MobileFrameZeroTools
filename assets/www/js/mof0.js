@@ -68,7 +68,7 @@ function initDb() {
 
 	// Transaction success callback
 	function successDB() {
-		//alert("success!");
+		
 	}
 }
 
