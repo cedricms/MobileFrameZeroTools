@@ -39,6 +39,9 @@
 		    
 		    jQuery.i18n.prop('diceMessage');
 		    document.getElementById('diceLabel').innerHTML = diceMessage;
+		    
+		    jQuery.i18n.prop('actionsMessage');
+		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
 	      }
 	    });
 	  }
@@ -63,8 +66,9 @@
               <thead>
                 <tr>
                   <th width="30%"><div class="tableHeader" id="frameLabel"></div></th>
-                  <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
-                  <th width="50%"><div class="tableHeader" id="diceLabel"></div></th>
+                  <th width="15%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
+                  <th width="45%"><div class="tableHeader" id="diceLabel"></div></th>
+                  <th width="10%"><div class="tableHeader" id="actionsLabel"></div></th>
                 </tr>
               </thead>
               <tbody id="frameTable">

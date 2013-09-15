@@ -99,7 +99,9 @@ function listFrames() {
                 tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
             } // if
             
-            $('#frameTable').append( '<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td></tr>' );
+            $('#frameTable').append('<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
+            	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+            	tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td><td><a href="Javascript:deleteFrame(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
     }
 
@@ -118,4 +120,29 @@ function listFrames() {
 		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
         db.transaction(queryDB, errorDB);
 	}
+}
+
+function deleteFrame(frameId) {
+	jQuery.i18n.prop('areYouSureToWantToDeleteThisFrameMessage');
+	var deleteAction=confirm(areYouSureToWantToDeleteThisFrameMessage);
+	if (deleteAction == true) {
+		sqlDelete = 'DELETE FROM frame WHERE id=?';
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		db.transaction(function(tx) {tx.executeSql(sqlDelete,[frameId])}, errorDB, successDB);
+		
+		window.location.href = "./listFrames.html";
+	}
+	else {
+		// Do nothing
+	} // if
+}
+
+// Transaction error callback
+function errorDB(tx, err) {
+	alert("Error processing SQL: "+err);
+}
+
+// Transaction success callback
+function successDB() {
+	
 }

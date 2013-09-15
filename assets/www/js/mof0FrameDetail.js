@@ -212,8 +212,10 @@ function getSystemsLabel(pSystemsMessage) {
 	suffix = "";
 	
 	if (nbSystems > 4) {
-		prefix = '<img alt="Error" src="./img/icons/error.png"/> ';
-		suffix = ' <img alt="Error" src="./img/icons/error.png"/>';
+		prefix = '/!\\ ';
+		suffix = ' /!\\';
+		//prefix = '<img alt="Error" src="./img/icons/error.png"/> ';
+		//suffix = ' <img alt="Error" src="./img/icons/error.png"/>';
 	} // if
 	
 	return prefix + systemsMessage + " (" + nbSystems + " / 4)" + suffix;
