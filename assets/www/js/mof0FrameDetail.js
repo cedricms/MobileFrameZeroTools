@@ -405,9 +405,14 @@ function loadFrame(urlFrameId) {
 	
 	frameId = frameForm.elements["frameId"];
 	
-	frameId.value = urlFrameId;
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
-    db.transaction(queryFrameById, errorDB);
+	if (urlFrameId === undefined) {
+		// Do nothing
+	}
+	else {
+		frameId.value = urlFrameId;
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		db.transaction(queryFrameById, errorDB);
+	} // if
 }
 
 // Query the database
