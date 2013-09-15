@@ -96,10 +96,10 @@ function listFrames() {
             var tooManySystems = '';
             var nbSystems = nbDefensive + nbMovement + nbSurveillanceCommunication + nbHandToHand + nbDirectFire + nbArtilleryRange;
             if (nbSystems > 4) {
-                tooManySystems = '/!\\';
+                tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
             } // if
             
-            $('#frameTable').append( '<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + ' ' + tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td></tr>' );
+            $('#frameTable').append( '<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td></tr>' );
         } // for
     }
 
