@@ -31,6 +31,9 @@
 		    jQuery.i18n.prop('listFramesMessage');
 		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + listFramesMessage;
 		    
+		    jQuery.i18n.prop('createFrameMessage');
+		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="./frameDetail.html">' + createFrameMessage + '</a>';
+		    
 		    jQuery.i18n.prop('frameMessage');
 		    document.getElementById('frameLabel').innerHTML = frameMessage;
 		    
@@ -58,8 +61,8 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createFrame"></div>
           </div>
           <div class="mediumBackground">
             <table class="table table-striped">
