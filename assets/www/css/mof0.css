@@ -44,6 +44,23 @@ a.backButton:active {
   font-weight : bold;
 }
 
+.faqAnswer {
+  margin-bottom : 5px;
+  margin-top : 3px;
+  text-align : justify;
+}
+
+.faqQuestion {
+  color: #bc252a;
+  font-size : 2rem;
+  font-weight : bold;
+  margin-bottom : 2px;
+  margin-left : 25px;
+  margin-right : 25px;
+  margin-top : 5px;
+  text-align : justify;
+}
+
 .formButton {
   border : 2px solid;
   border-color : #bc252a;
