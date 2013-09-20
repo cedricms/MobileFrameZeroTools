@@ -44,6 +44,12 @@ a.backButton:active {
   font-weight : bold;
 }
 
+.companyCreationGuidelinesTabContent {
+  background-color : #ccc;
+  padding : 15px;
+  text-align : justify;
+}
+
 a.companyNameLink {
   color: #bc252a;
   display:inline-block;
@@ -177,6 +183,12 @@ a.largeButton:visited {
 
 .mof0Legend {
   color: #bc252a;
+  font-weight : bold;
+}
+
+.nav-tabs > li > a {
+  color: #bc252a;
+  font-size : 2rem;
   font-weight : bold;
 }
 
