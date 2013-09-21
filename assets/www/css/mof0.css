@@ -40,6 +40,10 @@ a.backButton:active {
   color: #bc252a;
 }
 
+ul.bulletPoint {
+  list-style-image:url('../img/icons/bulletPoint.png');
+}
+
 .columnLabel {
   font-weight : bold;
 }
