@@ -57,6 +57,15 @@
 		    
 		    jQuery.i18n.prop('initialDefense7Message');
 		    document.getElementById('initialDefense7Label').innerHTML = initialDefense7Message;
+		    
+		    jQuery.i18n.prop('initialOffenseMessage');
+		    document.getElementById('initialOffenseLabel').innerHTML = initialOffenseMessage;
+		    
+		    jQuery.i18n.prop('initialOffense1Message');
+		    document.getElementById('initialOffense1Label').innerHTML = initialOffense1Message;
+		    
+		    jQuery.i18n.prop('initialOffense2Message');
+		    document.getElementById('initialOffense2Label').innerHTML = initialOffense2Message;
 	      }
 	    });
 	  }
@@ -78,6 +87,7 @@
               <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
                 <li class="active"><a href="#fieldingCompanies" data-toggle="tab" id="fieldingCompaniesLabel"></a></li>
                 <li><a href="#initialDefense" data-toggle="tab" id="initialDefenseLabel"></a></li>
+                <li><a href="#initialOffense" data-toggle="tab" id="initialOffenseLabel"></a></li>
               </ul>
               <div id="my-tab-content" class="tab-content mfzTabContent">
                 <div class="tab-pane active" id="fieldingCompanies">
@@ -92,6 +102,12 @@
                     <li id="initialDefense5Label"></li>
                     <li id="initialDefense6Label"></li>
                     <li id="initialDefense7Label"></li>
+                  </ul>
+                </div>
+                <div class="tab-pane" id="initialOffense">
+                  <ul class="bulletPoint">
+                    <li id="initialOffense1Label"></li>
+                    <li id="initialOffense2Label"></li>
                   </ul>
                 </div>
               </div>
