@@ -48,12 +48,6 @@ ul.bulletPoint {
   font-weight : bold;
 }
 
-.companyCreationGuidelinesTabContent {
-  background-color : #ccc;
-  padding : 15px;
-  text-align : justify;
-}
-
 a.companyNameLink {
   color: #bc252a;
   display:inline-block;
@@ -188,6 +182,12 @@ a.largeButton:visited {
 .mof0Legend {
   color: #bc252a;
   font-weight : bold;
+}
+
+.mfzTabContent {
+  background-color : #ccc;
+  padding : 15px;
+  text-align : justify;
 }
 
 .nav-tabs > li > a {

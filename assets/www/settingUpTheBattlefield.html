@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Mobile Frame Zero Tools</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
+    
+    <script type="text/javascript">
+      // load I18N bundles
+      jQuery(document).ready(function() {
+    	initLanguages()
+    	$("#tabs").tab();
+	  });
+		
+	  function loadBundles(lang) {
+	    jQuery.i18n.properties({
+	      name:'MoF0', 
+          path:'i18n/', 
+		  mode:'both',
+		  language:lang, 
+		  callback: function() {
+		    jQuery.i18n.prop('applicationTitleMessage');
+		    jQuery.i18n.prop('settingUpTheBattlefieldMessage');
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + settingUpTheBattlefieldMessage;
+
+		    jQuery.i18n.prop('fieldingCompaniesMessage');
+		    document.getElementById('fieldingCompaniesLabel').innerHTML = fieldingCompaniesMessage;
+		    
+		    jQuery.i18n.prop('fieldingCompaniesOrderMessage');
+		    document.getElementById('fieldingCompaniesOrderLabel').innerHTML = fieldingCompaniesOrderMessage;
+		    
+		    jQuery.i18n.prop('initialDefenseMessage');
+		    document.getElementById('initialDefenseLabel').innerHTML = initialDefenseMessage;
+	      }
+	    });
+	  }
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/respond.min.js"></script>
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/mof0.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
+      <div class="row text-center">
+        <div class="col-12 col-sm-12 col-lg-12 pageSection">
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12">
+              <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                <li class="active"><a href="#fieldingCompanies" data-toggle="tab" id="fieldingCompaniesLabel"></a></li>
+                <li><a href="#initialDefense" data-toggle="tab" id="initialDefenseLabel"></a></li>
+              </ul>
+              <div id="my-tab-content" class="tab-content mfzTabContent">
+                <div class="tab-pane active" id="fieldingCompanies">
+                  <div id="fieldingCompaniesOrderLabel"></div>
+                </div>
+                <div class="tab-pane" id="initialDefense">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
