@@ -78,6 +78,15 @@
 		    
 		    jQuery.i18n.prop('continuingOffense3Message');
 		    document.getElementById('continuingOffense3Label').innerHTML = continuingOffense3Message;
+		    
+		    jQuery.i18n.prop('finalDefenseMessage');
+		    document.getElementById('finalDefenseLabel').innerHTML = finalDefenseMessage;
+		    
+		    jQuery.i18n.prop('finalDefense1Message');
+		    document.getElementById('finalDefense1Label').innerHTML = finalDefense1Message;
+		    
+		    jQuery.i18n.prop('finalDefense2Message');
+		    document.getElementById('finalDefense2Label').innerHTML = finalDefense2Message;
 	      }
 	    });
 	  }
@@ -101,6 +110,7 @@
                 <li><a href="#initialDefense" data-toggle="tab" id="initialDefenseLabel"></a></li>
                 <li><a href="#initialOffense" data-toggle="tab" id="initialOffenseLabel"></a></li>
                 <li><a href="#continuingOffense" data-toggle="tab" id="continuingOffenseLabel"></a></li>
+                <li><a href="#finalDefense" data-toggle="tab" id="finalDefenseLabel"></a></li>
               </ul>
               <div id="my-tab-content" class="tab-content mfzTabContent">
                 <div class="tab-pane active" id="fieldingCompanies">
@@ -128,6 +138,12 @@
                     <li id="continuingOffense1Label"></li>
                     <li id="continuingOffense2Label"></li>
                     <li id="continuingOffense3Label"></li>
+                  </ul>
+                </div>
+                <div class="tab-pane" id="finalDefense">
+                  <ul class="bulletPoint">
+                    <li id="finalDefense1Label"></li>
+                    <li id="finalDefense2Label"></li>
                   </ul>
                 </div>
               </div>
