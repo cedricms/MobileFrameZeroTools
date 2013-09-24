@@ -47,7 +47,7 @@ function initDb() {
 				//tx.executeSql('DROP TABLE IF EXISTS company');
 				tx.executeSql('CREATE TABLE IF NOT EXISTS company (id INTEGER PRIMARY KEY AUTOINCREMENT, name)');
 				//tx.executeSql('DROP TABLE IF EXISTS company_frame');
-				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id_company INTEGER NOT NULL, id_frame INTEGER NOT NULL, nb_rockets INT)');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS company_frame (id INTEGER PRIMARY KEY AUTOINCREMENT, id_company INTEGER NOT NULL, id_frame INTEGER NOT NULL, nb_rockets INT)');
 				localStorage.setItem("localStorageDbVersion", "1.0");
 			} // if
 			
