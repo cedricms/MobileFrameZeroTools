@@ -48,6 +48,11 @@ ul.bulletPoint {
   font-weight : bold;
 }
 
+/*.comingSoon {
+  background : url("../img/icons/comingSoon.png") no-repeat center right;	
+  padding-right : 50px;
+}*/
+
 a.companyNameLink {
   color: #bc252a;
   display:inline-block;
