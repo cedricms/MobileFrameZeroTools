@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Mobile Frame Zero Tools</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0CompanyDetail.js"></script>
+    
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+    	initLanguages()
+	    
+	    // Init values
+	    //var urlFrameId = getUrlVars()["frameId"];
+	    //loadFrame(urlFrameId);
+	    
+	    // Update dice visibility factor
+	    //showHideDice();
+	  });
+
+	  function loadBundles(lang) {
+	    jQuery.i18n.properties({
+	      name:'MoF0', 
+          path:'i18n/', 
+		  mode:'both',
+		  language:lang, 
+		  callback: function() {
+		    jQuery.i18n.prop('applicationTitleMessage');
+		    jQuery.i18n.prop('companyDetailMessage');
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + companyDetailMessage;
+		    
+		    jQuery.i18n.prop('companyNameMessage');
+		    document.getElementById('companyNameLabel').innerHTML= companyNameMessage;
+
+		    jQuery.i18n.prop('framesMessage');
+		    document.getElementById('framesLabel').innerHTML= framesMessage;
+
+		    /*jQuery.i18n.prop('diceMessage');
+		    document.getElementById('diceLabel').innerHTML= diceMessage;*/
+		    
+		    jQuery.i18n.prop('okMessage');
+		    document.getElementById('okLabel').innerHTML= okMessage;
+
+		    /*jQuery.i18n.prop('resetMessage');
+		    document.getElementById('resetLabel').innerHTML= resetMessage;*/
+	      }
+	    });
+	  }
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/respond.min.js"></script>
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/mof0.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
+      <div class="row text-center">
+        <div class="col-12 col-sm-12 col-lg-12 pageSection">
+          <form action="" class="navbar-form pull-left mof0Form" id="companyForm" method="post" name="companyForm">
+          	  <input name="companyId" type="hidden"/>
+          	  <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	          <div class="row">
+	            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="companyNameLabel"></div>
+	            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="companyName" type="text"/></div>
+	          </div>
+	          <fieldset>
+	              <legend class="mof0Legend" id="framesLabel">Frames</legend>
+		          <!-- div class="row systemRow">
+		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="0">0</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="1">1</label></div>
+		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="2">2</label></div>
+		          </div-->
+		      </fieldset>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+		      <div class="row">
+	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
+		          <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
+		          <div class="col-12 col-sm-12 col-lg-12"><a class="largeButton" href="JavaScript:validateCompany();" id="okLabel">OK</a></div>
+		      </div>
+	          <div class="row">
+	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+	          </div>
+	      </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
