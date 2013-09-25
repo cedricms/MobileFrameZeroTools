@@ -42,3 +42,34 @@ function listCompanies() {
         db.transaction(queryDB, errorDB);
 	}
 }
+
+function deleteCompany(companyId) {
+	jQuery.i18n.prop('areYouSureToWantToDeleteThisCompanyMessage');
+	var deleteAction=confirm(areYouSureToWantToDeleteThisCompanyMessage);
+	if (deleteAction == true) {
+		sqlDeleteCompanyFrame = 'DELETE FROM company_frame WHERE id_company=?';
+		sqlDeleteCompany = 'DELETE FROM company WHERE id=?';
+		
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		
+		db.transaction(function(tx) {
+							tx.executeSql(sqlDeleteCompanyFrame,[companyId]);
+							tx.executeSql(sqlDeleteCompany,[companyId]);
+						}, errorDB, successDB);
+		
+		window.location.href = "./listCompanies.html";
+	}
+	else {
+		// Do nothing
+	} // if
+}
+
+// Transaction error callback
+function errorDB(tx, err) {
+	alert("Error processing SQL: "+err);
+}
+
+// Transaction success callback
+function successDB() {
+	
+}
