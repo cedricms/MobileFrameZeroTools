@@ -16,6 +16,7 @@ function listCompanies() {
     // Query the success callback
     function querySuccess(tx, results) {
         var len = results.rows.length;
+        //alert('len : ' + len);
         
         for (var i=0; i<len; i++){
         	var row = results.rows.item(i);
