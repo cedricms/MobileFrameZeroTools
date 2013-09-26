@@ -142,3 +142,53 @@ function queryModifyCompany(tx) {
 	
 	tx.executeSql(updateQuery);
 }
+
+function populateFrameSelect() {
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	db.transaction(queryPopulateFrameSelect, errorDB);
+}
+
+function queryPopulateFrameSelect(tx) {
+    tx.executeSql('SELECT * FROM frame WHERE nb_defensive + nb_movement + nb_surveillance_communication + nb_hand_to_hand + nb_direct_fire + nb_artillery_range <= 4 ORDER BY upper(name) asc', [], queryPopulateFrameSelectSuccess, errorDB);
+}
+
+function queryPopulateFrameSelectSuccess(tx, results) {
+	frameSelectMarkUp = '<select name="frameToAdd">';
+	
+    var len = results.rows.length;
+        
+    for (var i=0; i<len; i++){
+      	var row = results.rows.item(i);
+            
+    	frameSelectMarkUp = frameSelectMarkUp + '<option value="' + row.id + '">' + row.name + '</option>';
+	// <option value="">label</option>
+	} // for
+	
+	frameSelectMarkUp = frameSelectMarkUp + '</select>';
+
+	$('#frameSelect').append(frameSelectMarkUp);
+}
+
+function addFrameToCompany() {
+	companyForm = document.getElementById("companyForm");
+
+	frameToAdd = companyForm.elements["frameToAdd"];
+	
+	frameToAddId = getSelectedOptionIntValue(frameToAdd);
+	
+	alert('frameToAdd : ' + frameToAddId);
+	
+	// Show Frame line
+}
+
+function getSelectedOptionIntValue(selectComponent) {
+	result = 0;
+	
+	optionValue = selectComponent.options[selectComponent.selectedIndex].value;
+	
+	if (!isNaN(optionValue)) {
+        result = parseInt(optionValue);
+    } // if
+  
+	return result;
+}
