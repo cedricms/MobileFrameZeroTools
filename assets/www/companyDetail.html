@@ -42,8 +42,17 @@
 		    jQuery.i18n.prop('framesMessage');
 		    document.getElementById('framesLabel').innerHTML= framesMessage;
 
-		    /*jQuery.i18n.prop('diceMessage');
-		    document.getElementById('diceLabel').innerHTML= diceMessage;*/
+		    jQuery.i18n.prop('frameMessage');
+		    document.getElementById('frameLabel').innerHTML = frameMessage;
+		    
+		    jQuery.i18n.prop('nbSystemsMessage');
+		    document.getElementById('nbSystemsLabel').innerHTML = nbSystemsMessage;
+		    
+		    jQuery.i18n.prop('diceMessage');
+		    document.getElementById('diceLabel').innerHTML = diceMessage;
+		    
+		    jQuery.i18n.prop('actionsMessage');
+		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
 		    
 		    jQuery.i18n.prop('okMessage');
 		    document.getElementById('okLabel').innerHTML= okMessage;
@@ -86,16 +95,28 @@
 		            <div class="col-3 col-sm-3 col-lg-3"><a href="JavaScript:addFrameToCompany();"><img alt="Add frame" src="./img/icons/add.png"></a></div>
 	                <div class="col-3 col-sm-3 col-lg-3">&nbsp;</div>
 		          </div>
-		          <!-- div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="2">2</label></div>
-		          </div-->
+	          	  <!-- div class="row">
+	              	<div class="col-12 col-sm-12 col-lg-12" id="selectedFrameInformation">&nbsp;</div>
+	          	  </div -->
+		          <div class="row">		            
+                    <div class="mediumBackground">
+                      <input name="nbFrames" type="hidden" value="0"/>
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th width="30%"><div class="tableHeader" id="frameLabel"></div></th>
+                            <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
+                            <th width="45%"><div class="tableHeader" id="diceLabel"></div></th>
+                            <th width="5%"><div class="tableHeader" id="actionsLabel"></div></th>
+                          </tr>
+                        </thead>
+                        <tbody id="frameTable">
+              
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 		      </fieldset>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
 		      <div class="row">
 	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
 		          <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->

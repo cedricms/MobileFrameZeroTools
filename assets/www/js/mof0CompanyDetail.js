@@ -153,7 +153,8 @@ function queryPopulateFrameSelect(tx) {
 }
 
 function queryPopulateFrameSelectSuccess(tx, results) {
-	frameSelectMarkUp = '<select name="frameToAdd">';
+	frameSelectMarkUp = '<select name="frameToAdd" onchange="showFrameInfoOnSelect()">';
+	frameSelectMarkUp = frameSelectMarkUp + '<option value=""></option>';
 	
     var len = results.rows.length;
         
@@ -169,16 +170,126 @@ function queryPopulateFrameSelectSuccess(tx, results) {
 	$('#frameSelect').append(frameSelectMarkUp);
 }
 
-function addFrameToCompany() {
+function addFrameToCompany() {	
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	db.transaction(queryAddFrameToCompany, errorDB);
+}
+
+function queryAddFrameToCompany(tx) {	
 	companyForm = document.getElementById("companyForm");
 
 	frameToAdd = companyForm.elements["frameToAdd"];
 	
 	frameToAddId = getSelectedOptionIntValue(frameToAdd);
 	
-	alert('frameToAdd : ' + frameToAddId);
+    tx.executeSql('SELECT * FROM frame WHERE id=?', [frameToAddId], queryAddFrameToCompanySuccess, errorDB);
+}
+
+function queryAddFrameToCompanySuccess(tx, results) {
+	frameToAddMarkUp = '';
 	
-	// Show Frame line
+    var len = results.rows.length;
+        
+    for (var i=0; i<len; i++){
+      	var row = results.rows.item(i);
+            
+    	var nbDefensive = row.nb_defensive;
+        var defensiveDice = '';
+        if (nbDefensive > 0) {
+            defensiveDice = defensiveDice + '<img alt="Defensive" src="./img/dice/Defense.png"/>';
+        } // if
+        if (nbDefensive > 1) {
+            defensiveDice = defensiveDice + '<img alt="Defensive" src="./img/dice/Defense.png"/>';
+        } // if
+            
+        var nbMovement = row.nb_movement;
+        var mouvementDice = '';
+        if (nbMovement > 0) {
+            mouvementDice = mouvementDice + '<img alt="Movement" src="./img/dice/Move.png"/>';
+        } // if
+        if (nbMovement > 1) {
+            mouvementDice = mouvementDice + '<img alt="Movement" src="./img/dice/Move.png"/>';
+        } // if
+            
+        var nbSurveillanceCommunication = row.nb_surveillance_communication;
+        var surveillanceCommunicationDice = '';
+        if (nbSurveillanceCommunication > 0) {
+            surveillanceCommunicationDice = surveillanceCommunicationDice + '<img alt="Surveillance/communication" src="./img/dice/Spotting.png">';
+        } // if
+        if (nbSurveillanceCommunication > 1) {
+            surveillanceCommunicationDice = surveillanceCommunicationDice + '<img alt="Surveillance/communication" src="./img/dice/Spotting.png">';
+        } // if
+            
+        var nbHandToHand = row.nb_hand_to_hand;
+        var handToHandDice = '';
+        if (nbHandToHand > 0) {
+            handToHandDice = handToHandDice + 
+                             '<img alt="Hand-to-hand weapon" src="./img/dice/HtH.png">' +
+                             '<img alt="Hand-to-hand weapon" src="./img/dice/HtH.png">';
+        } // if
+        if (nbHandToHand > 1) {
+            handToHandDice = handToHandDice + '<img alt="Hand-to-hand weapon" src="./img/dice/HtH D8.png">';
+        } // if
+            
+        var nbDirectFire = row.nb_direct_fire;
+        var directFireDice = '';
+        if (nbDirectFire > 0) {
+            directFireDice = directFireDice + 
+                             '<img alt="Direct fire weapon" src="./img/dice/Direct.png">' +
+                             '<img alt="Direct fire weapon" src="./img/dice/Direct.png">';
+        } // if
+        if (nbDirectFire > 1) {
+            directFireDice = directFireDice + '<img alt="Direct fire weapon" src="./img/dice/Direct D8.png">';
+        } // if
+            
+        var nbArtilleryRange = row.nb_artillery_range;
+        var artilleryRangeDice = '';
+        if (nbArtilleryRange > 0) {
+            artilleryRangeDice = artilleryRangeDice + 
+                             '<img alt="Artillery range weapon" src="./img/dice/Artillery.png">' +
+                             '<img alt="Artillery range weapon" src="./img/dice/Artillery.png">';
+        } // if
+        if (nbArtilleryRange > 1) {
+           artilleryRangeDice = artilleryRangeDice + '<img alt="Artillery range weapon" src="./img/dice/Artillery D8.png">';
+        } // if
+          
+        if (nbHandToHand + nbDirectFire + nbArtilleryRange === 0) {
+            mouvementDice = mouvementDice + '<img alt="Movement" src="./img/dice/Move D8.png"/>';
+        } // if
+            
+        var dice = '<img alt="Wild" src="./img/dice/White Die.png">' + 
+                   '<img alt="Wild" src="./img/dice/White Die.png">' + 
+                   defensiveDice + 
+                   mouvementDice + 
+                   surveillanceCommunicationDice + 
+                   handToHandDice + 
+                   directFireDice + 
+                   artilleryRangeDice;
+         
+        var tooManySystems = '';
+        var nbSystems = nbDefensive + nbMovement + nbSurveillanceCommunication + nbHandToHand + nbDirectFire + nbArtilleryRange;
+        if (nbSystems > 4) {
+            tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
+        } // if
+        
+        companyForm = document.getElementById("companyForm");
+
+	    nbFrames = parseInt(companyForm.elements["nbFrames"].value);
+	    nbFrames++;
+	    companyForm.elements["nbFrames"].value = nbFrames;
+            
+        frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.id + '"/><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
+         	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+           	tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td><td><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
+    	
+    	break;
+   	} // for
+	
+	$('#frameTable').append(frameToAddMarkUp);
+}
+
+function removeFrame(frameNumber) {
+  $('#frame_' + frameNumber).remove();
 }
 
 function getSelectedOptionIntValue(selectComponent) {
@@ -191,4 +302,39 @@ function getSelectedOptionIntValue(selectComponent) {
     } // if
   
 	return result;
+}
+
+function showFrameInfoOnSelect() {
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	db.transaction(queryShowFrameInfoOnSelect, errorDB);
+}
+
+function queryShowFrameInfoOnSelect(tx) {	
+	companyForm = document.getElementById("companyForm");
+
+	frameToAdd = companyForm.elements["frameToAdd"];
+	
+	frameToAddId = getSelectedOptionIntValue(frameToAdd);
+	
+    tx.executeSql('SELECT * FROM frame WHERE id=?', [frameToAddId], queryShowFrameInfoOnSelectSuccess, errorDB);
+}
+
+function queryShowFrameInfoOnSelectSuccess(tx, results) {
+	frameSelectMarkUp = '<div class="frameInformationZone">';
+	
+    var len = results.rows.length;
+        
+    for (var i=0; i<len; i++){
+      	var row = results.rows.item(i);
+            
+    	frameSelectMarkUp = frameSelectMarkUp + row.name;
+    	
+    	break;
+   	} // for
+   	
+   	frameSelectMarkUp = frameSelectMarkUp + '</div>';
+	
+	//$('#selectedFrameInformation').text(frameSelectMarkUp);
+	
+	//$('#selectedFrameInformation').val($("<div/>").html(frameSelectMarkUp).text());
 }

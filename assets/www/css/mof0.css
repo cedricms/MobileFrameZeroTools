@@ -102,6 +102,16 @@ a.companyNameLink:hover {
   font-weight : bold;
 }
 
+.frameInformationZone {
+  background-color : #fff;
+  border : 2px solid;
+  border-radius: 10px 10px;
+  color : #bc252a;
+  float : left;
+  margin : 10px 10px 10px 10px;
+  padding : 5px;
+}
+
 a.frameNameLink {
   color: #bc252a;
   display:inline-block;
