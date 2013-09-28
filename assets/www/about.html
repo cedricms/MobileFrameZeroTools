@@ -54,6 +54,10 @@
 		    jQuery.i18n.prop('applicationDesignMessage');
 		    document.getElementById('applicationDesignLabel').innerHTML = applicationDesignMessage;
 		    
+		    jQuery.i18n.prop('applicationVersionMessage');
+		    document.getElementById('applicationVersionLabel').innerHTML= applicationVersionMessage;
+		    document.getElementById('applicationVersion').innerHTML = getApplicationVersion();
+		    
 		    jQuery.i18n.prop('dbVersionMessage');
 		    document.getElementById('dbVersionLabel').innerHTML= dbVersionMessage;
 		    document.getElementById('dbVersion').innerHTML = getDbVersion();
@@ -113,6 +117,10 @@
               <tr>
                 <td><div class="columnLabel" id="applicationDesignLabel"></div></td>
                 <td><div class="">C&eacute;dric Maria-Sube</div></td>
+              </tr>
+              <tr>
+                <td><div class="columnLabel" id="applicationVersionLabel"></div></td>
+                <td><div class="" id="applicationVersion"></div></td>
               </tr>
               <tr>
                 <td><div class="columnLabel" id="dbVersionLabel"></div></td>

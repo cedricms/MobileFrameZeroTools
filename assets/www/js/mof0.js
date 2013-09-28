@@ -1,4 +1,5 @@
 var dbVersion = "1.0";
+var applicationVersion = "1.0.0";
 
 function getBackButtonMarkup(applicationTitle) {
 	return '<a class="backButton" href="./menu.html"><img src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitle + '"></a>';
@@ -70,6 +71,10 @@ function initDb() {
 	function successDB() {
 		
 	}
+}
+
+function getApplicationVersion() {
+	return applicationVersion;
 }
 
 function getDbVersion() {
