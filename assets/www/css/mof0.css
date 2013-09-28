@@ -177,7 +177,7 @@ a.largeButton:visited {
 }
 
 .mediumBackground {
-  background-color : #ccc;
+  background-color : rgba(204, 204, 204, 0.75);
 }
 
 .mof0Form {
@@ -213,6 +213,7 @@ a.largeButton:visited {
   border-top-right-radius: 20px 20px;
   border-bottom-left-radius: 20px 20px;
   margin : 5px;
+  min-height : 500px;
   /*padding : 5px;*/
   width : 95%;
 }
