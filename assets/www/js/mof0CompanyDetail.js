@@ -280,7 +280,10 @@ function queryAddFrameToCompanySuccess(tx, results) {
             
         frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.id + '"/><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
          	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + 
-           	tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td><td><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
+           	tooManySystems + 
+           	'</td><td><div class="systemDiceList">' + dice + '</div></td>' +
+           	'<td><input class="form-control" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
+           	'<td><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
     	
     	break;
    	} // for

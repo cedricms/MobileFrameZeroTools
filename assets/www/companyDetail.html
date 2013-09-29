@@ -51,6 +51,9 @@
 		    jQuery.i18n.prop('diceMessage');
 		    document.getElementById('diceLabel').innerHTML = diceMessage;
 		    
+		    jQuery.i18n.prop('nbRocketsMessage');
+		    document.getElementById('nbRocketsLabel').innerHTML = nbRocketsMessage;
+		    
 		    jQuery.i18n.prop('actionsMessage');
 		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
 		    
@@ -91,8 +94,8 @@
 	          	  </div>
 	              <div class="row">
 	                <div class="col-3 col-sm-3 col-lg-3">&nbsp;</div>
-		            <div class="col-3 col-sm-3 col-lg-3" id="frameSelect"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><a href="JavaScript:addFrameToCompany();"><img alt="Add frame" src="./img/icons/add.png"></a></div>
+		            <div class="col-3 col-sm-3 col-lg-4" id="frameSelect"></div>
+		            <div class="col-3 col-sm-3 col-lg-2"><a href="JavaScript:addFrameToCompany();"><img alt="Add frame" src="./img/icons/add.png"></a></div>
 	                <div class="col-3 col-sm-3 col-lg-3">&nbsp;</div>
 		          </div>
 	          	  <!-- div class="row">
@@ -106,7 +109,8 @@
                           <tr>
                             <th width="30%"><div class="tableHeader" id="frameLabel"></div></th>
                             <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
-                            <th width="45%"><div class="tableHeader" id="diceLabel"></div></th>
+                            <th width="40%"><div class="tableHeader" id="diceLabel"></div></th>
+                            <th width="5%"><div class="tableHeader" id="nbRocketsLabel"></div></th>
                             <th width="5%"><div class="tableHeader" id="actionsLabel"></div></th>
                           </tr>
                         </thead>
