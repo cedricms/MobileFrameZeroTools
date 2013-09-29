@@ -10,7 +10,7 @@ function listCompanies() {
 	
     // Query the database
     function queryDB(tx) {
-        tx.executeSql('SELECT * FROM company ORDER BY upper(name) asc', [], querySuccess, errorDB);
+        tx.executeSql('SELECT c.id AS companyId, c.name AS companyName, count(cf.id) AS nbFrames, ifnull(nb_defensive + nb_movement + nb_surveillance_communication + nb_hand_to_hand + nb_direct_fire + nb_artillery_range, 0) AS nbSystems FROM company c LEFT OUTER JOIN company_frame cf ON c.id = cf.id_company LEFT OUTER JOIN frame f ON cf.id_frame = f.id GROUP BY cf.id ORDER BY upper(c.name) asc', [], querySuccess, errorDB);
     }
 
     // Query the success callback
@@ -21,8 +21,8 @@ function listCompanies() {
         for (var i=0; i<len; i++){
         	var row = results.rows.item(i);
             
-            $('#companyTable').append('<tr><td><input type="checkbox" name="selectedCompanies" value="' + row.id + '"></td><td><a class="companyNameLink" href="./companyDetail.html?companyId=' + row.id + '">' + 
-            	row.name + '</a></td><td><a href="Javascript:deleteCompany(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
+            $('#companyTable').append('<tr><td><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td><td><a class="companyNameLink" href="./companyDetail.html?companyId=' + row.companyId + '">' + 
+            	row.companyName + '</a></td><td>' + row.nbFrames + '</td><td>' + row.nbSystems + '</td><td><a href="Javascript:deleteCompany(' + row.companyId + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
     }
 

@@ -37,6 +37,12 @@
 		    jQuery.i18n.prop('companyMessage');
 		    document.getElementById('companyLabel').innerHTML = companyMessage;
 		    
+		    jQuery.i18n.prop('nbFramesMessage');
+		    document.getElementById('nbFramesLabel').innerHTML = nbFramesMessage;
+		    
+		    jQuery.i18n.prop('nbSystemsMessage');
+		    document.getElementById('nbSystemsLabel').innerHTML = nbSystemsMessage;
+		    
 		    jQuery.i18n.prop('actionsMessage');
 		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
 		    
@@ -67,7 +73,9 @@
                 <thead>
                   <tr>
                     <th width="5%"><input type="checkbox" name="checkAllCompanies" value="selectAll"></th>
-                    <th width="75%"><div class="tableHeader" id="companyLabel"></div></th>
+                    <th width="35%"><div class="tableHeader" id="companyLabel"></div></th>
+                    <th width="20%"><div class="tableHeader" id="nbFramesLabel"></div></th>
+                    <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
                     <th width="20%"><div class="tableHeader" id="actionsLabel"></div></th>
                   </tr>
                 </thead>
