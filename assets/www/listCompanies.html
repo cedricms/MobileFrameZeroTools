@@ -39,6 +39,9 @@
 		    
 		    jQuery.i18n.prop('actionsMessage');
 		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
+		    
+		    jQuery.i18n.prop('playGameMessage');
+		    document.getElementById('playGame').innerHTML='<a class="largeButton" href="">' + playGameMessage + '<img src="./img/icons/comingSoon.png"/></a>';
 	      }
 	    });
 	  }
@@ -55,23 +58,29 @@
       <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
       <div class="row text-center">
         <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
-          </div>
-          <div class="mediumBackground">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th width="80%"><div class="tableHeader" id="companyLabel"></div></th>
-                  <th width="20%"><div class="tableHeader" id="actionsLabel"></div></th>
-                </tr>
-              </thead>
-              <tbody id="companyTable">
+          <form action="" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
+            <div class="row largeRow">
+              <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
+            </div>
+            <div class="mediumBackground">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th width="5%"><input type="checkbox" name="checkAllCompanies" value="selectAll"></th>
+                    <th width="75%"><div class="tableHeader" id="companyLabel"></div></th>
+                    <th width="20%"><div class="tableHeader" id="actionsLabel"></div></th>
+                  </tr>
+                </thead>
+                <tbody id="companyTable">
               
-              </tbody>
-            </table>
-          </div>  
-        </div>
+                </tbody>
+              </table>
+            </div>
+            <div class="row largeRow">
+              <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="playGame"></div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </body>

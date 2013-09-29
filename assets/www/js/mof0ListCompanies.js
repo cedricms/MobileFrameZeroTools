@@ -21,7 +21,7 @@ function listCompanies() {
         for (var i=0; i<len; i++){
         	var row = results.rows.item(i);
             
-            $('#companyTable').append('<tr><td><a class="companyNameLink" href="./companyDetail.html?companyId=' + row.id + '">' + 
+            $('#companyTable').append('<tr><td><input type="checkbox" name="selectedCompanies" value="' + row.id + '"></td><td><a class="companyNameLink" href="./companyDetail.html?companyId=' + row.id + '">' + 
             	row.name + '</a></td><td><a href="Javascript:deleteCompany(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
     }
