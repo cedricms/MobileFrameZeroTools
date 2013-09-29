@@ -79,26 +79,48 @@ function queryCreateCompany(tx) {
 
 	companyName = companyForm.elements["companyName"].value;
 	
-	/*defensiveSystem = frameForm.elements["defensiveSystem"];	
-	defensiveSystemValue = getRadioIntValue(defensiveSystem);
-
-	movementSystem = frameForm.elements["movementSystem"];
-	movementSystemValue = getRadioIntValue(movementSystem);
-
-	surveillanceCommunicationSystem = frameForm.elements["surveillanceCommunicationSystem"];
-	surveillanceCommunicationSystemValue = getRadioIntValue(surveillanceCommunicationSystem);
-
-	handToHandWeaponSystem = frameForm.elements["handToHandWeaponSystem"];
-	handToHandWeaponSystemValue = getRadioIntValue(handToHandWeaponSystem);
-
-	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];
-	directFireWeaponSystemValue = getRadioIntValue(directFireWeaponSystem);
-
-	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
-	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);*/
-	
 	tx.executeSql('INSERT INTO company (name) VALUES ("' + 
-			companyName + '")');
+			companyName + '")', [], function(tx, results){
+                addFramesToCompany(results.insertId);
+            }, errorDB);
+}
+
+function addFramesToCompany(companyId) {
+	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
+	
+	if (nbFrames > 0) {
+		iFrame = 1;
+		while (iFrame <= nbFrames) {
+			companyForm = document.getElementById("companyForm");
+			frameId = companyForm.elements["frameId_" + iFrame];
+			if (typeof frameId === "undefined") {
+				// Probably a deleted frame
+			}
+			else {
+				if (!isNaN(frameId.value)) {
+        			frameIdInt = parseInt(frameId.value);
+        			
+        			nbRockets = companyForm.elements["nbRockets_" + iFrame].value;
+        			nbRocketsInt = 0;
+        			if (!isNaN(nbRockets.value)) {
+        				nbRocketsInt = parseInt(nbRockets.value);
+        			} // if
+        			
+        			sqlInsertCompanyFrame = 'INSERT INTO company_frame (id_company, id_frame, nb_rockets) VALUES (?, ?, ?)';
+					var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+					db.transaction(function(tx) {
+						tx.executeSql(sqlInsertCompanyFrame,[companyId, frameIdInt, nbRocketsInt]);
+					}, errorDB, successDB);
+        		} // if
+			} // if
+			
+			iFrame++;
+		} // while
+	} // if
+}
+
+function successDB() {
+		
 }
 
 function modifyCompany() {
