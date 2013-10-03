@@ -11,7 +11,7 @@ function validateCompany() {
 		}
 		else {
 			// Check if creation or modification and save
-			var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+			var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 			db.transaction(queryIsCompanyUnique, errorDB);
 		} // if
 	}
@@ -79,7 +79,7 @@ function loadCompany(urlCompanyId) {
 	}
 	else {
 		companyId.value = urlCompanyId;
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		db.transaction(queryCompanyId, errorDB);
 	} // if
 }
@@ -126,8 +126,10 @@ function queryFrameForRowSuccess(tx, results) {
 }
 
 function createCompany() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
-	db.transaction(queryCreateCompany, errorDB);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
+	db.transaction(function(tx) {
+						queryCreateCompany(tx);
+					}, errorDB, successDB);
 }
 
 function queryCreateCompany(tx) {
@@ -135,17 +137,14 @@ function queryCreateCompany(tx) {
 
 	companyName = companyForm.elements["companyName"].value;
 	
-	tx.executeSql('INSERT INTO company (name) VALUES ("' + 
-			companyName + '")', [], function(tx, results){
-                addFramesToCompany(results.insertId);
-            }, errorDB);
-}
-
-function addFramesToCompany(companyId) {
+	console.log('companyName : ' + companyName);
+	
+	tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("' + companyName + '", datetime("now"))');
+	
 	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
 	
 	if (nbFrames > 0) {
-		sqlInsertCompanyFrame = 'INSERT INTO company_frame (id_company, id_frame, nb_rockets) ';
+		sqlInsertCompanyFrame = 'INSERT INTO company_frame (id_company, id_frame, nb_rockets, dt_created) ';
 		
 		iFrame = 1;
 		while (iFrame <= nbFrames) {
@@ -157,33 +156,30 @@ function addFramesToCompany(companyId) {
 			else {
 				if (!isNaN(frameId.value)) {
         			frameIdInt = parseInt(frameId.value);
-        			
-        			nbRockets = companyForm.elements["nbRockets_" + iFrame];
-        			nbRocketsInt = 0;
+        		
+	       			nbRockets = companyForm.elements["nbRockets_" + iFrame];
+    	   			nbRocketsInt = 0;
         			if (!isNaN(nbRockets.value)) {
         				nbRocketsInt = parseInt(nbRockets.value);
         			} // if
-        		} // if
+	       		} // if
 			} // if
-			
+		
 			if (iFrame > 1) {
 				sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
 			} // if
 			
-			sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT ' + companyId + ', ' + frameIdInt + ', ' + nbRocketsInt;
+			sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT (SELECT MAX(c.id) FROM company c), ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
 					
 			iFrame++;
 		} // while
 		
 		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
 		
-		//alert('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
+		console.log('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
 		
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
-		db.transaction(function(tx) {
-			tx.executeSql(sqlInsertCompanyFrame,[]);
-		}, errorDB, successDB);
-	} // if
+		tx.executeSql(sqlInsertCompanyFrame);
+	} // if	
 }
 
 function successDB() {
@@ -191,7 +187,7 @@ function successDB() {
 }
 
 function modifyCompany() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryModifyCompany, errorDB);
 }
 
@@ -233,7 +229,7 @@ function queryModifyCompany(tx) {
 }
 
 function populateFrameSelect() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryPopulateFrameSelect, errorDB);
 }
 
@@ -260,7 +256,7 @@ function queryPopulateFrameSelectSuccess(tx, results) {
 }
 
 function addFrameToCompany() {	
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryAddFrameToCompany, errorDB);
 }
 
@@ -400,7 +396,7 @@ function getSelectedOptionIntValue(selectComponent) {
 }
 
 function showFrameInfoOnSelect() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryShowFrameInfoOnSelect, errorDB);
 }
 

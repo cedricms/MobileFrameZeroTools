@@ -4,7 +4,7 @@ function listFrames() {
 
 	// PhoneGap is ready
 	function onDeviceReady() {
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		db.transaction(populateDB, errorDB, successDB);
 	}
 	
@@ -117,7 +117,7 @@ function listFrames() {
 
 	// Transaction success callback
 	function successDB() {
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
         db.transaction(queryDB, errorDB);
 	}
 }
@@ -127,7 +127,7 @@ function deleteFrame(frameId) {
 	var deleteAction=confirm(areYouSureToWantToDeleteThisFrameMessage);
 	if (deleteAction == true) {
 		sqlDelete = 'DELETE FROM frame WHERE id=?';
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		db.transaction(function(tx) {tx.executeSql(sqlDelete,[frameId])}, errorDB, successDB);
 		
 		window.location.href = "./listFrames.html";

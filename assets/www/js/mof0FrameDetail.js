@@ -39,7 +39,7 @@ function validateFrame() {
 		}
 		else {
 			// Check if creation or modification and save
-			var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+			var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 			db.transaction(queryIsFrameUnique, errorDB);
 		} // if
 	}
@@ -98,7 +98,7 @@ function errorDB(tx, err) {
 }
 
 function createFrame() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryCreateFrame, errorDB);
 }
 
@@ -125,7 +125,7 @@ function queryCreateFrame(tx) {
 	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
 	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
 	
-	tx.executeSql('INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range) VALUES ("' + 
+	tx.executeSql('INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("' + 
 			frameName + '", ' + 
 			defensiveSystemValue + ', ' +
 			movementSystemValue + ', ' +
@@ -133,11 +133,11 @@ function queryCreateFrame(tx) {
 			handToHandWeaponSystemValue + ', ' +
 			directFireWeaponSystemValue + ', ' +
 			artilleryRangeWeaponSystemValue
-			 + ')');
+			 + ', datetime("now"))');
 }
 
 function modifyFrame() {
-	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+	var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 	db.transaction(queryModifyFrame, errorDB);
 }
 
@@ -173,7 +173,7 @@ function queryModifyFrame(tx) {
 			', nb_hand_to_hand=' + handToHandWeaponSystemValue +
 			', nb_direct_fire=' + directFireWeaponSystemValue +
 			', nb_artillery_range=' + artilleryRangeWeaponSystemValue +
-			' WHERE id=' + frameId;
+			', dt_modified = datetime("now") WHERE id=' + frameId;
 	
 	tx.executeSql(updateQuery);
 }
@@ -424,7 +424,7 @@ function loadFrame(urlFrameId) {
 	}
 	else {
 		frameId.value = urlFrameId;
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		db.transaction(queryFrameById, errorDB);
 	} // if
 }

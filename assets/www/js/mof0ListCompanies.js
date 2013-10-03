@@ -4,7 +4,7 @@ function listCompanies() {
 
 	// PhoneGap is ready
 	function onDeviceReady() {
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		db.transaction(populateDB, errorDB, successDB);
 	}
 	
@@ -41,7 +41,7 @@ function listCompanies() {
 
 	// Transaction success callback
 	function successDB() {
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
         db.transaction(queryDB, errorDB);
 	}
 }
@@ -53,7 +53,7 @@ function deleteCompany(companyId) {
 		sqlDeleteCompanyFrame = 'DELETE FROM company_frame WHERE id_company=?';
 		sqlDeleteCompany = 'DELETE FROM company WHERE id=?';
 		
-		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", 200000);
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		
 		db.transaction(function(tx) {
 							tx.executeSql(sqlDeleteCompanyFrame,[companyId]);
