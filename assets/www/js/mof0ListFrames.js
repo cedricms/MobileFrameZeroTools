@@ -126,9 +126,13 @@ function deleteFrame(frameId) {
 	jQuery.i18n.prop('areYouSureToWantToDeleteThisFrameMessage');
 	var deleteAction=confirm(areYouSureToWantToDeleteThisFrameMessage);
 	if (deleteAction == true) {
-		sqlDelete = 'DELETE FROM frame WHERE id=?';
+		sqlDeleteCompanyFrame = 'DELETE FROM company_frame WHERE id_frame=?';
+		sqlDeleteFrame = 'DELETE FROM frame WHERE id=?';
 		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
-		db.transaction(function(tx) {tx.executeSql(sqlDelete,[frameId])}, errorDB, successDB);
+		db.transaction(function(tx) {
+			tx.executeSql(sqlDeleteCompanyFrame,[frameId]);
+			tx.executeSql(sqlDeleteFrame,[frameId]);
+		}, errorDB, successDB);
 		
 		window.location.href = "./listFrames.html";
 	}

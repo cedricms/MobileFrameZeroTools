@@ -199,34 +199,61 @@ function queryModifyCompany(tx) {
 	
 	companyName = companyForm.elements["companyName"].value;
 	
-	/*defensiveSystem = frameForm.elements["defensiveSystem"];	
-	defensiveSystemValue = getRadioIntValue(defensiveSystem);
-
-	movementSystem = frameForm.elements["movementSystem"];
-	movementSystemValue = getRadioIntValue(movementSystem);
-
-	surveillanceCommunicationSystem = frameForm.elements["surveillanceCommunicationSystem"];
-	surveillanceCommunicationSystemValue = getRadioIntValue(surveillanceCommunicationSystem);
-
-	handToHandWeaponSystem = frameForm.elements["handToHandWeaponSystem"];
-	handToHandWeaponSystemValue = getRadioIntValue(handToHandWeaponSystem);
-
-	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];
-	directFireWeaponSystemValue = getRadioIntValue(directFireWeaponSystem);
-
-	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
-	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);*/
-	
 	updateQuery = 'UPDATE company SET name="' + companyName + '"' +
-			/*', nb_defensive=' + defensiveSystemValue +
-			', nb_movement=' + movementSystemValue +
-			', nb_surveillance_communication=' + surveillanceCommunicationSystemValue +
-			', nb_hand_to_hand=' + handToHandWeaponSystemValue +
-			', nb_direct_fire=' + directFireWeaponSystemValue +
-			', nb_artillery_range=' + artilleryRangeWeaponSystemValue +*/
 			' WHERE id=' + companyId;
 	
 	tx.executeSql(updateQuery);
+	
+	//console.log('update name : ' + companyName + ' for id : ' + companyId);
+	
+	deleteQuery = 'DELETE FROM company_frame WHERE id_company = ' + companyId;
+	
+	tx.executeSql(deleteQuery);
+	
+	//console.log('deleteQuery : ' + deleteQuery);
+	
+	// Shitty hack to go around the dreaded SQLite error 23 bug
+	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
+	
+	if (nbFrames > 0) {
+		sqlInsertCompanyFrame = 'INSERT INTO company_frame (id_company, id_frame, nb_rockets, dt_created) ';
+		
+		iFrame = 1;
+		while (iFrame <= nbFrames) {
+			companyForm = document.getElementById("companyForm");
+			frameId = companyForm.elements["frameId_" + iFrame];
+			if (typeof frameId === "undefined") {
+				// Probably a deleted frame
+			}
+			else {
+				if (!isNaN(frameId.value)) {
+        			frameIdInt = parseInt(frameId.value);
+        		
+	       			nbRockets = companyForm.elements["nbRockets_" + iFrame];
+    	   			nbRocketsInt = 0;
+        			if (!isNaN(nbRockets.value)) {
+        				nbRocketsInt = parseInt(nbRockets.value);
+        			} // if
+	       		} // if
+			} // if
+		
+			if (iFrame > 1) {
+				sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
+			} // if
+			
+			sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT ' + companyId + ', ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
+					
+			iFrame++;
+		} // while
+		
+		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
+		
+		//console.log('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
+		
+		tx.executeSql(sqlInsertCompanyFrame);
+		
+		//console.log('Modficaton done');
+	} // if
 }
 
 function populateFrameSelect() {
