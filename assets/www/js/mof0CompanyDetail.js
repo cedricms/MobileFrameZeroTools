@@ -222,8 +222,11 @@ function queryModifyCompany(tx) {
 		while (iFrame <= nbFrames) {
 			companyForm = document.getElementById("companyForm");
 			frameId = companyForm.elements["frameId_" + iFrame];
-			if (typeof frameId === "undefined") {
+			//alert('frameId : ' + frameId);
+			deleted = false;
+			if ((typeof frameId === "undefined") || (frameId == '') || (frameId === '')) {
 				// Probably a deleted frame
+				deleted = true;
 			}
 			else {
 				if (!isNaN(frameId.value)) {
@@ -237,18 +240,20 @@ function queryModifyCompany(tx) {
 	       		} // if
 			} // if
 		
-			if (iFrame > 1) {
-				sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
+		    if (!deleted) {
+			    if (iFrame > 1) {
+				    sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
+			    } // if
+			
+			    sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT ' + companyId + ', ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
 			} // if
 			
-			sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT ' + companyId + ', ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
-					
 			iFrame++;
 		} // while
 		
 		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
 		
-		//console.log('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
+		//alert('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
 		
 		tx.executeSql(sqlInsertCompanyFrame);
 		
@@ -408,6 +413,12 @@ function addFrameRow(row) {
 }
 
 function removeFrame(frameNumber) {
+  companyForm = document.getElementById("companyForm");
+  frameId = companyForm.elements["frameId_" + frameNumber];
+  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
+  frameId.value = '';
+  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
+  
   $('#frame_' + frameNumber).remove();
 }
 
