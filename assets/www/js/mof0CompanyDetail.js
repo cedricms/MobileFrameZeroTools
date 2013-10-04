@@ -141,6 +141,7 @@ function queryCreateCompany(tx) {
 	
 	tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("' + companyName + '", datetime("now"))');
 	
+	// Shitty hack to go around the dreaded SQLite error 23 bug
 	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
 	
 	if (nbFrames > 0) {
