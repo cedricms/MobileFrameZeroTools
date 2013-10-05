@@ -3,6 +3,8 @@ MobileFrameZeroTools
 
 Mobile tools for the Mobile frame Zero Lego wargame.
 
+The overall design philosophy is to keep things simple so that the greatest number of people can help out on this project.
+
 This application is based on the following frameworks :
 
 	*) PhoneGap (2.8.0);
