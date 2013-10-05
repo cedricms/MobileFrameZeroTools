@@ -324,21 +324,21 @@ function showHideDice() {
 			$('#hth1').show('fast');
 			$('#hth2').show('fast');
 			$('#hthD8').hide('fast');
-			weaponTaken = true;
+			//weaponTaken = true;
 		break;
 		case 2:
 			$('#hthDice').show('fast');
 			$('#hth1').show('fast');
 			$('#hth2').show('fast');
 			$('#hthD8').show('fast');
-			weaponTaken = true;
+			//weaponTaken = true;
 		break;
 		default:
 			$('#hthDice').hide('fast');
 			$('#hth1').hide('fast');
 			$('#hth2').hide('fast');
 			$('#hthD8').hide('fast');
-			weaponTaken = true;
+			//weaponTaken = true;
 	} // switch
 
 	directFireWeaponSystem = frameForm.elements["directFireWeaponSystem"];	

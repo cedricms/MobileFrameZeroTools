@@ -377,7 +377,7 @@ function addFrameRow(row) {
            artilleryRangeDice = artilleryRangeDice + '<img alt="Artillery range weapon" src="./img/dice/Artillery D8.png">';
         } // if
           
-        if (nbHandToHand + nbDirectFire + nbArtilleryRange === 0) {
+        if (nbDirectFire + nbArtilleryRange === 0) {
             mouvementDice = mouvementDice + '<img alt="Movement" src="./img/dice/Move D8.png"/>';
         } // if
             
