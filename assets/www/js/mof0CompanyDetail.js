@@ -151,8 +151,10 @@ function queryCreateCompany(tx) {
 		while (iFrame <= nbFrames) {
 			companyForm = document.getElementById("companyForm");
 			frameId = companyForm.elements["frameId_" + iFrame];
-			if (typeof frameId === "undefined") {
+			deleted = false;
+			if ((typeof frameId === "undefined") || (frameId == '') || (frameId === '')) {
 				// Probably a deleted frame
+				deleted = true;
 			}
 			else {
 				if (!isNaN(frameId.value)) {
@@ -166,11 +168,13 @@ function queryCreateCompany(tx) {
 	       		} // if
 			} // if
 		
-			if (iFrame > 1) {
-				sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
-			} // if
+			if (!deleted) {
+				if (iFrame > 1) {
+					sqlInsertCompanyFrame = sqlInsertCompanyFrame + ' UNION ALL ';
+				} // if
 			
-			sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT (SELECT MAX(c.id) FROM company c), ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
+				sqlInsertCompanyFrame = sqlInsertCompanyFrame + 'SELECT (SELECT MAX(c.id) FROM company c), ' + frameIdInt + ', ' + nbRocketsInt + ', datetime("now")';
+			} // if
 					
 			iFrame++;
 		} // while
