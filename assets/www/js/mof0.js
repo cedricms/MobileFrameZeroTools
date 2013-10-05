@@ -3,7 +3,10 @@ var dbSize = 1000000;
 var applicationVersion = "1.0.0";
 var dropFrameSQL = 'DROP TABLE IF EXISTS frame';
 var createFrameSQL = 'CREATE TABLE IF NOT EXISTS frame (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, nb_defensive INT, nb_movement INT, nb_surveillance_communication INT, nb_hand_to_hand INT, nb_direct_fire INT, nb_artillery_range INT, dt_created DATETIME, dt_modified DATETIME)';
-var insertFrame1SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("Soldier configuration", 1, 1, 1, 0, 1, 0, datetime("now"))';
+var insertFrame1SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Soldier", 1, 1, 1, 0, 1, 0, datetime("now"))';
+var insertFrame2SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Commando", 1, 0, 2, 1, 0, 0, datetime("now"))';
+var insertFrame3SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Support Soldier", 0, 1, 2, 0, 1, 0, datetime("now"))';
+var insertFrame4SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Mobile Cannon", 1, 1, 0, 0, 0, 2, datetime("now"))';
 var dropCompanySQL = 'DROP TABLE IF EXISTS company';
 var createCompanySQL = 'CREATE TABLE IF NOT EXISTS company (id INTEGER PRIMARY KEY AUTOINCREMENT, name, dt_created DATETIME, dt_modified DATETIME)';
 var dropCompanyFrameSQL = 'DROP TABLE IF EXISTS company_frame';
@@ -54,6 +57,9 @@ function initDb() {
 			if (localStorageDbVersion === "0.0") {
 				tx.executeSql(createFrameSQL);
 				tx.executeSql(insertFrame1SQL);
+				tx.executeSql(insertFrame2SQL);
+				tx.executeSql(insertFrame3SQL);
+				tx.executeSql(insertFrame4SQL);
 				tx.executeSql(createCompanySQL);
 				tx.executeSql(createCompanyFrameSQL);
 				localStorage.setItem("localStorageDbVersion", "1.0");
@@ -91,6 +97,9 @@ function resetDatabase() {
 							tx.executeSql(dropFrameSQL,[]);
 							tx.executeSql(createFrameSQL,[]);
 							tx.executeSql(insertFrame1SQL,[]);
+							tx.executeSql(insertFrame2SQL,[]);
+							tx.executeSql(insertFrame3SQL,[]);
+							tx.executeSql(insertFrame4SQL,[]);
 							tx.executeSql(dropCompanySQL,[]);
 							tx.executeSql(createCompanySQL,[]);
 							tx.executeSql(dropCompanyFrameSQL,[]);
