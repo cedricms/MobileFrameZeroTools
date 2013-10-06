@@ -10,9 +10,7 @@ function listCompanies() {
 	
     // Query the database
     function queryDB(tx) {
-    	//query = 'SELECT c.id AS companyId, c.name AS companyName, count(cf.id_frame) AS nbFrames, ifnull(f.nb_defensive + f.nb_movement + f.nb_surveillance_communication + f.nb_hand_to_hand + f.nb_direct_fire + f.nb_artillery_range, 0) AS nbSystems FROM company c LEFT OUTER JOIN company_frame cf ON c.id = cf.id_company LEFT OUTER JOIN frame f ON cf.id_frame = f.id GROUP BY cf.id_frame ORDER BY upper(c.name) asc';
-    	query = 'SELECT c.id AS companyId, c.name AS companyName, count(cf.id_frame) AS nbFrames FROM company c LEFT OUTER JOIN company_frame cf ON c.id = cf.id_company GROUP BY c.id ORDER BY upper(c.name) asc';
-    	//query = 'SELECT c.id AS companyId, c.name AS companyName, (SELECT count(*) FROM company_frame cf WHERE cf.id_company = c.id) AS nbFrames, 0 AS nbSystems FROM company c ORDER BY upper(c.name) asc';
+    	query = 'SELECT c.id AS companyId, c.name AS companyName, count(cf.id_frame) AS nbFrames, ifnull(sum(f.nb_defensive + f.nb_movement + f.nb_surveillance_communication + f.nb_hand_to_hand + f.nb_direct_fire + f.nb_artillery_range), 0) AS nbSystems FROM company c LEFT OUTER JOIN company_frame cf ON c.id = cf.id_company LEFT OUTER JOIN frame f ON cf.id_frame = f.id GROUP BY cf.id_company ORDER BY upper(c.name) asc';
         tx.executeSql(query, [], querySuccess, errorDB);
     }
 
