@@ -137,7 +137,7 @@ function queryCreateCompany(tx) {
 
 	companyName = companyForm.elements["companyName"].value;
 	
-	console.log('companyName : ' + companyName);
+	//console.log('companyName : ' + companyName);
 	
 	tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("' + companyName + '", datetime("now"))');
 	
@@ -181,7 +181,7 @@ function queryCreateCompany(tx) {
 		
 		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
 		
-		console.log('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
+		//console.log('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
 		
 		tx.executeSql(sqlInsertCompanyFrame);
 	} // if	
