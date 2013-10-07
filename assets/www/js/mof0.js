@@ -1,6 +1,6 @@
 var dbVersion = "1.0";
 var dbSize = 1000000;
-var applicationVersion = "1.0.0";
+var applicationVersion = "1.1.0";
 var dropFrameSQL = 'DROP TABLE IF EXISTS frame';
 var createFrameSQL = 'CREATE TABLE IF NOT EXISTS frame (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, nb_defensive INT, nb_movement INT, nb_surveillance_communication INT, nb_hand_to_hand INT, nb_direct_fire INT, nb_artillery_range INT, dt_created DATETIME, dt_modified DATETIME)';
 var insertFrame1SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Soldier", 1, 1, 1, 0, 1, 0, datetime("now"))';
