@@ -22,7 +22,7 @@ var createCompanyFrameSQL = 'CREATE TABLE IF NOT EXISTS company_frame (id INTEGE
 
 function getBackButtonMarkup(applicationTitle) {
 	//return '<a class="backButton" href="./menu.html"><img src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitle + '"></a>';
-	return '<a class="backButton" href="./menu.html"><img class="mof0LittleGuyBackButton" alt="' + applicationTitle + '"/></a>';
+	return '<a class="backButton" href="./menu.html"><img class="mof0LittleGuyBackButton" src="./img/blankPixel.png" alt="' + applicationTitle + '"/></a>';
 }
 
 function initLanguages() {
