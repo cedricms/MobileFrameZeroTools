@@ -110,6 +110,14 @@ a.companyNameLink:hover {
   font-weight : bold;
 }
 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .formLabel {
+    font-size : 1.35rem;
+  }
+}
+
 .frameInformationZone {
   background-color : #fff;
   border : 2px solid;
@@ -219,6 +227,15 @@ a.largeButton:visited {
 .mof0Legend {
   color: #bc252a;
   font-weight : bold;
+}
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .mof0Legend {
+    font-size : 1.35rem;
+  }
 }
 
 img.mof0LittleGuyBackButton {
