@@ -276,7 +276,7 @@ and (max-device-width : 480px) {
 
 .pageSection {
   background-color : #e2e2e2;
-  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection.png');
+  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_382_431.png');
   background-repeat : no-repeat;
   /*background-attachment : fixed;*/
   background-position : left center; 
@@ -289,6 +289,16 @@ and (max-device-width : 480px) {
   min-height : 500px;
   /*padding : 5px;*/
   width : 95%;
+}
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .pageSection {
+    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
+    min-height : 250px;
+  }
 }
 
 .pageTitle {
