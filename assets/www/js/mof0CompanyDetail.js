@@ -410,7 +410,7 @@ function addFrameRow(row) {
          	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
            	tooManySystems + 
            	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
-           	'<td class="tableData"><input class="mf0SmallInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
+           	'<td class="tableData"><input class="mf0SmallNumericInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
            	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
 
 	$('#frameTable').append(frameToAddMarkUp);

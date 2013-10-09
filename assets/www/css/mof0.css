@@ -262,9 +262,9 @@ and (max-device-width : 480px) {
   }
 }
 
-.mf0SmallInput {
+.mf0SmallNumericInput {
   text-align : right;
-  width : 20px;
+  width : 2rem;
 }
 
 .mfzTabContent {
