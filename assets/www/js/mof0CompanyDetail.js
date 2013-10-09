@@ -407,10 +407,10 @@ function addFrameRow(row) {
 	    companyForm.elements["nbFrames"].value = nbFrames;
             
         frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.frameId + '"/><td class="tableData"><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.frameId + '">' + 
-         	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+         	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
            	tooManySystems + 
            	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
-           	'<td class="tableData"><input class="form-control" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
+           	'<td class="tableData"><input class="mf0SmallInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
            	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
 
 	$('#frameTable').append(frameToAddMarkUp);

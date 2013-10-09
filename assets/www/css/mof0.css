@@ -262,6 +262,11 @@ and (max-device-width : 480px) {
   }
 }
 
+.mf0SmallInput {
+  text-align : right;
+  width : 20px;
+}
+
 .mfzTabContent {
   background-color : #ccc;
   padding : 15px;
