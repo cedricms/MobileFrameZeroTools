@@ -291,7 +291,6 @@ and (max-device-width : 480px) {
   width : 95%;
 }
 
-
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
@@ -364,4 +363,24 @@ and (max-device-width : 480px) {
 
 .tableHeader {
   text-align : center;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .tableHeader {
+    font-size : 1rem;
+  }
+}
+
+.tableData {
+
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .tableData {
+    font-size : 1rem;
+  }
 }
