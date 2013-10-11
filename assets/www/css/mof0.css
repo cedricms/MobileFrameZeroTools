@@ -94,6 +94,15 @@ a.companyNameLink:hover {
   margin-right : 35px;
   margin-top : 5px;
   text-align : justify;
+  width : 80%
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .faqQuestion {
+    font-size : 1.5rem;
+  }
 }
 
 .formButton {
@@ -265,6 +274,26 @@ and (max-device-width : 480px) {
 .mf0SmallNumericInput {
   text-align : right;
   width : 2rem;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  a.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  li.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  ul.mf0Tab {
+    font-size : 1.0rem;
+  }
 }
 
 .mfzTabContent {
