@@ -15,6 +15,9 @@ var insertFrame9SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_su
 var insertFrame10SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Armored Spotter", 1, 0, 2, 0, 0, 0, datetime("now"))';
 var insertFrame11SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Artillerist", 2, 0, 0, 0, 0, 2, datetime("now"))';
 var insertFrame12SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Sniper", 1, 1, 0, 0, 0, 1, datetime("now"))';
+var insertFrame13SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Grunt", 1, 1, 0, 1, 1, 0, datetime("now"))';
+var insertFrame14SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Berserker A.K.A. The Swarmer", 1, 0, 1, 2, 0, 0, datetime("now"))';
+var insertFrame15SQL = 'INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("The Battering Ram", 2, 0, 1, 1, 0, 0, datetime("now"))';
 var dropCompanySQL = 'DROP TABLE IF EXISTS company';
 var createCompanySQL = 'CREATE TABLE IF NOT EXISTS company (id INTEGER PRIMARY KEY AUTOINCREMENT, name, dt_created DATETIME, dt_modified DATETIME)';
 var dropCompanyFrameSQL = 'DROP TABLE IF EXISTS company_frame';
@@ -80,10 +83,19 @@ function initDb() {
 				tx.executeSql(createCompanySQL);
 				tx.executeSql(createCompanyFrameSQL);
 				localStorage.setItem("localStorageDbVersion", "1.0");
-				console.log('Database initialised');
+				localStorageDbVersion = "1.0";
+				//console.log('Database initialised');
 			} // if
 			
 			if (localStorageDbVersion === "1.0") {
+				tx.executeSql(insertFrame13SQL);
+				tx.executeSql(insertFrame14SQL);
+				tx.executeSql(insertFrame15SQL);
+				localStorage.setItem("localStorageDbVersion", "1.1");
+				localStorageDbVersion = "1.1";
+			} // if
+			
+			if (localStorageDbVersion === "1.1") {
 				// To update the next version
 				
 			} // if
@@ -111,24 +123,27 @@ function resetDatabase() {
 		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
 		
 		db.transaction(function(tx) {
-							tx.executeSql(dropFrameSQL,[]);
-							tx.executeSql(createFrameSQL,[]);
-							tx.executeSql(insertFrame1SQL,[]);
-							tx.executeSql(insertFrame2SQL,[]);
-							tx.executeSql(insertFrame3SQL,[]);
-							tx.executeSql(insertFrame4SQL,[]);
-							tx.executeSql(insertFrame5SQL,[]);
-							tx.executeSql(insertFrame6SQL,[]);
-							tx.executeSql(insertFrame7SQL,[]);
-							tx.executeSql(insertFrame8SQL,[]);
-							tx.executeSql(insertFrame9SQL,[]);
-							tx.executeSql(insertFrame10SQL,[]);
-							tx.executeSql(insertFrame11SQL,[]);
-							tx.executeSql(insertFrame12SQL,[]);
-							tx.executeSql(dropCompanySQL,[]);
-							tx.executeSql(createCompanySQL,[]);
-							tx.executeSql(dropCompanyFrameSQL,[]);
-							tx.executeSql(createCompanyFrameSQL,[]);
+							tx.executeSql(dropFrameSQL);
+							tx.executeSql(createFrameSQL);
+							tx.executeSql(insertFrame1SQL);
+							tx.executeSql(insertFrame2SQL);
+							tx.executeSql(insertFrame3SQL);
+							tx.executeSql(insertFrame4SQL);
+							tx.executeSql(insertFrame5SQL);
+							tx.executeSql(insertFrame6SQL);
+							tx.executeSql(insertFrame7SQL);
+							tx.executeSql(insertFrame8SQL);
+							tx.executeSql(insertFrame9SQL);
+							tx.executeSql(insertFrame10SQL);
+							tx.executeSql(insertFrame11SQL);
+							tx.executeSql(insertFrame12SQL);
+							tx.executeSql(insertFrame13SQL);
+							tx.executeSql(insertFrame14SQL);
+							tx.executeSql(insertFrame15SQL);
+							tx.executeSql(dropCompanySQL);
+							tx.executeSql(createCompanySQL);
+							tx.executeSql(dropCompanyFrameSQL);
+							tx.executeSql(createCompanyFrameSQL);
 						}, errorDB, successDB);
 		
 		jQuery.i18n.prop('databaseResetConfirmationMessage');
