@@ -99,9 +99,9 @@ function listFrames() {
                 tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
             } // if
             
-            $('#frameTable').append('<tr><td><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
-            	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td>' + tooManySystems + ' ' + nbSystems + '/4 ' + 
-            	tooManySystems + '</td><td><div class="systemDiceList">' + dice + '</div></td><td><a href="Javascript:deleteFrame(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
+            $('#frameTable').append('<tr><td class="tableData"><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
+            	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+            	tooManySystems + '</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td><td class="tableData"><a href="Javascript:deleteFrame(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
     }
 
