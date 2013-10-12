@@ -28,6 +28,14 @@ element.addEventListener('touchstart',function(e) {
   padding-top : 12px;  
 }
 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .backButton {
+    margin-bottom : 20px;
+  }
+}
+
 a.backButton:hover {
   background-color : #666;
   border : 4px solid;
@@ -86,6 +94,15 @@ a.companyNameLink:hover {
   margin-right : 35px;
   margin-top : 5px;
   text-align : justify;
+  width : 80%
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .faqQuestion {
+    font-size : 1.5rem;
+  }
 }
 
 .formButton {
@@ -100,6 +117,14 @@ a.companyNameLink:hover {
   color: #bc252a;
   font-size : 2rem;
   font-weight : bold;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .formLabel {
+    font-size : 1.35rem;
+  }
 }
 
 .frameInformationZone {
@@ -148,6 +173,20 @@ a.largeButton {
   /*width : 800px;*/
   padding : 15px;
   /*width : 95%;*/
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .largeButton {
+    margin : 2px;
+  }
+
+  a.largeButton {
+    font-size : 1.3rem;
+    margin : 2px;
+    padding : 10px;
+  }
 }
 
 a.largeButton:focus {
@@ -199,6 +238,64 @@ a.largeButton:visited {
   font-weight : bold;
 }
 
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .mof0Legend {
+    font-size : 1.35rem;
+  }
+}
+
+img.mof0LittleGuyBackButton {
+  background : url("../img/moF0LittleGuy/MoF0LittleGuy_50_57.png") no-repeat center center;
+  background-color:rgba(0,0,0,0);
+  border: none;
+  border-style: none;
+  height : 60px;
+  outline:none;
+  width : 60px;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  img.mof0LittleGuyBackButton {
+    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
+    background-color:rgba(0,0,0,0);
+    border: none;
+    border-style: none;
+    height : 40px;
+    outline:none;
+    width : 40px;
+  }
+}
+
+.mf0SmallNumericInput {
+  text-align : right;
+  width : 2rem;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  a.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  li.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  ul.mf0Tab {
+    font-size : 1.0rem;
+  }
+}
+
 .mfzTabContent {
   background-color : #ccc;
   padding : 15px;
@@ -213,7 +310,7 @@ a.largeButton:visited {
 
 .pageSection {
   background-color : #e2e2e2;
-  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection.png');
+  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_382_431.png');
   background-repeat : no-repeat;
   /*background-attachment : fixed;*/
   background-position : left center; 
@@ -226,6 +323,15 @@ a.largeButton:visited {
   min-height : 500px;
   /*padding : 5px;*/
   width : 95%;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .pageSection {
+    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
+    min-height : 250px;
+  }
 }
 
 .pageTitle {
@@ -241,6 +347,14 @@ a.largeButton:visited {
   padding-bottom : 15px;
   padding-top : 15px;
   width : 90%;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .pageTitle {
+    font-size : 1.5rem;
+  }
 }
 
 .systemDiceList {
@@ -283,4 +397,24 @@ a.largeButton:visited {
 
 .tableHeader {
   text-align : center;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .tableHeader {
+    font-size : 1rem;
+  }
+}
+
+.tableData {
+
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .tableData {
+    font-size : 1rem;
+  }
 }
