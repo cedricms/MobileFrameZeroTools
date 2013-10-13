@@ -48,6 +48,10 @@ a.backButton:active {
   color: #bc252a;
 }
 
+body {
+  background : url("../img/backgrounds/legoStud/legoStud_36_36.png") repeat;
+}
+
 ul.bulletPoint {
   list-style-image:url('../img/icons/bulletPoint.png');
 }
@@ -160,6 +164,7 @@ a.frameNameLink:hover {
 }
 
 a.largeButton {
+  background : url("../img/backgrounds/legoStud/legoStud_12_12.png") repeat;	
   background-color : #fff;
   border : 2px solid;
   border-color : #bc252a;
@@ -172,6 +177,7 @@ a.largeButton {
   /*min-width : 500px;*/
   /*width : 800px;*/
   padding : 15px;
+  text-shadow:0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
   /*width : 95%;*/
 }
 
@@ -309,7 +315,8 @@ and (max-device-width : 480px) {
 }
 
 .pageSection {
-  background-color : #e2e2e2;
+  background-color : rgba(226, 226, 226, 0.9);
+  /*background-color : #e2e2e2;*/
   background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_382_431.png');
   background-repeat : no-repeat;
   /*background-attachment : fixed;*/
@@ -346,6 +353,7 @@ and (max-device-width : 480px) {
   margin : 5px;
   padding-bottom : 15px;
   padding-top : 15px;
+  text-shadow:0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
   width : 90%;
 }
 
