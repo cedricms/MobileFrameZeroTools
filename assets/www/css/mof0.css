@@ -376,6 +376,75 @@ and (max-device-width : 480px) {
   }
 }
 
+.smallButton {
+  margin : 5px;
+}
+
+a.smallButton {
+  background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_12_12.png") repeat;	
+  background-color : #fff;
+  border : 2px solid;
+  border-color : #bc252a;
+  border-top-left-radius: 20px 20px;
+  border-bottom-right-radius: 20px 20px;
+  color: #bc252a;
+  font-size : 2rem;
+  font-weight : bold;
+  margin : 15px;
+  /*min-width : 500px;*/
+  /*width : 800px;*/
+  padding : 5px;
+  text-shadow : 0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
+  /*width : 95%;*/
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .smallButton {
+    margin : 2px;
+  }
+
+  a.smallButton {
+    font-size : 1.3rem;
+    margin : 2px;
+    padding : 5px;
+    text-shadow : none;
+  }
+}
+
+a.smallButton:focus {
+
+}
+
+/* Activated on tap */
+a.smallButton:hover {
+  background-color : #666;
+  border : 8px solid;
+  border-color : #f99;
+  border-style : double;
+  color: #f99;
+  /*font-size : 2.5rem;*/
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a.smallButton:active {
+  border-color : #bc252a;
+  color: #bc252a;
+  /*font-size : 2rem;*/
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a.smallButton:link {
+
+}
+
+a.smallButton:visited {
+
+}
+
 .systemDiceList {
   background-color : #fff;
   border : 2px solid;
