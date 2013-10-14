@@ -22,6 +22,8 @@ var dropCompanySQL = 'DROP TABLE IF EXISTS company';
 var createCompanySQL = 'CREATE TABLE IF NOT EXISTS company (id INTEGER PRIMARY KEY AUTOINCREMENT, name, dt_created DATETIME, dt_modified DATETIME)';
 var dropCompanyFrameSQL = 'DROP TABLE IF EXISTS company_frame';
 var createCompanyFrameSQL = 'CREATE TABLE IF NOT EXISTS company_frame (id INTEGER PRIMARY KEY AUTOINCREMENT, id_company INTEGER NOT NULL, id_frame INTEGER NOT NULL, nb_rockets INT, dt_created DATETIME, dt_modified DATETIME)';
+var alterFrame1SQL = 'ALTER TABLE frame ADD framePictureURL';
+var alterCompany1SQL = 'ALTER TABLE company ADD companyPictureURL';
 
 function getBackButtonMarkup(applicationTitle) {
 	//return '<a class="backButton" href="./menu.html"><img src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitle + '"></a>';
@@ -91,6 +93,10 @@ function initDb() {
 				tx.executeSql(insertFrame13SQL);
 				tx.executeSql(insertFrame14SQL);
 				tx.executeSql(insertFrame15SQL);
+				
+				tx.executeSql(alterFrame1SQL);
+				tx.executeSql(alterCompany1SQL);
+				
 				localStorage.setItem("localStorageDbVersion", "1.1");
 				localStorageDbVersion = "1.1";
 			} // if
@@ -124,6 +130,7 @@ function resetDatabase() {
 		
 		db.transaction(function(tx) {
 							tx.executeSql(dropFrameSQL);
+							tx.executeSql(alterFrame1SQL);
 							tx.executeSql(createFrameSQL);
 							tx.executeSql(insertFrame1SQL);
 							tx.executeSql(insertFrame2SQL);
@@ -142,6 +149,7 @@ function resetDatabase() {
 							tx.executeSql(insertFrame15SQL);
 							tx.executeSql(dropCompanySQL);
 							tx.executeSql(createCompanySQL);
+							tx.executeSql(alterCompany1SQL);
 							tx.executeSql(dropCompanyFrameSQL);
 							tx.executeSql(createCompanyFrameSQL);
 						}, errorDB, successDB);
