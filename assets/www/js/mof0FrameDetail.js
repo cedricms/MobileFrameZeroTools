@@ -1,5 +1,17 @@
 var systemsMessage = "";
 
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+
+//Wait for device API libraries to load
+//
+document.addEventListener("deviceready",onDeviceReadyPhoto,false);
+
+function onDeviceReadyPhoto() {
+  pictureSource=navigator.camera.PictureSourceType;
+  destinationType=navigator.camera.DestinationType;
+}
+
 function getNbSystems() {
 	result = 0;
 	
@@ -474,4 +486,22 @@ function queryFrameByIdSuccess(tx, results) {
 // Transaction error callback
 function errorDB(tx, err) {
 	alert("Error processing SQL: "+err);
+}
+
+function captureFramePhoto() {
+  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 80, allowEdit: true, destinationType: destinationType.FILE_URI });
+}
+
+function onPhotoURISuccess(imageURI) {
+  // Get image handle
+  var framePicture = document.getElementById('framePicture');
+
+  // Show the captured photo
+  // The inline CSS rules are used to resize the image
+  framePicture.src = imageURI;
+}
+
+//Called if something bad happens.
+function onPhotoFail(message) {
+  alert('Failed because: ' + message);
 }
