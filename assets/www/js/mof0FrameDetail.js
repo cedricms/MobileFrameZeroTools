@@ -489,16 +489,31 @@ function errorDB(tx, err) {
 }
 
 function captureFramePhoto() {
-  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 80, allowEdit: true, destinationType: destinationType.FILE_URI });
+  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.FILE_URI });
+}
+
+//A button will call this function
+function getPhoto(source) {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 90, destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
 function onPhotoURISuccess(imageURI) {
+  //alert('imageURI : ' + imageURI);
+  
   // Get image handle
   var framePicture = document.getElementById('framePicture');
 
   // Show the captured photo
   // The inline CSS rules are used to resize the image
   framePicture.src = imageURI;
+  
+
+  frameForm = document.getElementById('frameForm');
+  framePictureURL = frameForm.elements['framePictureURL'];
+  framePictureURL.value = imageURI;
+  
+  //alert('framePictureURL.value : ' + framePictureURL.value);
 }
 
 //Called if something bad happens.
