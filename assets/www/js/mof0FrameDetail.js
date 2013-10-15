@@ -119,6 +119,8 @@ function queryCreateFrame(tx) {
 
 	frameName = frameForm.elements["frameName"].value;
 	
+    framePictureURL = frameForm.elements['framePictureURL'].value;
+	
 	defensiveSystem = frameForm.elements["defensiveSystem"];	
 	defensiveSystemValue = getRadioIntValue(defensiveSystem);
 
@@ -137,8 +139,9 @@ function queryCreateFrame(tx) {
 	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
 	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
 	
-	tx.executeSql('INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("' + 
+	tx.executeSql('INSERT INTO frame (name, frame_picture_url, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("' + 
 			frameName + '", ' + 
+			'"' + framePictureURL + '", ' + 
 			defensiveSystemValue + ', ' +
 			movementSystemValue + ', ' +
 			surveillanceCommunicationSystemValue + ', ' +
@@ -159,6 +162,8 @@ function queryModifyFrame(tx) {
 	frameId = frameForm.elements["frameId"].value;
 	
 	frameName = frameForm.elements["frameName"].value;
+
+    framePictureURL = frameForm.elements['framePictureURL'].value;
 	
 	defensiveSystem = frameForm.elements["defensiveSystem"];	
 	defensiveSystemValue = getRadioIntValue(defensiveSystem);
@@ -179,6 +184,7 @@ function queryModifyFrame(tx) {
 	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
 	
 	updateQuery = 'UPDATE frame SET name="' + frameName + '"' +
+			', frame_picture_url="' + framePictureURL + '"' +
 			', nb_defensive=' + defensiveSystemValue +
 			', nb_movement=' + movementSystemValue +
 			', nb_surveillance_communication=' + surveillanceCommunicationSystemValue +
@@ -461,6 +467,8 @@ function queryFrameByIdSuccess(tx, results) {
     	frameName = frameForm.elements["frameName"];
     	frameName.value = row.name;
     	
+    	onPhotoURISuccess(row.frame_picture_url);
+    	
     	defensiveSystem = frameForm.elements["defensiveSystem"];
     	setRadioValue(defensiveSystem, row.nb_defensive);
     	
@@ -499,24 +507,30 @@ function getPhoto(source) {
 }
 
 function onPhotoURISuccess(imageURI) {
-  //alert('imageURI : ' + imageURI);
-  
-  // Get image handle
-  var framePicture = document.getElementById('framePicture');
+  if ((typeof imageURI != 'undefined') && (imageURI != null) && (imageURI != '') && (imageURI !== '')) {
+    // Get image handle
+    var framePicture = document.getElementById('framePicture');
 
-  // Show the captured photo
-  // The inline CSS rules are used to resize the image
-  framePicture.src = imageURI;
-  
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    framePicture.src = imageURI;
 
-  frameForm = document.getElementById('frameForm');
-  framePictureURL = frameForm.elements['framePictureURL'];
-  framePictureURL.value = imageURI;
-  
-  //alert('framePictureURL.value : ' + framePictureURL.value);
+    frameForm = document.getElementById('frameForm');
+    framePictureURL = frameForm.elements['framePictureURL'];
+    framePictureURL.value = imageURI;
+  } // if
 }
 
 //Called if something bad happens.
 function onPhotoFail(message) {
-  alert('Failed because: ' + message);
+  //alert('Failed because: ' + message);
+}
+
+function getPhotoByURL() {
+  frameForm = document.getElementById('frameForm');
+  framePictureURL = frameForm.elements['framePictureURL'];
+  
+  jQuery.i18n.prop('pleaseEnterAUrlMessage');
+  imageURL = prompt(pleaseEnterAUrlMessage + ' : ',framePictureURL.value);
+  onPhotoURISuccess(imageURL);
 }
