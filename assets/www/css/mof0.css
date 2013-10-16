@@ -28,9 +28,19 @@ element.addEventListener('touchstart',function(e) {
   padding-top : 12px;  
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .backButton {
+    margin-bottom : 20px;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .backButton {
     margin-bottom : 20px;
   }
@@ -97,9 +107,19 @@ a.companyNameLink:hover {
   width : 80%
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .faqQuestion {
+    font-size : 1.5rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .faqQuestion {
     font-size : 1.5rem;
   }
@@ -118,10 +138,19 @@ and (max-device-width : 480px) {
   font-size : 2rem;
   font-weight : bold;
 }
-
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .formLabel {
+    font-size : 1.35rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .formLabel {
     font-size : 1.35rem;
   }
@@ -175,9 +204,25 @@ a.largeButton {
   /*width : 95%;*/
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .largeButton {
+    margin : 2px;
+  }
+
+  a.largeButton {
+    font-size : 1.3rem;
+    margin : 2px;
+    padding : 10px;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .largeButton {
     margin : 2px;
   }
@@ -238,10 +283,19 @@ a.largeButton:visited {
   font-weight : bold;
 }
 
-
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .mof0Legend {
+    font-size : 1.35rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .mof0Legend {
     font-size : 1.35rem;
   }
@@ -257,9 +311,25 @@ img.mof0LittleGuyBackButton {
   width : 60px;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  img.mof0LittleGuyBackButton {
+    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
+    background-color:rgba(0,0,0,0);
+    border: none;
+    border-style: none;
+    height : 40px;
+    outline:none;
+    width : 40px;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   img.mof0LittleGuyBackButton {
     background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
     background-color:rgba(0,0,0,0);
@@ -276,9 +346,31 @@ and (max-device-width : 480px) {
   width : 2rem;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  a.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  li.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  ul.mf0Tab {
+    font-size : 1.0rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .mf0Tab {
     font-size : 1.0rem;
   }
@@ -325,9 +417,20 @@ and (max-device-width : 480px) {
   width : 95%;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .pageSection {
+    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
+    min-height : 250px;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .pageSection {
     background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
     min-height : 250px;
@@ -349,9 +452,19 @@ and (max-device-width : 480px) {
   width : 90%;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .pageTitle {
+    font-size : 1.5rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .pageTitle {
     font-size : 1.5rem;
   }
@@ -399,9 +512,19 @@ and (max-device-width : 480px) {
   text-align : center;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .tableHeader {
+    font-size : 1rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .tableHeader {
     font-size : 1rem;
   }
@@ -411,9 +534,19 @@ and (max-device-width : 480px) {
 
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .tableData {
+    font-size : 1rem;
+  }
+}
+
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
   .tableData {
     font-size : 1rem;
   }
