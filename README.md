@@ -16,4 +16,6 @@ Devices tested on :
 
 	*) Google Nexus 7;
 	*) Asus Transformeer Prime;
-	*) HTC Desire.
+	*) HTC Desire;
+	*) Nexus Galaxy;
+	*) Nexus 4.
