@@ -61,6 +61,14 @@
 		    jQuery.i18n.prop('dbVersionMessage');
 		    document.getElementById('dbVersionLabel').innerHTML= dbVersionMessage;
 		    document.getElementById('dbVersion').innerHTML = getDbVersion();
+		    
+		    jQuery.i18n.prop('deviceWidthMessage');
+		    document.getElementById('deviceWidthLabel').innerHTML= deviceWidthMessage;
+		    document.getElementById('deviceWidth').innerHTML = screen.width;
+		    
+		    jQuery.i18n.prop('deviceHeightMessage');
+		    document.getElementById('deviceHeightLabel').innerHTML= deviceHeightMessage;
+		    document.getElementById('deviceHeight').innerHTML = screen.height;
 	      }
 	    });
 	  }
@@ -125,6 +133,14 @@
               <tr>
                 <td class="tableData"><div class="columnLabel" id="dbVersionLabel"></div></td>
                 <td class="tableData"><div class="" id="dbVersion"></div></td>
+              </tr>
+              <tr>
+                <td class="tableData"><div class="columnLabel" id="deviceWidthLabel"></div></td>
+                <td class="tableData"><div class="" id="deviceWidth"></div></td>
+              </tr>
+              <tr>
+                <td class="tableData"><div class="columnLabel" id="deviceHeightLabel"></div></td>
+                <td class="tableData"><div class="" id="deviceHeight"></div></td>
               </tr>
             </table>
           </div>  
