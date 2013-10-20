@@ -80,6 +80,7 @@ body {
   background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_36_36.png") repeat;
 }
 
+/* HTC Desire */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
@@ -88,6 +89,32 @@ and (max-device-width : 480px) {
   }
 }
 
+/* Galaxy Nexus and Nexus 4 */
+@media only screen
+and (max-width : 603px)
+and (-webkit-device-pixel-ratio:2) {
+  body {
+    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
+  }
+}
+
+/ * HTC Amaze 4G and Motorola Droid 4 */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  body {
+    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
+  }
+}
+
+/* Motorola Droid Bionic 4G */
+@media only screen 
+and (min-device-width : 360px) 
+and (max-device-width : 540px) {
+  body {
+    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
+  }
+}
 
 ul.bulletPoint {
   list-style-image:url('../img/icons/bulletPoint.png');
