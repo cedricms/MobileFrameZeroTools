@@ -17,5 +17,11 @@ Devices tested on :
 	*) Google Nexus 7;
 	*) Asus Transformeer Prime;
 	*) HTC Desire;
-	*) Nexus Galaxy;
-	*) Nexus 4.
+	*) Nexus Galaxy.
+	
+Should be compatible with (tests needed) :
+
+	*) Nexus 4;
+	*) HTC Amaze 4G;
+	*) Motorola Droid 4;
+	*) Motorola Droid Bionic.
