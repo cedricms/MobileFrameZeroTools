@@ -46,6 +46,15 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .backButton {
+    margin-bottom : 20px;
+  }
+}
+
 a.backButton:hover {
   background-color : #666;
   border : 4px solid;
@@ -125,6 +134,15 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .faqQuestion {
+    font-size : 1.5rem;
+  }
+}
+
 .formButton {
   border : 2px solid;
   border-color : #bc252a;
@@ -151,6 +169,15 @@ and (max-device-width : 480px) {
 @media only screen
 and (max-width : 603px)
 and (-webkit-device-pixel-ratio:2) {
+  .formLabel {
+    font-size : 1.35rem;
+  }
+}
+
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
   .formLabel {
     font-size : 1.35rem;
   }
@@ -234,6 +261,21 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .largeButton {
+    margin : 2px;
+  }
+
+  a.largeButton {
+    font-size : 1.3rem;
+    margin : 2px;
+    padding : 10px;
+  }
+}
+
 a.largeButton:focus {
 
 }
@@ -301,6 +343,15 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .mof0Legend {
+    font-size : 1.35rem;
+  }
+}
+
 img.mof0LittleGuyBackButton {
   background : url("../img/moF0LittleGuy/MoF0LittleGuy_50_57.png") no-repeat center center;
   background-color:rgba(0,0,0,0);
@@ -330,6 +381,21 @@ and (max-device-width : 480px) {
 @media only screen
 and (max-width : 603px)
 and (-webkit-device-pixel-ratio:2) {
+  img.mof0LittleGuyBackButton {
+    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
+    background-color:rgba(0,0,0,0);
+    border: none;
+    border-style: none;
+    height : 40px;
+    outline:none;
+    width : 40px;
+  }
+}
+
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
   img.mof0LittleGuyBackButton {
     background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
     background-color:rgba(0,0,0,0);
@@ -371,6 +437,27 @@ and (max-device-width : 480px) {
 @media only screen
 and (max-width : 603px)
 and (-webkit-device-pixel-ratio:2) {
+  .mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  a.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  li.mf0Tab {
+    font-size : 1.0rem;
+  }
+
+  ul.mf0Tab {
+    font-size : 1.0rem;
+  }
+}
+
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
   .mf0Tab {
     font-size : 1.0rem;
   }
@@ -437,6 +524,16 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .pageSection {
+    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
+    min-height : 250px;
+  }
+}
+
 .pageTitle {
   border-style : solid;
   border-bottom-width : 5px;
@@ -470,6 +567,15 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .pageTitle {
+    font-size : 1.5rem;
+  }
+}
+
 .systemDiceList {
   background-color : #fff;
   border : 2px solid;
@@ -489,12 +595,10 @@ and (-webkit-device-pixel-ratio:2) {
   padding : 5px;
 }
 
-
 .systemDie {
   float : left;
   margin : 5px 5px 5px 5px;
 }
-
 
 .systemRow {
   background-color : #fff;
@@ -530,6 +634,15 @@ and (-webkit-device-pixel-ratio:2) {
   }
 }
 
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
+  .tableHeader {
+    font-size : 1rem;
+  }
+}
+
 .tableData {
 
 }
@@ -547,6 +660,15 @@ and (max-device-width : 480px) {
 @media only screen
 and (max-width : 603px)
 and (-webkit-device-pixel-ratio:2) {
+  .tableData {
+    font-size : 1rem;
+  }
+}
+
+/ * HTC Amaze 4G */
+@media only screen
+and (min-device-width : 540px)
+and (-webkit-device-pixel-ratio : 1.50) {
   .tableData {
     font-size : 1rem;
   }
