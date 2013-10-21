@@ -3,6 +3,8 @@ var systemsMessage = "";
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 
+var frameImageData;
+
 //Wait for device API libraries to load
 //
 document.addEventListener("deviceready",onDeviceReadyPhoto,false);
@@ -467,7 +469,8 @@ function queryFrameByIdSuccess(tx, results) {
     	frameName = frameForm.elements["frameName"];
     	frameName.value = row.name;
     	
-    	onPhotoURISuccess(row.frame_picture_url);
+    	// TODO : fix code to show (base64) image from picture URL
+    	//onPhotoURISuccess(row.frame_picture_url);
     	
     	defensiveSystem = frameForm.elements["defensiveSystem"];
     	setRadioValue(defensiveSystem, row.nb_defensive);
@@ -497,28 +500,83 @@ function errorDB(tx, err) {
 }
 
 function captureFramePhoto() {
-  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.FILE_URI });
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.DATA_URL });
 }
 
 //A button will call this function
 function getPhoto(source) {
   // Retrieve image file location from specified source
-  navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 90, destinationType: destinationType.FILE_URI, sourceType: source });
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL, sourceType: source });
 }
 
-function onPhotoURISuccess(imageURI) {
-  if ((typeof imageURI != 'undefined') && (imageURI != null) && (imageURI != '') && (imageURI !== '')) {
+function onPhotoSuccess(imageData) {
+  if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
+	frameImageData = imageData;
+	
     // Get image handle
     var framePicture = document.getElementById('framePicture');
 
     // Show the captured photo
     // The inline CSS rules are used to resize the image
-    framePicture.src = imageURI;
+    framePicture.src = "data:image/jpeg;base64," + frameImageData;
 
-    frameForm = document.getElementById('frameForm');
-    framePictureURL = frameForm.elements['framePictureURL'];
-    framePictureURL.value = imageURI;
+	// Init file system
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
   } // if
+}
+
+function onFileSystemSuccess(fileSystem) {
+	//alert('fileSystem.name : ' + fileSystem.name + ' fileSystem.root.name : ' + fileSystem.root.name);
+	fileSystem.root.getDirectory('MobileFrameZeroTools', {create: true}, onGetMfztDirectory, onGetMfztDirectoryFail);
+}
+
+function onGetMfztDirectory(mfztDirectory) {
+	mfztDirectory.getDirectory('frame', {create: true}, onGetFrameDirectory, onGetFrameDirectoryFail);
+}
+
+function onGetFrameDirectory(frameDirectory) {
+	currentDate = new Date();
+	fileName = 'frame_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.base64jpg';
+	//alert('fileName : ' + fileName);
+	frameDirectory.getFile(fileName, {create: true}, createFrameImageEntry, createFrameImageEntryFail);
+
+	frameForm = document.getElementById('frameForm');
+	framePictureURL = frameForm.elements['framePictureURL'];
+	framePictureURL.value = '/MobileFrameZeroTools/frame/' + fileName;
+}
+
+function createFrameImageEntry(imageFileEntry) {
+	imageFileEntry.createWriter(writeFrameImage, onFileSystemFail);
+}
+
+function writeFrameImage(writer) {
+	writer.onwrite = function(evt) {
+        //alert("write success");
+    };
+    writer.write(frameImageData);
+}
+
+function onGetMfztDirectoryFail(error) {
+    alert('onGetMfztDirectoryFail : ' + error.code);
+}
+
+function onGetFrameDirectoryFail(error) {
+    alert('onGetFrameDirectoryFail : ' + error.code);
+}
+
+function createFrameImageEntryFail(error) {
+    alert('createFrameImageEntryFail : ' + error.code);
+}
+
+function onFileSystemFail(error) {
+    alert('onFileSystemFail : ' + error.code);
 }
 
 //Called if something bad happens.
