@@ -3,6 +3,7 @@ var systemsMessage = "";
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 
+var frameImageUrl;
 var frameImageData;
 
 //Wait for device API libraries to load
@@ -469,8 +470,10 @@ function queryFrameByIdSuccess(tx, results) {
     	frameName = frameForm.elements["frameName"];
     	frameName.value = row.name;
     	
-    	// TODO : fix code to show (base64) image from picture URL
-    	//onPhotoURISuccess(row.frame_picture_url);
+    	framePictureUrl = row.frame_picture_url;
+    	if ((typeof framePictureUrl != 'undefined') && (framePictureUrl != null) && (framePictureUrl != '') && (framePictureUrl !== '')) {
+    		loadFramePhoto(framePictureUrl);
+    	} // if
     	
     	defensiveSystem = frameForm.elements["defensiveSystem"];
     	setRadioValue(defensiveSystem, row.nb_defensive);
@@ -506,12 +509,16 @@ function captureFramePhoto() {
 //A button will call this function
 function getPhoto(source) {
   // Retrieve image file location from specified source
-  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL, sourceType: source });
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL , sourceType: source });
 }
 
 function onPhotoSuccess(imageData) {
+  //if ((typeof imageURI != 'undefined') && (imageURI != null) && (imageURI != '') && (imageURI !== '')) {
   if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
 	frameImageData = imageData;
+
+    //alert('frameImageData : ' + frameImageData.length);
+    //alert('imageURI : ' + imageURI);
 	
     // Get image handle
     var framePicture = document.getElementById('framePicture');
@@ -519,10 +526,59 @@ function onPhotoSuccess(imageData) {
     // Show the captured photo
     // The inline CSS rules are used to resize the image
     framePicture.src = "data:image/jpeg;base64," + frameImageData;
-
+    //framePicture.src = imageURI;
+    
 	// Init file system
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
+    //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFrameFileSystemSuccess, onFrameFileSystemSuccessFail);
+    //window.resolveLocalFileSystemURI(imageURI, saveFramePhoto, saveFramePhotoFail);
+    //movePic(imageURI);
   } // if
+}
+
+function movePic(file){ 
+    window.resolveLocalFileSystemURI(file, resolveMoveToLocalFrameGalleryOnSuccess, resolveMoveToLocalFrameGalleryOnError); 
+}
+
+//Callback function when the file system uri has been resolved
+function resolveMoveToLocalFrameGalleryOnSuccess(entry){ 
+  currentDate = new Date();
+  fileName = 'frame_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.jpg';
+  var mobileFrameZeroToolsFolder = 'MobileFrameZeroTools';
+  var frameFolder = 'frame';
+
+  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+	  //The folder is created if doesn't exist
+	  fileSys.root.getDirectory( mobileFrameZeroToolsFolder,
+                  {create:true, exclusive: false},
+                  function(mfztDirectory) {
+                	  mfztDirectory.getDirectory(frameFolder, {create: true}, function(frameDirectory) {                    	  
+                          entry.copyTo(frameDirectory, fileName,  successMove, resolveMoveToLocalFrameGalleryOnError);
+                      }, resolveMoveToLocalFrameGalleryOnError);
+                  },
+                  resolveMoveToLocalFrameGalleryOnError);
+                  },
+                  resolveMoveToLocalFrameGalleryOnError);
+}
+
+//Callback function when the file has been moved successfully - inserting the complete path
+function successMove(entry) {
+	frameForm = document.getElementById('frameForm');
+	framePictureURL = frameForm.elements['framePictureURL'];
+	newFramePhotoPath = entry.fullPath;
+	//alert('newFramePhotoPath : ' + newFramePhotoPath)
+	framePictureURL.value = newFramePhotoPath;
+}
+
+function resolveMoveToLocalFrameGalleryOnError(error) {
+  alert('resolveMoveToLocalFrameGalleryOnError : ' + error.code);
 }
 
 function onFileSystemSuccess(fileSystem) {
@@ -558,9 +614,19 @@ function createFrameImageEntry(imageFileEntry) {
 
 function writeFrameImage(writer) {
 	writer.onwrite = function(evt) {
-        //alert("write success");
+        //alert('write success : ' + frameImageData.length);
     };
+    
+    /*dataSize = frameImageData.length;
+    data = new ArrayBuffer(dataSize),
+    dataView = new Int8Array(data);
+    for (i=0; i < dataSize; i++) {
+    	dataView[i] = frameImageData.substring(i, i + 1);
+    } // for*/
+    
+    //writer.write(dataView);
     writer.write(frameImageData);
+    //alert('data written : ' + dataView.length);
 }
 
 function onGetMfztDirectoryFail(error) {
@@ -591,4 +657,65 @@ function getPhotoByURL() {
   jQuery.i18n.prop('pleaseEnterAUrlMessage');
   imageURL = prompt(pleaseEnterAUrlMessage + ' : ',framePictureURL.value);
   onPhotoURISuccess(imageURL);
+}
+
+function loadFramePhoto(framePictureUrl) {
+	frameImageUrl = framePictureUrl;
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, getFileSystemLoadFramePhoto, getFileSystemLoadFramePhotoFail);
+}
+
+function getFileSystemLoadFramePhoto(fileSystem) {
+	//alert('frameImageUrl : ' + frameImageUrl);
+
+    fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadFramePhoto, onGetMfztDirectoryLoadFramePhotoFail);
+}
+
+function onGetMfztDirectoryLoadFramePhoto(mfztDirectory) {
+	mfztDirectory.getDirectory('frame', null, onGetFrameDirectoryLoadFramePhoto, onGetFrameDirectoryLoadFramePhotoFail);
+}
+
+function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
+	frameImageName = frameImageUrl.substring('/MobileFrameZeroTools/frame/'.length, frameImageUrl.length);
+	//alert('frameImageName : ' + frameImageName);
+	frameDirectory.getFile(frameImageName, null, getFileEntryLoadFramePhoto, getFileEntryLoadFramePhotoFail);
+}
+
+function onGetFrameDirectoryLoadFramePhotoFail(error) {
+    alert('onGetFrameDirectoryLoadFramePhotoFail : ' + error.code);
+}
+
+function onGetMfztDirectoryLoadFramePhotoFail(error) {
+    alert('onGetMfztDirectoryLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadFramePhoto(fileEntry) {
+    fileEntry.file(getFileLoadFramePhoto, getFileLoadFramePhotoFail);
+}
+
+function getFileLoadFramePhoto(file){
+	var reader = new FileReader();
+    reader.onloadend = function(evt) {
+        frameImageData = evt.target.result;
+        //alert('frameImageData : ' + frameImageData.length);
+        
+    	// Get image handle
+        var framePicture = document.getElementById('framePicture');
+        // Show the captured photo
+        // The inline CSS rules are used to resize the image
+        framePicture.src = "data:image/jpeg;base64," + frameImageData;
+    };
+    reader.readAsBinaryString(file);
+}
+
+function getFileLoadFramePhotoFail(error) {
+    alert('getFileLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadFramePhotoFail(error) {
+    alert('getFileEntryLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileSystemLoadFramePhotoFail(error) {
+    alert('getFileSystemLoadFramePhotoFail : ' + error.code);
 }
