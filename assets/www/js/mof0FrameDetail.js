@@ -516,9 +516,6 @@ function onPhotoSuccess(imageData) {
   //if ((typeof imageURI != 'undefined') && (imageURI != null) && (imageURI != '') && (imageURI !== '')) {
   if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
 	frameImageData = imageData;
-
-    //alert('frameImageData : ' + frameImageData.length);
-    //alert('imageURI : ' + imageURI);
 	
     // Get image handle
     var framePicture = document.getElementById('framePicture');
@@ -526,13 +523,9 @@ function onPhotoSuccess(imageData) {
     // Show the captured photo
     // The inline CSS rules are used to resize the image
     framePicture.src = "data:image/jpeg;base64," + frameImageData;
-    //framePicture.src = imageURI;
     
 	// Init file system
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
-    //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFrameFileSystemSuccess, onFrameFileSystemSuccessFail);
-    //window.resolveLocalFileSystemURI(imageURI, saveFramePhoto, saveFramePhotoFail);
-    //movePic(imageURI);
   } // if
 }
 
@@ -573,7 +566,6 @@ function successMove(entry) {
 	frameForm = document.getElementById('frameForm');
 	framePictureURL = frameForm.elements['framePictureURL'];
 	newFramePhotoPath = entry.fullPath;
-	//alert('newFramePhotoPath : ' + newFramePhotoPath)
 	framePictureURL.value = newFramePhotoPath;
 }
 
@@ -582,7 +574,6 @@ function resolveMoveToLocalFrameGalleryOnError(error) {
 }
 
 function onFileSystemSuccess(fileSystem) {
-	//alert('fileSystem.name : ' + fileSystem.name + ' fileSystem.root.name : ' + fileSystem.root.name);
 	fileSystem.root.getDirectory('MobileFrameZeroTools', {create: true}, onGetMfztDirectory, onGetMfztDirectoryFail);
 }
 
@@ -600,7 +591,6 @@ function onGetFrameDirectory(frameDirectory) {
 			   currentDate.getUTCMinutes() + '_' + 
 			   currentDate.getUTCSeconds() + '_' + 
 			   currentDate.getUTCMilliseconds() + '.base64jpg';
-	//alert('fileName : ' + fileName);
 	frameDirectory.getFile(fileName, {create: true}, createFrameImageEntry, createFrameImageEntryFail);
 
 	frameForm = document.getElementById('frameForm');
@@ -614,19 +604,10 @@ function createFrameImageEntry(imageFileEntry) {
 
 function writeFrameImage(writer) {
 	writer.onwrite = function(evt) {
-        //alert('write success : ' + frameImageData.length);
+        // Nothing else to do
     };
     
-    /*dataSize = frameImageData.length;
-    data = new ArrayBuffer(dataSize),
-    dataView = new Int8Array(data);
-    for (i=0; i < dataSize; i++) {
-    	dataView[i] = frameImageData.substring(i, i + 1);
-    } // for*/
-    
-    //writer.write(dataView);
     writer.write(frameImageData);
-    //alert('data written : ' + dataView.length);
 }
 
 function onGetMfztDirectoryFail(error) {
@@ -647,7 +628,7 @@ function onFileSystemFail(error) {
 
 //Called if something bad happens.
 function onPhotoFail(message) {
-  //alert('Failed because: ' + message);
+  alert('Failed because: ' + message);
 }
 
 function getPhotoByURL() {
@@ -666,9 +647,7 @@ function loadFramePhoto(framePictureUrl) {
 }
 
 function getFileSystemLoadFramePhoto(fileSystem) {
-	//alert('frameImageUrl : ' + frameImageUrl);
-
-    fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadFramePhoto, onGetMfztDirectoryLoadFramePhotoFail);
+	fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadFramePhoto, onGetMfztDirectoryLoadFramePhotoFail);
 }
 
 function onGetMfztDirectoryLoadFramePhoto(mfztDirectory) {
@@ -677,7 +656,6 @@ function onGetMfztDirectoryLoadFramePhoto(mfztDirectory) {
 
 function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
 	frameImageName = frameImageUrl.substring('/MobileFrameZeroTools/frame/'.length, frameImageUrl.length);
-	//alert('frameImageName : ' + frameImageName);
 	frameDirectory.getFile(frameImageName, null, getFileEntryLoadFramePhoto, getFileEntryLoadFramePhotoFail);
 }
 
@@ -697,7 +675,6 @@ function getFileLoadFramePhoto(file){
 	var reader = new FileReader();
     reader.onloadend = function(evt) {
         frameImageData = evt.target.result;
-        //alert('frameImageData : ' + frameImageData.length);
         
     	// Get image handle
         var framePicture = document.getElementById('framePicture');
