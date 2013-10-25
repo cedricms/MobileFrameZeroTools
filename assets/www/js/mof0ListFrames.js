@@ -99,7 +99,7 @@ function listFrames() {
                 tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
             } // if
             
-            $('#frameTable').append('<tr><td class="tableData"><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
+            $('#frameTable').append('<tr><td class="tableData"><img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + row.id + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
             	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
             	tooManySystems + '</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td><td class="tableData"><a href="Javascript:deleteFrame(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
