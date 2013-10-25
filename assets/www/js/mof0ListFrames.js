@@ -17,6 +17,7 @@ function listFrames() {
     function querySuccess(tx, results) {
         var len = results.rows.length;
         
+        var framePhotoIdMap = new Object();
         for (var i=0; i<len; i++){
         	var row = results.rows.item(i);
         
@@ -99,10 +100,62 @@ function listFrames() {
                 tooManySystems = '<img alt="Error" src="./img/icons/error.png"/>';
             } // if
             
-            $('#frameTable').append('<tr><td class="tableData"><img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + row.id + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.id + '">' + 
-            	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
-            	tooManySystems + '</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td><td class="tableData"><a href="Javascript:deleteFrame(' + row.id + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
-        } // for
+            var frameId = row.id;
+            $('#frameTable').append('<tr><td class="tableData">' +
+            '<a href="./frameDetail.html?frameId=' + frameId + '">' +
+            '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
+            '</a>' +
+            '<a class="frameNameLink" href="./frameDetail.html?frameId=' + frameId + '">' + 
+            	tooManySystems + ' [' + frameId + '] ' + row.name + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+            	tooManySystems + '</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td><td class="tableData"><a href="Javascript:deleteFrame(' + frameId + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
+            	
+            var framePictureUrl = row.frame_picture_url;
+            if ((typeof framePictureUrl != 'undefined') && (framePictureUrl != null) && (framePictureUrl != '') && (framePictureUrl !== '')) {
+            	framePhotoIdMap[framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length)] = frameId;
+            	
+            	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+            		function (fileSystem) {
+						fileSystem.root.getDirectory('MobileFrameZeroTools', null, 
+							function (mfztDirectory) {
+								mfztDirectory.getDirectory('frame', null, 
+									function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
+										frameImageName = framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length);
+										frameDirectory.getFile(frameImageName, null, 
+											function (fileEntry) {
+    											fileEntry.file(function (file){
+													var reader = new FileReader();
+    												reader.onloadend = function(evt) {
+       	 													frameImageData = evt.target.result;
+        
+    														// Get image handle
+	        												var framePicture = document.getElementById('framePicture_' + framePhotoIdMap[file.name]);
+    	    												// Show the captured photo
+        													// The inline CSS rules are used to resize the image
+        													framePicture.src = "data:image/jpeg;base64," + frameImageData;
+   														};
+    													reader.readAsBinaryString(file);
+													}, 
+    												function (error) {
+  														alert('Unable to load the following file : framePictureUrl (' + error.code + ')');
+													});
+											}, 
+											function (error) {
+  												alert('Unable to find the following file : frameImageName (' + error.code + ')');
+											});
+									}, 
+									function (error) {
+  										alert('Unable to find the following directory : frame (' + error.code + ')');
+									});
+							}, 
+							function (error) {
+  								alert('Unable to find the following directory : MobileFrameZeroTools (' + error.code + ')');
+							});
+					}, 
+	            	function (error) {
+  						alert('Unable to load  : ' + framePictureUrl + ' (' + error.code + ')');
+					});
+			} // if
+		} // for
     }
 
 	// Populate the database 
