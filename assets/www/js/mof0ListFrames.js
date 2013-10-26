@@ -102,11 +102,12 @@ function listFrames() {
             
             var frameId = row.id;
             $('#frameTable').append('<tr><td class="tableData">' +
-            '<a href="./frameDetail.html?frameId=' + frameId + '">' +
-            '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
-            '</a>' +
-            '<a class="frameNameLink" href="./frameDetail.html?frameId=' + frameId + '">' + 
-            	tooManySystems + ' [' + frameId + '] ' + row.name + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+            	'<div><a href="./frameDetail.html?frameId=' + frameId + '">' +
+	            '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
+    	        '</a></div>' +
+        	    '<div><a class="frameNameLink" href="./frameDetail.html?frameId=' + frameId + '">' + 
+            	tooManySystems + ' ' + row.name + ' ' + tooManySystems + '</a><div>' +
+            	'</td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
             	tooManySystems + '</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td><td class="tableData"><a href="Javascript:deleteFrame(' + frameId + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
             	
             var framePictureUrl = row.frame_picture_url;
