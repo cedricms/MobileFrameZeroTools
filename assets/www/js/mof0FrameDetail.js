@@ -513,7 +513,6 @@ function getPhoto(source) {
 }
 
 function onPhotoSuccess(imageData) {
-  //if ((typeof imageURI != 'undefined') && (imageURI != null) && (imageURI != '') && (imageURI !== '')) {
   if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
 	frameImageData = imageData;
 	

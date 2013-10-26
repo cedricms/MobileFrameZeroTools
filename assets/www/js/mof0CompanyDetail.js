@@ -1,3 +1,18 @@
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+
+var companyImageUrl;
+var companyImageData;
+
+//Wait for device API libraries to load
+//
+document.addEventListener("deviceready",onDeviceReadyPhoto,false);
+
+function onDeviceReadyPhoto() {
+  pictureSource=navigator.camera.PictureSourceType;
+  destinationType=navigator.camera.DestinationType;
+}
+
 function validateCompany() {
 	companyForm = document.getElementById("companyForm");
 
@@ -104,6 +119,11 @@ function queryCompanyIdSuccess(tx, results) {
     	companyName = companyForm.elements["companyName"];
     	companyName.value = row.name;
     	
+    	companyPictureUrl = row.company_picture_url;
+    	if ((typeof companyPictureUrl != 'undefined') && (companyPictureUrl != null) && (companyPictureUrl != '') && (companyPictureUrl !== '')) {
+    		loadCompanyPhoto(companyPictureUrl);
+    	} // if
+    	
     	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [row.id], queryFrameForRowSuccess, errorDB);
     	
     	break;
@@ -137,9 +157,9 @@ function queryCreateCompany(tx) {
 
 	companyName = companyForm.elements["companyName"].value;
 	
-	//console.log('companyName : ' + companyName);
+    companyPictureURL = companyForm.elements['companyPictureURL'].value;
 	
-	tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("' + companyName + '", datetime("now"))');
+	tx.executeSql('INSERT INTO company (name, company_picture_url, dt_created) VALUES ("' + companyName + '", "' + companyPictureURL + '", datetime("now"))');
 	
 	// Shitty hack to go around the dreaded SQLite error 23 bug
 	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
@@ -202,8 +222,11 @@ function queryModifyCompany(tx) {
 	companyId = companyForm.elements["companyId"].value;
 	
 	companyName = companyForm.elements["companyName"].value;
+
+    companyPictureURL = companyForm.elements['companyPictureURL'].value;
 	
 	updateQuery = 'UPDATE company SET name="' + companyName + '"' +
+			', company_picture_url="' + companyPictureURL + '"' +
 			' WHERE id=' + companyId;
 	
 	tx.executeSql(updateQuery);
@@ -471,4 +494,145 @@ function queryShowFrameInfoOnSelectSuccess(tx, results) {
 	//$('#selectedFrameInformation').text(frameSelectMarkUp);
 	
 	//$('#selectedFrameInformation').val($("<div/>").html(frameSelectMarkUp).text());
+}
+
+function captureCompanyPhoto() {
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.DATA_URL });
+}
+
+//A button will call this function
+function getPhoto(source) {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL , sourceType: source });
+}
+
+function onPhotoSuccess(imageData) {
+  if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
+	companyImageData = imageData;
+	
+    // Get image handle
+    var companyPicture = document.getElementById('companyPicture');
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    companyPicture.src = "data:image/jpeg;base64," + companyImageData;
+    
+	// Init file system
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
+  } // if
+}
+
+//Called if something bad happens.
+function onPhotoFail(message) {
+  alert('Failed because: ' + message);
+}
+
+function onFileSystemSuccess(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', {create: true}, onGetMfztDirectory, onGetMfztDirectoryFail);
+}
+
+function onGetMfztDirectory(mfztDirectory) {
+	mfztDirectory.getDirectory('company', {create: true}, onGetCompanyDirectory, onGetCompanyDirectoryFail);
+}
+
+function onGetCompanyDirectory(companyDirectory) {
+	currentDate = new Date();
+	fileName = 'company_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.base64jpg';
+	companyDirectory.getFile(fileName, {create: true}, createCompanyImageEntry, createCompanyImageEntryFail);
+
+	companyForm = document.getElementById('companyForm');
+	companyPictureURL = companyForm.elements['companyPictureURL'];
+	companyPictureURL.value = '/MobileFrameZeroTools/company/' + fileName;
+}
+
+function createCompanyImageEntry(imageFileEntry) {
+	imageFileEntry.createWriter(writeFrameImage, onFileSystemFail);
+}
+
+function writeFrameImage(writer) {
+	writer.onwrite = function(evt) {
+        // Nothing else to do
+    };
+    
+    writer.write(companyImageData);
+}
+
+function onGetMfztDirectoryFail(error) {
+    alert('onGetMfztDirectoryFail : ' + error.code);
+}
+
+function onGetCompanyDirectoryFail(error) {
+    alert('onGetCompanyDirectoryFail : ' + error.code);
+}
+
+function createCompanyImageEntryFail(error) {
+    alert('createCompanyImageEntryFail : ' + error.code);
+}
+
+function onFileSystemFail(error) {
+    alert('onFileSystemFail : ' + error.code);
+}
+
+function loadCompanyPhoto(companyPictureUrl) {
+	companyImageUrl = companyPictureUrl;
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, getFileSystemLoadCompanyPhoto, getFileSystemLoadCompanyPhotoFail);
+}
+
+function getFileSystemLoadCompanyPhoto(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadCompanyPhoto, onGetMfztDirectoryLoadCompanyPhotoFail);
+}
+
+function onGetMfztDirectoryLoadCompanyPhoto(mfztDirectory) {
+	mfztDirectory.getDirectory('company', null, onGetCompanyDirectoryLoadCompanyPhoto, onGetCompanyDirectoryLoadCompanyPhotoFail);
+}
+
+function onGetCompanyDirectoryLoadCompanyPhoto(companyDirectory) {
+	companyImageName = companyImageUrl.substring('/MobileFrameZeroTools/company/'.length, companyImageUrl.length);
+	companyDirectory.getFile(companyImageName, null, getFileEntryLoadCompanyPhoto, getFileEntryLoadCompanyPhotoFail);
+}
+
+function onGetCompanyDirectoryLoadCompanyPhotoFail(error) {
+    alert('onGetCompanyDirectoryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function onGetMfztDirectoryLoadCompanyPhotoFail(error) {
+    alert('onGetMfztDirectoryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadCompanyPhoto(fileEntry) {
+    fileEntry.file(getFileLoadCompanyPhoto, getFileLoadCompanyPhotoFail);
+}
+
+function getFileLoadCompanyPhoto(file){
+	var reader = new FileReader();
+    reader.onloadend = function(evt) {
+        companyImageData = evt.target.result;
+        
+    	// Get image handle
+        var companyPicture = document.getElementById('companyPicture');
+        // Show the captured photo
+        // The inline CSS rules are used to resize the image
+        companyPicture.src = "data:image/jpeg;base64," + companyImageData;
+    };
+    reader.readAsBinaryString(file);
+}
+
+function getFileLoadCompanyPhotoFail(error) {
+    alert('getFileLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadCompanyPhotoFail(error) {
+    alert('getFileEntryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileSystemLoadCompanyPhotoFail(error) {
+    alert('getFileSystemLoadCompanyPhotoFail : ' + error.code);
 }
