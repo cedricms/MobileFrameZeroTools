@@ -21,9 +21,15 @@ function listCompanies() {
         
         for (var i=0; i<len; i++){
         	var row = results.rows.item(i);
-            
-            $('#companyTable').append('<tr><td class="tableData"><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td><td class="tableData"><a class="companyNameLink" href="./companyDetail.html?companyId=' + row.companyId + '">' + 
-            	row.companyName + '</a></td><td class="tableData">' + row.nbFrames + '</td><td class="tableData">' + row.nbSystems + '</td><td><a href="Javascript:deleteCompany(' + row.companyId + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
+
+			var companyId = row.companyId;
+            $('#companyTable').append('<tr><td class="tableData"><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
+            	'<td class="tableData">' +
+            	'<div><a href="./companyDetail.html?companyId=' + companyId + '">' +
+	            '<img alt="Company picture" class="mf0CompanyThumbnail" data-rel="external" id="companyPicture_' + companyId + '" src="./img/moF0LittleGuy/TwoMoF0LittleGuies_200_117.png"/>' +
+    	        '</a></div>' +
+    	        '<div><a class="companyNameLink" href="./companyDetail.html?companyId=' + companyId + '">' + 
+            	row.companyName + '</a></div></td><td class="tableData">' + row.nbFrames + '</td><td class="tableData">' + row.nbSystems + '</td><td><a href="Javascript:deleteCompany(' + companyId + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>' );
         } // for
     }
 
