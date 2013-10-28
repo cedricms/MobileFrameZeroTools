@@ -475,6 +475,16 @@ img.mf0FrameBigPicture {
   width : 300px;
 }
 
+img.mf0FrameThumbnail {
+  background-color : #fff;
+  border : 2px solid;
+  border-color : #bc252a;
+  border-radius: 20px;
+  display:inline-block;
+  height:auto;
+  width : 100px;
+}
+
 .mof0Legend {
   color: #bc252a;
   font-weight : bold;
