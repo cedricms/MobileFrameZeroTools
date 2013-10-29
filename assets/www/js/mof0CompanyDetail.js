@@ -124,7 +124,7 @@ function queryCompanyIdSuccess(tx, results) {
     		loadCompanyPhoto(companyPictureUrl);
     	} // if
     	
-    	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [row.id], queryFrameForRowSuccess, errorDB);
+    	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [row.id], queryFrameForRowSuccess, errorDB);
     	
     	break;
     } // for
@@ -133,9 +133,10 @@ function queryCompanyIdSuccess(tx, results) {
 function queryFrameForRowSuccess(tx, results) {
 	var len = results.rows.length;
     
+    var framePhotoIdMap = new Object();
     for (var i=0; i<len; i++){
     	var row = results.rows.item(i);
-		addFrameRow(row);
+		addFrameRow(row, framePhotoIdMap);
     
     	companyForm = document.getElementById("companyForm");
     	
@@ -327,22 +328,23 @@ function queryAddFrameToCompany(tx) {
 	
 	frameToAddId = getSelectedOptionIntValue(frameToAdd);
 	
-    tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range FROM frame f WHERE f.id=?', [frameToAddId], queryAddFrameToCompanySuccess, errorDB);
+    tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range FROM frame f WHERE f.id=?', [frameToAddId], queryAddFrameToCompanySuccess, errorDB);
 }
 
 function queryAddFrameToCompanySuccess(tx, results) {
     var len = results.rows.length;
-        
+       
+    var framePhotoIdMap = new Object();
     for (var i=0; i<len; i++){
       	var row = results.rows.item(i);
-            
-        addFrameRow(row);
+        
+        addFrameRow(row, framePhotoIdMap);
     	
     	break;
    	} // for
 }
 
-function addFrameRow(row) {
+function addFrameRow(row, framePhotoIdMap) {
 	frameToAddMarkUp = '';
     	var nbDefensive = row.nb_defensive;
         var defensiveDice = '';
@@ -428,15 +430,68 @@ function addFrameRow(row) {
 	    nbFrames = parseInt(companyForm.elements["nbFrames"].value);
 	    nbFrames++;
 	    companyForm.elements["nbFrames"].value = nbFrames;
-            
-        frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.frameId + '"/><td class="tableData"><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.frameId + '">' + 
-         	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
-           	tooManySystems + 
-           	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
-           	'<td class="tableData"><input class="mf0SmallNumericInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
-           	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
+           
+    var frameId = row.frameId;
+    frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.frameId + '"/>' +
+    	'<td class="tableData">' +
+        '<div><a href="./frameDetail.html?frameId=' + frameId + '">' +
+	    '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
+    	'</a></div>' +
+    	'<div><a class="frameNameLink" href="./frameDetail.html?frameId=' + frameId + '">' + 
+      	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></div></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+       	tooManySystems + 
+       	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
+       	'<td class="tableData"><input class="mf0SmallNumericInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
+       	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
 
 	$('#frameTable').append(frameToAddMarkUp);
+
+            var framePictureUrl = row.framePictureUrl;
+            if ((typeof framePictureUrl != 'undefined') && (framePictureUrl != null) && (framePictureUrl != '') && (framePictureUrl !== '')) {
+            	framePhotoIdMap[framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length)] = frameId;
+            	
+            	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+            		function (fileSystem) {
+						fileSystem.root.getDirectory('MobileFrameZeroTools', null, 
+							function (mfztDirectory) {
+								mfztDirectory.getDirectory('frame', null, 
+									function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
+										frameImageName = framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length);
+										frameDirectory.getFile(frameImageName, null, 
+											function (fileEntry) {
+    											fileEntry.file(function (file){
+													var reader = new FileReader();
+    												reader.onloadend = function(evt) {
+       	 													frameImageData = evt.target.result;
+        
+    														// Get image handle
+	        												var framePicture = document.getElementById('framePicture_' + framePhotoIdMap[file.name]);
+    	    												// Show the captured photo
+        													// The inline CSS rules are used to resize the image
+        													framePicture.src = "data:image/jpeg;base64," + frameImageData;
+   														};
+    													reader.readAsBinaryString(file);
+													}, 
+    												function (error) {
+  														alert('Unable to load the following file : framePictureUrl (' + error.code + ')');
+													});
+											}, 
+											function (error) {
+  												alert('Unable to find the following file : frameImageName (' + error.code + ')');
+											});
+									}, 
+									function (error) {
+  										alert('Unable to find the following directory : frame (' + error.code + ')');
+									});
+							}, 
+							function (error) {
+  								alert('Unable to find the following directory : MobileFrameZeroTools (' + error.code + ')');
+							});
+					}, 
+	            	function (error) {
+  						alert('Unable to load  : ' + framePictureUrl + ' (' + error.code + ')');
+					});
+			} // if
 }
 
 function removeFrame(frameNumber) {
