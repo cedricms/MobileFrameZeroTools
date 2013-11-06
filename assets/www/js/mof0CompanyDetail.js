@@ -250,7 +250,6 @@ function queryModifyCompany(tx) {
 		while (iFrame <= nbFrames) {
 			companyForm = document.getElementById("companyForm");
 			frameId = companyForm.elements["frameId_" + iFrame];
-			//alert('frameId : ' + frameId);
 			deleted = false;
 			if ((typeof frameId === "undefined") || (frameId == '') || (frameId === '')) {
 				// Probably a deleted frame
@@ -281,11 +280,7 @@ function queryModifyCompany(tx) {
 		
 		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
 		
-		//alert('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
-		
 		tx.executeSql(sqlInsertCompanyFrame);
-		
-		//console.log('Modficaton done');
 	} // if
 }
 
@@ -497,9 +492,7 @@ function addFrameRow(row, framePhotoIdMap) {
 function removeFrame(frameNumber) {
   companyForm = document.getElementById("companyForm");
   frameId = companyForm.elements["frameId_" + frameNumber];
-  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
   frameId.value = '';
-  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
   
   $('#frame_' + frameNumber).remove();
 }
