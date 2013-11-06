@@ -1,1076 +1,125 @@
-/*{
-  -webkit-transform: translate3d(0,0,0);
-  -moz-transform: translate3d(0,0,0);
-  -ms-transform: translate3d(0,0,0);
-  -o-transform: translate3d(0,0,0);
-}*/
-
-/*a.active {
- background: #AAA;
-}
-element.addEventListener('touchstart',function(e) {
- e.currentTarget.className = "active";
-});*/
-
-.backButton {
-  background-color : #e2e2e2;
-  border : 2px solid;
-  border-color : #bc252a;
-  border-top-left-radius: 20px 20px;
-  border-bottom-right-radius: 20px 20px;
-  margin-bottom : 30px;
-  margin-left : 0px;
-  margin-right : 5px;
-  margin-top : 30px;
-  padding-bottom : 15px;
-  padding-left : 10px;
-  padding-right : 10px;
-  padding-top : 12px;  
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .backButton {
-    margin-bottom : 20px;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .backButton {
-    margin-bottom : 20px;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .backButton {
-    margin-bottom : 20px;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .backButton {
-    margin-bottom : 20px;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .backButton {
-    margin-bottom : 20px;
-  }
-}
-
-a.backButton:hover {
-  background-color : #666;
-  border : 4px solid;
-  border-color : #f99;
-  color: #f99;
-}
-
-a.backButton:active {
-  border-color : #bc252a;
-  color: #bc252a;
-}
-
 body {
-  background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_36_36.png") repeat;
+  background: #eee;
 }
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  body {
-    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
-  }
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
 }
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  body {
-    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
-  }
+h2 {
+  font-size: 1.2em;
 }
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  body {
-    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
-  }
+.container {
+  background: #fff;
+  border-radius: 0 0 2rem 2rem;
+  padding: 0;
+  margin: 0 auto 2rem
 }
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  body {
-    background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_24_24.png") repeat;
-  }
-}
-
-ul.bulletPoint {
-  list-style-image:url('../img/icons/bulletPoint.png');
-}
-
-.columnLabel {
-  font-weight : bold;
-}
-
-/*.comingSoon {
-  background : url("../img/icons/comingSoon.png") no-repeat center right;	
-  padding-right : 50px;
-}*/
-
-a.companyNameLink {
-  color: #bc252a;
-  display:inline-block;
-  font-weight : bold;
-  padding : 5px;
-  text-decoration: underline;
-  vertical-align:middle;
-}
-
-a.companyNameLink:hover {
-  border : 2px solid;
-  border-radius: 5px 5px 5px 5px;
-  color: #bc252a;
-  font-weight : bold;
-  text-decoration: none;
-}
-
-.faqAnswer {
-  margin-bottom : 5px;
-  margin-top : 3px;
-  text-align : justify;
-}
-
-.faqQuestion {
-  color: #bc252a;
-  font-size : 2rem;
-  font-weight : bold;
-  margin-bottom : 2px;
-  margin-left : 35px;
-  margin-right : 35px;
-  margin-top : 5px;
-  text-align : justify;
-  width : 80%
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .faqQuestion {
-    font-size : 1.5rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .faqQuestion {
-    font-size : 1.5rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .faqQuestion {
-    font-size : 1.5rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .faqQuestion {
-    font-size : 1.5rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .faqQuestion {
-    font-size : 1.5rem;
-  }
-}
-
-.formButton {
-  border : 2px solid;
-  border-color : #bc252a;
-  color: #bc252a;
-  font-size : 2rem;
-  font-weight : bold;
-}
-
-.formLabel {
-  color: #bc252a;
-  font-size : 2rem;
-  font-weight : bold;
-}
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .formLabel {
-    font-size : 1.35rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .formLabel {
-    font-size : 1.35rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .formLabel {
-    font-size : 1.35rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .formLabel {
-    font-size : 1.35rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .formLabel {
-    font-size : 1.35rem;
-  }
-}
-
-.frameInformationZone {
-  background-color : #fff;
-  border : 2px solid;
-  border-radius: 10px 10px;
-  color : #bc252a;
-  float : left;
-  margin : 10px 10px 10px 10px;
-  padding : 5px;
-}
-
-a.frameNameLink {
-  color: #bc252a;
-  display:inline-block;
-  font-weight : bold;
-  padding : 5px;
-  text-decoration: underline;
-  vertical-align:middle;
-}
-
-a.frameNameLink:hover {
-  border : 2px solid;
-  border-radius: 5px 5px 5px 5px;
-  color: #bc252a;
-  font-weight : bold;
-  text-decoration: none;
-}
-
-.largeButton {
-  margin : 5px;
-}
-
-a.largeButton {
-  background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_12_12.png") repeat;	
-  background-color : #fff;
-  border : 2px solid;
-  border-color : #bc252a;
-  border-top-left-radius: 20px 20px;
-  border-bottom-right-radius: 20px 20px;
-  color: #bc252a;
-  font-size : 2rem;
-  font-weight : bold;
-  margin : 15px;
-  /*min-width : 500px;*/
-  /*width : 800px;*/
-  padding : 15px;
-  text-shadow : 0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
-  /*width : 95%;*/
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .largeButton {
-    margin : 2px;
-  }
-
-  a.largeButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 10px;
-    text-shadow : none;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .largeButton {
-    margin : 2px;
-  }
-
-  a.largeButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 10px;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .largeButton {
-    margin : 2px;
-  }
-
-  a.largeButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 10px;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .largeButton {
-    margin : 2px;
-  }
-
-  a.largeButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 10px;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .largeButton {
-    margin : 2px;
-  }
-
-  a.largeButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 10px;
-  }
-}
-
-a.largeButton:focus {
-
-}
-
-/* Activated on tap */
-a.largeButton:hover {
-  background-color : #666;
-  border : 8px solid;
-  border-color : #f99;
-  border-style : double;
-  color: #f99;
-  /*font-size : 2.5rem;*/
-  font-weight : bold;
-  text-decoration: none;
-}
-
-a.largeButton:active {
-  border-color : #bc252a;
-  color: #bc252a;
-  /*font-size : 2rem;*/
-  font-weight : bold;
-  text-decoration: none;
-}
-
-a.largeButton:link {
-
-}
-
-a.largeButton:visited {
-
-}
-
-.largeRow {
-  margin : 30px;
-}
-
-.mediumBackground {
-  background-color : rgba(204, 204, 204, 0.75);
-}
-
-.mof0Form {
-	width : 100%;
-}
-
-img.mf0CompanyBigPicture {
-  background-color : #fff;
-  border : 4px solid;
-  border-color : #bc252a;
-  border-radius: 20px;
-  display:inline-block;
-  height:auto;
-  width : 300px;
-}
-
-img.mf0CompanyThumbnail {
-  background-color : #fff;
-  border : 2px solid;
-  border-color : #bc252a;
-  border-radius: 20px;
-  display:inline-block;
-  height:auto;
-  width : 100px;
-}
-
-img.mf0FrameBigPicture {
-  background-color : #fff;
-  border : 4px solid;
-  border-color : #bc252a;
-  border-radius: 20px;
-  display:inline-block;
-  height:auto;
-  width : 300px;
-}
-
-img.mf0FrameThumbnail {
-  background-color : #fff;
-  border : 2px solid;
-  border-color : #bc252a;
-  border-radius: 20px;
-  display:inline-block;
-  height:auto;
-  width : 100px;
-}
-
-.mof0Legend {
-  color: #bc252a;
-  font-weight : bold;
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .mof0Legend {
-    font-size : 1.35rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .mof0Legend {
-    font-size : 1.35rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .mof0Legend {
-    font-size : 1.35rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .mof0Legend {
-    font-size : 1.35rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .mof0Legend {
-    font-size : 1.35rem;
-  }
-}
-
-img.mof0LittleGuyBackButton {
-  background : url("../img/moF0LittleGuy/MoF0LittleGuy_50_57.png") no-repeat center center;
-  background-color:rgba(0,0,0,0);
-  border: none;
-  border-style: none;
-  height : 60px;
-  outline:none;
-  width : 60px;
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  img.mof0LittleGuyBackButton {
-    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
-    background-color:rgba(0,0,0,0);
-    border: none;
-    border-style: none;
-    height : 40px;
-    outline:none;
-    width : 40px;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  img.mof0LittleGuyBackButton {
-    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
-    background-color:rgba(0,0,0,0);
-    border: none;
-    border-style: none;
-    height : 40px;
-    outline:none;
-    width : 40px;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  img.mof0LittleGuyBackButton {
-    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
-    background-color:rgba(0,0,0,0);
-    border: none;
-    border-style: none;
-    height : 40px;
-    outline:none;
-    width : 40px;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  img.mof0LittleGuyBackButton {
-    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
-    background-color:rgba(0,0,0,0);
-    border: none;
-    border-style: none;
-    height : 40px;
-    outline:none;
-    width : 40px;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  img.mof0LittleGuyBackButton {
-    background : url("../img/moF0LittleGuy/MoF0LittleGuy_35_39.png") no-repeat center center;
-    background-color:rgba(0,0,0,0);
-    border: none;
-    border-style: none;
-    height : 40px;
-    outline:none;
-    width : 40px;
-  }
-}
-
-.mf0SmallNumericInput {
-  text-align : right;
-  width : 2rem;
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  a.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  li.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  ul.mf0Tab {
-    font-size : 1.0rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  a.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  li.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  ul.mf0Tab {
-    font-size : 1.0rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  a.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  li.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  ul.mf0Tab {
-    font-size : 1.0rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  a.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  li.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  ul.mf0Tab {
-    font-size : 1.0rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  a.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  li.mf0Tab {
-    font-size : 1.0rem;
-  }
-
-  ul.mf0Tab {
-    font-size : 1.0rem;
-  }
-}
-
-.mfzTabContent {
-  background-color : #ccc;
-  padding : 15px;
-  text-align : justify;
-}
-
-.nav-tabs > li > a {
-  color: #bc252a;
-  font-size : 1.75rem;
-  font-weight : bold;
-}
-
 .pageSection {
-  background-color : rgba(226, 226, 226, 0.85);
-  /*background-color : #e2e2e2;*/
-  background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_382_431.png');
-  background-repeat : no-repeat;
-  /*background-attachment : fixed;*/
-  background-position : left center; 
-  border-width : 6px;
-  border-style : double;
-  border-color : #bc252a;
-  border-top-right-radius: 20px 20px;
-  border-bottom-left-radius: 20px 20px;
-  margin : 5px;
-  min-height : 500px;
-  /*padding : 5px;*/
-  width : 95%;
+  padding: 2rem;
+}
+div.largeButton {
+  display: inline-block;
+}
+a.largeButton,
+a.largeButton:link,
+a.largeButton:visited {
+  background: #fff;
+  color: #900;
+  border: solid 0.5rem #900;
+  border-radius: 0 2rem 0 2rem;
+  padding: 1rem;
+  margin: 0 1rem 1rem 0;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+}
+a.largeButton:hover,
+a.largeButton:active,
+a.largeButton:focus {
+  background: #900;
+  color: #fff;
+  text-decoration: none;
 }
 
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .pageSection {
-    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
-    min-height : 250px;
-  }
-}
 
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .pageSection {
-    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
-    min-height : 250px;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .pageSection {
-    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
-    min-height : 250px;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .pageSection {
-    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
-    min-height : 250px;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .pageSection {
-    background-image : url('../img/moF0LittleGuy/MoF0LittleGuyPageSection_191_216.png');
-    min-height : 250px;
-  }
-}
+/* Titlebar */
 
 .pageTitle {
-  border-style : solid;
-  border-bottom-width : 5px;
-  border-left-width : 0px;
-  border-right-width : 0px;
-  border-top-width : 0px;
-  color : #bc252a;
-  font-size : 3.5rem;
-  font-weight : bold;
-  margin : 5px;
-  padding-bottom : 15px;
-  padding-top : 15px;
-  text-shadow:0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
-  width : 90%;
+  background: #900;
+  color: #fff;
+  margin: 0;
+  padding: 1rem 2rem;
+  min-height: 6rem;
+  position: relative;
 }
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .pageTitle {
-    font-size : 1.5rem;
-    text-shadow : none;
-  }
-}
-
-.smallButton {
-  margin : 5px;
-}
-
-a.smallButton {
-  background : url("../img/backgrounds/legoStud/legoStud_Lighter_50_12_12.png") repeat;	
-  background-color : #fff;
-  border : 2px solid;
-  border-color : #bc252a;
-  border-top-left-radius: 20px 20px;
-  border-bottom-right-radius: 20px 20px;
-  color: #bc252a;
-  font-size : 2rem;
-  font-weight : bold;
-  margin : 15px;
-  /*min-width : 500px;*/
-  /*width : 800px;*/
-  padding : 5px;
-  text-shadow : 0px 0px 0 rgb(142,-9,-4), -1px 1px 0 rgb(107,-44,-39),-2px 2px 1px rgba(0,0,0,0.05),-2px 2px 1px rgba(0,0,0,0.5),0px 0px 1px rgba(0,0,0,.2);
-  /*width : 95%;*/
-}
-
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .smallButton {
-    margin : 2px;
-  }
-
-  a.smallButton {
-    font-size : 1.3rem;
-    margin : 2px;
-    padding : 5px;
-    text-shadow : none;
-  }
-}
-
-a.smallButton:focus {
-
-}
-
-/* Activated on tap */
-a.smallButton:hover {
-  background-color : #666;
-  border : 8px solid;
-  border-color : #f99;
-  border-style : double;
-  color: #f99;
-  /*font-size : 2.5rem;*/
-  font-weight : bold;
+a.backButton,
+a.backButton:link,
+a.backButton:visited {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: block;
+  border-radius: 1rem 1rem 0 1rem;
+  background: #fff;
   text-decoration: none;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+}
+a.backButton:hover,
+a.backButton:active,
+a.backButton:focus {
+  background: #aaa;
+}
+a.backButton span {
+  font-size: 2em;
+  line-height: 1;
+  color: #000;
+  background: url(../img/moF0LittleGuy/MoF0LittleGuy_25_28.png) no-repeat right center transparent;
+  display: block;
+  padding: 0 3rem 0 1rem;
+  margin: 0 1rem 0 0;
+}
+.pageTitle .title {
+  display: block;
+  margin: 1rem 0 1rem 6rem;
+}
+.pageTitle .main-title {
+  margin: 1rem;
+  text-align: center;
 }
 
-a.smallButton:active {
-  border-color : #bc252a;
-  color: #bc252a;
-  /*font-size : 2rem;*/
-  font-weight : bold;
-  text-decoration: none;
+/* Home page */
+
+.home a.backButton {
+  display: none;
+}
+.home h2 {
+  display: inline-block;
+  margin: 1rem;
 }
 
-a.smallButton:link {
-
+/* Frame detail page */
+.framedetail .table .radio {
+  margin: 0;
+}
+.framedetail .table .radio label {
+  display: block;
+  padding: 10px;
+}
+.framedetail .systemDiceZone {
+  display: inline-block;
+}
+.framedetail .systemDie {
+  display: inline-block;
+  margin: 0 0.5rem 0.5rem 0;
 }
 
-a.smallButton:visited {
-
+/* Setup Battlefield page */
+#accordion .panel-heading {
+  padding: 0;
 }
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .pageTitle {
-    font-size : 1.5rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .pageTitle {
-    font-size : 1.5rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .pageTitle {
-    font-size : 1.5rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .pageTitle {
-    font-size : 1.5rem;
-  }
-}
-
-.systemDiceList {
-  background-color : #fff;
-  border : 2px solid;
-  border-radius: 10px 10px;
-  color : #bc252a;
-  margin : 5px 5px 5px 5px;
-  padding : 5px;
-}
-
-.systemDiceZone {
-  background-color : #fff;
-  border : 2px solid;
-  border-radius: 10px 10px;
-  color : #bc252a;
-  float : left;
-  margin : 10px 10px 10px 10px;
-  padding : 5px;
-}
-
-.systemDie {
-  float : left;
-  margin : 5px 5px 5px 5px;
-}
-
-.systemRow {
-  background-color : #fff;
-  border : 2px solid;
-  border-radius: 10px 10px;
-  color : #bc252a;
-  /*display: block;
-  margin : 0px auto 10px 10px;*/
-  margin : 10px 10px 10px 10px;
-  padding : 5px;
-  /*width : 90%;*/
-}
-
-.tableHeader {
-  text-align : center;
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .tableHeader {
-    font-size : 1rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .tableHeader {
-    font-size : 1rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .tableHeader {
-    font-size : 1rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .tableHeader {
-    font-size : 1rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .tableHeader {
-    font-size : 1rem;
-  }
-}
-
-.tableData {
-
-}
-
-/* HTC Desire */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  .tableData {
-    font-size : 1rem;
-  }
-}
-
-/* Galaxy Nexus and Nexus 4 */
-@media only screen
-and (max-width : 603px)
-and (-webkit-device-pixel-ratio:2) {
-  .tableData {
-    font-size : 1rem;
-  }
-}
-
-/ * HTC Amaze 4G and Motorola Droid 4 */
-@media only screen
-and (min-device-width : 540px)
-and (-webkit-device-pixel-ratio : 1.50) {
-  .tableData {
-    font-size : 1rem;
-  }
-}
-
-/* Motorola Droid Bionic 4G */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 540px) {
-  .tableData {
-    font-size : 1rem;
-  }
-}
-
-/* Samsung Galaxy Note 2 Tablet */
-@media only screen 
-and (min-device-width : 360px) 
-and (max-device-width : 640px) {
-  .tableData {
-    font-size : 1rem;
-  }
+#accordion .panel-title span {
+  display: block;
+  padding: 1rem;
 }

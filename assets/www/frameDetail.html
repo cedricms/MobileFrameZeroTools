@@ -30,9 +30,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('frameDetailMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + frameDetailMessage;
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + frameDetailMessage + '</span>';
 		    
 		    jQuery.i18n.prop('frameNameMessage');
 		    document.getElementById('frameNameLabel').innerHTML= frameNameMessage;
@@ -61,14 +61,11 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <form action="" class="navbar-form pull-left mof0Form" id="frameForm" method="post" name="frameForm">
+      <h1 class="pageTitle" id="applicationTitle"></h1>
+        <div class="pageSection">
+          <form action="" class="navbar-form mof0Form" id="frameForm" method="post" name="frameForm">
           	  <input name="frameId" type="hidden"/>
-          	  <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12"><img alt="Frame picture" class="mf0FrameBigPicture" data-rel="external" id="framePicture" src="./img/backgrounds/camera/camera_600_600.png"/></div>
-	          </div>
+	            <img alt="Frame picture" class="mf0FrameBigPicture img-responsive" data-rel="external" id="framePicture" src="./img/backgrounds/camera/camera_600_600.png"/>
           	  <div class="row">
 	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
 	          </div>

@@ -23,9 +23,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('faqMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + faqMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + faqMessage + '</span>';
 		    
 		    jQuery.i18n.prop('whyMakeThisMobileAppQuestionMessage');
 		    document.getElementById('whyMakeThisMobileAppQuestionLabel').innerHTML = whyMakeThisMobileAppQuestionMessage;
@@ -57,9 +57,8 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
+      <h1 class="pageTitle" id="applicationTitle"></h1>
+        <div class="pageSection">
           <div class="row">
             <div class="col-12 col-sm-12 col-lg-12 faqQuestion" id="whyMakeThisMobileAppQuestionLabel"></div>
           </div>

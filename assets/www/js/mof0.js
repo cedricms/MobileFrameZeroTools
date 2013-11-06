@@ -27,7 +27,7 @@ var alterCompany1SQL = 'ALTER TABLE company ADD company_picture_url';
 
 function getBackButtonMarkup(applicationTitle) {
 	//return '<a class="backButton" href="./menu.html"><img src="./img/moF0LittleGuy/MoF0LittleGuy_50_57.png" class="img-responsive" alt="' + applicationTitle + '"></a>';
-	return '<a class="backButton" href="./menu.html"><img class="mof0LittleGuyBackButton" src="./img/blankPixel.png" alt="' + applicationTitle + '"/></a>';
+	return '<a class="backButton" href="./menu.html" title="' + applicationTitle + '"><span>&lsaquo;</span></a>';
 }
 
 function initLanguages() {

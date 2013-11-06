@@ -27,9 +27,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('listCompaniesMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + listCompaniesMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + listCompaniesMessage + '</span>';
 		    
 		    jQuery.i18n.prop('createCompanyMessage');
 		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';
@@ -61,9 +61,8 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
+      <h1 class="pageTitle" id="applicationTitle"></h1>
+        <div class="pageSection">
           <form action="" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
             <div class="row largeRow">
               <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
