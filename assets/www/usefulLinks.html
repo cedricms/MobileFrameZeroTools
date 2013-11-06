@@ -23,9 +23,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('usefulLinksMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + usefulLinksMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + usefulLinksMessage + '</span>';
 
 		    jQuery.i18n.prop('officialSiteMessage');
 		    document.getElementById('officialSiteLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'http://mobileframezero.com/mfz/\', \'_system\');">' + officialSiteMessage + '</a>';

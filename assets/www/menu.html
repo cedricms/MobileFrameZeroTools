@@ -27,7 +27,7 @@
 		  language:lang, 
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage;
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title main-title">' + applicationTitleMessage + '</span>';
 		    jQuery.i18n.prop('createFrameMessage');
 		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="./frameDetail.html">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');

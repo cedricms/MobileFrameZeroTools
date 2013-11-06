@@ -27,9 +27,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('listCompaniesMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + listCompaniesMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + listCompaniesMessage + '</span>';
 		    
 		    jQuery.i18n.prop('createCompanyMessage');
 		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';

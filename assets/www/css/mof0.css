@@ -51,13 +51,16 @@ a.largeButton:focus {
   color: #fff;
   margin: 0;
   padding: 1rem 2rem;
+  min-height: 6rem;
+  position: relative;
 }
 a.backButton,
 a.backButton:link,
 a.backButton:visited {
-  float: left;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
   display: block;
-  margin: 0 1rem 0 0;
   border-radius: 1rem 1rem 0 1rem;
   background: #fff;
   text-decoration: none;
@@ -76,6 +79,14 @@ a.backButton span {
   display: block;
   padding: 0 3rem 0 1rem;
   margin: 0 1rem 0 0;
+}
+.pageTitle .title {
+  display: block;
+  margin: 1rem 0 1rem 6rem;
+}
+.pageTitle .main-title {
+  margin: 1rem;
+  text-align: center;
 }
 
 /* Home page */
@@ -102,4 +113,13 @@ a.backButton span {
 .framedetail .systemDie {
   display: inline-block;
   margin: 0 0.5rem 0.5rem 0;
+}
+
+/* Setup Battlefield page */
+#accordion .panel-heading {
+  padding: 0;
+}
+#accordion .panel-title span {
+  display: block;
+  padding: 1rem;
 }
