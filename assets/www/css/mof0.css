@@ -61,7 +61,7 @@ a.backButton:visited {
   top: 1rem;
   left: 1rem;
   display: block;
-  border-radius: 1rem 1rem 0 1rem;
+  border-radius: 0 1rem 0 1rem;
   background: #fff;
   text-decoration: none;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
@@ -122,4 +122,44 @@ a.backButton span {
 #accordion .panel-title span {
   display: block;
   padding: 1rem;
+}
+
+img.mf0CompanyBigPicture {
+  background-color : #fff;
+  border : 0.5rem solid;
+  border-color : #bc252a;
+  border-radius: 3rem;
+  display:inline-block;
+  height:auto;
+  width : 30rem;
+}
+
+img.mf0CompanyThumbnail {
+  background-color : #fff;
+  border : 0.25rem solid;
+  border-color : #bc252a;
+  border-radius: 2rem;
+  display:inline-block;
+  height:auto;
+  width : 10rem;
+}
+
+img.mf0FrameBigPicture {
+  background-color : #fff;
+  border : 0.5rem solid;
+  border-color : #bc252a;
+  border-radius: 3rem;
+  display:inline-block;
+  height:auto;
+  width : 30rem;
+}
+
+img.mf0FrameThumbnail {
+  background-color : #fff;
+  border : 0.25rem solid;
+  border-color : #bc252a;
+  border-radius: 2rem;
+  display:inline-block;
+  height:auto;
+  width : 10rem;
 }
