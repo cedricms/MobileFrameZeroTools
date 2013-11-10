@@ -101,7 +101,7 @@ function listFrames() {
             } // if
             
             var frameId = row.id;
-            $('#frameTable').append('<tr><td class="tableData">' +
+            $('#frameTable').append('<tr><td class="tableData text-center">' +
             	'<div><a href="./frameDetail.html?frameId=' + frameId + '">' +
 	            '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
     	        '</a></div>' +

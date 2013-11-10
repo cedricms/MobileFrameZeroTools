@@ -24,7 +24,7 @@ function listCompanies() {
 
 			var companyId = row.companyId;
             $('#companyTable').append('<tr><td class="tableData"><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
-            	'<td class="tableData">' +
+            	'<td class="tableData text-center">' +
             	'<div><a href="./companyDetail.html?companyId=' + companyId + '">' +
 	            '<img alt="Company picture" class="mf0CompanyThumbnail" data-rel="external" id="companyPicture_' + companyId + '" src="./img/moF0LittleGuy/TwoMoF0LittleGuies_200_117.png"/>' +
     	        '</a></div>' +

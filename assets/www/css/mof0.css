@@ -43,17 +43,17 @@ a.largeButton:focus {
   text-decoration: none;
 }
 
-
 /* Titlebar */
-
 .pageTitle {
   background: #900;
   color: #fff;
+  font-weight : bold;
   margin: 0;
-  padding: 1rem 2rem;
   min-height: 6rem;
+  padding: 1rem 2rem;
   position: relative;
 }
+
 a.backButton,
 a.backButton:link,
 a.backButton:visited {
@@ -61,7 +61,7 @@ a.backButton:visited {
   top: 1rem;
   left: 1rem;
   display: block;
-  border-radius: 1rem 1rem 0 1rem;
+  border-radius: 0 1rem 0 1rem;
   background: #fff;
   text-decoration: none;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
@@ -122,4 +122,113 @@ a.backButton span {
 #accordion .panel-title span {
   display: block;
   padding: 1rem;
+}
+
+img.mf0CompanyBigPicture {
+  background-color : #fff;
+  border : 0.5rem solid;
+  border-color : #bc252a;
+  border-radius: 3rem;
+  display:inline-block;
+  height:auto;
+  width : 30rem;
+}
+
+img.mf0CompanyThumbnail {
+  background-color : #fff;
+  border : 0.25rem solid;
+  border-color : #bc252a;
+  border-radius: 2rem;
+  display:inline-block;
+  height:auto;
+  width : 10rem;
+}
+
+img.mf0FrameBigPicture {
+  background-color : #fff;
+  border : 0.5rem solid;
+  border-color : #bc252a;
+  border-radius: 3rem;
+  display:inline-block;
+  height:auto;
+  width : 30rem;
+}
+
+img.mf0FrameThumbnail {
+  background-color : #fff;
+  border : 0.25rem solid;
+  border-color : #bc252a;
+  border-radius: 2rem;
+  display:inline-block;
+  height:auto;
+  width : 10rem;
+}
+
+.mf0SmallNumericInput {
+  text-align : right;
+  width : 4rem;
+}
+
+div.smallButton {
+  display: inline-block;
+}
+
+a.smallButton,
+a.smallButton:link,
+a.smallButton:visited {
+  background: #fff;
+  color: #900;
+  border: solid 0.35rem #900;
+  border-radius: 0 2rem 0 2rem;
+  padding: 1rem;
+  margin: 0 1rem 1rem 0;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+}
+
+a.smallButton:hover,
+a.smallButton:active,
+a.smallButton:focus {
+  background: #900;
+  color: #fff;
+  text-decoration: none;
+}
+
+.systemDiceList {
+  /*background-color : #fff;
+  border : 0.2rem solid;
+  border-radius: 0.5rem 0.5rem;
+  color : #bc252a;
+  margin : 0.1rem 0.1rem 0.1rem 0.1rem;
+  padding : 0.2rem;*/
+}
+
+.systemDiceZone {
+  background-color : #fff;
+  border : 0.2rem solid;
+  border-radius: 0.5rem 0.5rem;
+  color : #bc252a;
+  float : left;
+  margin : 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding : 0.1rem;
+}
+
+.systemDie {
+  float : left;
+  margin : 0.1rem 0.1rem 0.1rem 0.1rem;
+}
+
+.systemRow {
+  background-color : #fff;
+  border : 0.2rem solid;
+  border-radius: 0.5rem 0.5rem;
+  color : #bc252a;
+  margin : 0.2rem;
+  padding : 0.1rem;
+}
+
+.tableHeader {
+  text-align : center;
 }
