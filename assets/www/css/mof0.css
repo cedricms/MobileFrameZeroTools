@@ -58,13 +58,13 @@ a.backButton,
 a.backButton:link,
 a.backButton:visited {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0;
+  left: 0;
   display: block;
-  border-radius: 0 1rem 0 1rem;
-  background: #fff;
+  background: #900;
   text-decoration: none;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+  /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);*/
+  padding: 1rem;
 }
 a.backButton:hover,
 a.backButton:active,
@@ -74,11 +74,12 @@ a.backButton:focus {
 a.backButton span {
   font-size: 2em;
   line-height: 1;
-  color: #000;
-  background: url(../img/moF0LittleGuy/MoF0LittleGuy_25_28.png) no-repeat right center transparent;
+  color: #fff;
+  background: url(../img/icons/c6-front.png) no-repeat right center transparent;
+  background-size: auto 100%;
   display: block;
-  padding: 0 3rem 0 1rem;
-  margin: 0 1rem 0 0;
+  padding: 0 3.5rem 0 0;
+  margin: 0;
 }
 .pageTitle .title {
   display: block;
@@ -92,7 +93,7 @@ a.backButton span {
 /* Home page */
 
 .home a.backButton {
-  display: none;
+  text-indent: -1000em;
 }
 .home h2 {
   display: inline-block;
