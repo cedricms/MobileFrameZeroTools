@@ -1,4 +1,4 @@
-function Game() {
+function GameModel() {
   var self = this;
   
   self.startTime = new Date(); 

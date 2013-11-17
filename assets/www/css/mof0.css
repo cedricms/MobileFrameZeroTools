@@ -115,6 +115,15 @@ a.backButton span {
   margin: 0 0.5rem 0.5rem 0;
 }
 
+.gameRoundsBar {
+  background-color : #ccc;
+  border : 0rem solid;
+  color : #666;
+  display : block;
+  padding : 1rem;
+  width : 100%;
+}
+
 /* Setup Battlefield page */
 #accordion .panel-heading {
   padding: 0;
@@ -167,6 +176,11 @@ img.mf0FrameThumbnail {
 .mf0SmallNumericInput {
   text-align : right;
   width : 4rem;
+}
+
+.roundsUntilDoomsDay {
+  color: #333;
+  font-weight: bold;
 }
 
 div.smallButton {
