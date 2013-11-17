@@ -1,4 +1,4 @@
-function Company() {
+function CompanyModel() {
   var self = this;
   
   self.id = null; 

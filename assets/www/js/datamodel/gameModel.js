@@ -1,4 +1,4 @@
-function Company() {
+function Game() {
   var self = this;
   
   self.startTime = new Date(); 

@@ -1,4 +1,4 @@
-function Frame() {
+function FrameModel() {
   var self = this;
   
   self.id = null; 
