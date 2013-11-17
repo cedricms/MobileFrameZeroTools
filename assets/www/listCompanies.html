@@ -47,7 +47,7 @@
 		    document.getElementById('actionsLabel').innerHTML = actionsMessage;
 		    
 		    jQuery.i18n.prop('playGameMessage');
-		    document.getElementById('playGame').innerHTML='<a class="largeButton" href="">' + playGameMessage + '<img src="./img/icons/comingSoon.png"/></a>';
+		    document.getElementById('playGame').innerHTML='<a class="largeButton" href="javascript:document.getElementById(\'companyListForm\').submit();">' + playGameMessage + '</a>';
 	      }
 	    });
 	  }
@@ -63,7 +63,7 @@
     <div class="container">
       <h1 class="pageTitle" id="applicationTitle"></h1>
         <div class="pageSection">
-          <form action="" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
+          <form action="./game.html" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
             <div class="row largeRow">
               <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
             </div>
