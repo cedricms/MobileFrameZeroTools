@@ -23,7 +23,7 @@ function listCompanies() {
         	var row = results.rows.item(i);
 
 			var companyId = row.companyId;
-            $('#companyTable').append('<tr><td class="tableData"><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
+            $('#companyTable').append('<tr><td class="tableData"><input class="companyCheckbox" type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
             	'<td class="tableData text-center">' +
             	'<div><a href="./companyDetail.html?companyId=' + companyId + '">' +
 	            '<img alt="Company picture" class="mf0CompanyThumbnail" data-rel="external" id="companyPicture_' + companyId + '" src="./img/moF0LittleGuy/TwoMoF0LittleGuies_200_117.png"/>' +
@@ -126,4 +126,35 @@ function errorDB(tx, err) {
 // Transaction success callback
 function successDB() {
 	
+}
+
+function startGame() {
+	companyListForm = document.getElementById("companyListForm");
+
+	var companyCheckboxes = document.querySelectorAll('input.companyCheckbox:checked');
+	
+	var companyIds = '';
+	var selectedCompanyCount = 0;
+	for (var companyCheckboxIndex = 0; companyCheckboxIndex < companyCheckboxes.length; companyCheckboxIndex++) {
+		// There are several companies that are chosen
+		if (companyIds !== '') {
+			companyIds = companyIds + '|';
+		} // if
+		
+		companyIds = companyIds + companyCheckboxes[companyCheckboxIndex].value;
+		
+		selectedCompanyCount++;
+    };
+	
+    if (selectedCompanyCount < 2) {
+    	jQuery.i18n.prop('youMustChooseAtLeastTwoCompaniesMessage');
+    	alert(youMustChooseAtLeastTwoCompaniesMessage);
+    }
+    else if (selectedCompanyCount > 6) {
+    	jQuery.i18n.prop('youMustChooseLessThanSixCompaniesMessage');
+    	alert(youMustChooseLessThanSixCompaniesMessage);    	
+    }
+    else {
+    	alert('companyIds : ' + companyIds);
+    } // if
 }

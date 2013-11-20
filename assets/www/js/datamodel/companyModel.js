@@ -6,6 +6,7 @@ function CompanyModel() {
   self.dtCreated = null;
   self.dtModified = null;
   self.companyPictureUrl = null;
+  self.frames = ko.observableArray();
   
   self.setId = function(pId) {
     self.id = pId;
