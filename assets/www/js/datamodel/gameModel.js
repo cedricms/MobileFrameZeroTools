@@ -3,5 +3,5 @@ function GameModel() {
   
   self.startTime = new Date(); 
   self.companies = new Array();
-  self.doomsdayClock = 11;
+  self.doomsdayClock = ko.observable(11);
 }

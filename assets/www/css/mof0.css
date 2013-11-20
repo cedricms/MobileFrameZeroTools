@@ -118,8 +118,8 @@ a.backButton span {
 .gameRoundsBar {
   background-color : #ccc;
   border : 0rem solid;
+  border-radius: 3rem;
   color : #666;
-  display : block;
   padding : 1rem;
   width : 100%;
 }
@@ -180,7 +180,13 @@ img.mf0FrameThumbnail {
 
 .roundsUntilDoomsDay {
   color: #333;
+  /*float : left;*/
   font-weight: bold;
+}
+
+.roundsUntilDoomsDayLabel {
+  float : left;
+  margin-right : 1rem;
 }
 
 div.smallButton {
