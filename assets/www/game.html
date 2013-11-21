@@ -13,6 +13,7 @@
     <script type="text/javascript" charset="utf-8" src="./js/datamodel/frameModel.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/datamodel/companyModel.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/datamodel/gameModel.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/service/companyService.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/mof0Game.js"></script>
     
     <script type="text/javascript">
@@ -54,6 +55,9 @@
         <div class="gameRoundsBar">
           <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
           <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
+        </div>
+        <div data-bind="foreach: companies">
+          <div data-bind="text: id"></div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 function CompanyModel() {
   var self = this;
   
-  self.id = null; 
+  self.id = ko.observable(0); 
   self.name = null;
   self.dtCreated = null;
   self.dtModified = null;
