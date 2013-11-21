@@ -144,7 +144,7 @@ function startGame() {
 		companyIds = companyIds + companyCheckboxes[companyCheckboxIndex].value;
 		
 		selectedCompanyCount++;
-    };
+    } // for
 	
     if (selectedCompanyCount < 2) {
     	jQuery.i18n.prop('youMustChooseAtLeastTwoCompaniesMessage');
@@ -155,6 +155,6 @@ function startGame() {
     	alert(youMustChooseLessThanSixCompaniesMessage);    	
     }
     else {
-    	alert('companyIds : ' + companyIds);
+    	window.location.href = './game.html?companyIds=' + companyIds;
     } // if
 }
