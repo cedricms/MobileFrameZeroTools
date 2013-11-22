@@ -21,4 +21,36 @@ function FrameModel() {
 	self.setName = function(pName) {
 		self.name = pName;
 	};
+
+	self.setFramePictureUrl = function(pFramePictureUrl) {
+		self.framePictureUrl = pFramePictureUrl;
+	};
+
+	self.setNbDefensive = function(pNbDefensive) {
+		self.nbDefensive = pNbDefensive;
+	};
+
+	self.setNbMovement = function(pNbMovement) {
+		self.nbMovement = pNbMovement;
+	};
+
+	self.setNbSurveillanceCommunication = function(pNbSurveillanceCommunication) {
+		self.nbSurveillanceCommunication = pNbSurveillanceCommunication;
+	};
+
+	self.setNbHandToHand = function(pNbHandToHand) {
+		self.nbHandToHand = pNbHandToHand;
+	};
+
+	self.setNbDirectFire = function(pNbDirectFire) {
+		self.nbDirectFire = pNbDirectFire;
+	};
+
+	self.setNbArtilleryRange = function(pNbArtilleryRange) {
+		self.nbArtilleryRange = pNbArtilleryRange;
+	};
+
+	self.setNbRockets = function(pNbRockets) {
+		self.nbRockets = pNbRockets;
+	};
 }

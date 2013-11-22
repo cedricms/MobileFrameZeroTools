@@ -26,7 +26,7 @@ function CompanyService(pDb) {
             		loadCompanyPhoto(companyPictureUrl);
             	} // if
             	*/
-            	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [companyRow.id], function queryFrameForRowSuccess(tx, frameResults) {
+            	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive AS nbDefensive, nb_movement AS nbMovement, nb_surveillance_communication AS nbSurveillanceCommunication, nb_hand_to_hand AS nbHandToHand, nb_direct_fire AS nbDirectFire, nb_artillery_range AS nbArtilleryRange, nb_rockets AS nbRockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [companyRow.id], function queryFrameForRowSuccess(tx, frameResults) {
             		var len = frameResults.rows.length;
             		            	    
             	    var companyFrames = companyModel.getFrames();
@@ -36,15 +36,15 @@ function CompanyService(pDb) {
             	    	var frameModel = new FrameModel();
             	    	frameModel.setId(frameRow.frameId);
             	    	frameModel.setName(frameRow.frameName);
-            	    	
-            			/*addFrameRow(frameRow, framePhotoIdMap);
-            	    
-            	    	companyForm = document.getElementById("companyForm");
-            	    	
-            	    	nbFrame = i + 1;
-            	    	nbRockets = companyForm.elements["nbRockets_" + nbFrame];
-            	    	nbRockets.value = row.nb_rockets;*/
-            	    	
+            	    	frameModel.setFramePictureUrl(frameRow.framePictureUrl);
+            	    	frameModel.setNbDefensive(frameRow.nbDefensive);
+            	    	frameModel.setNbMovement(frameRow.nbMovement);
+            	    	frameModel.setNbSurveillanceCommunication(frameRow.nbSurveillanceCommunication);
+            	    	frameModel.setNbHandToHand(frameRow.nbHandToHand);
+            	    	frameModel.setNbDirectFire(frameRow.nbDirectFire);
+            	    	frameModel.setNbArtilleryRange(frameRow.nbArtilleryRange);
+            	    	frameModel.setNbRockets(frameRow.nbRockets);
+            	    	            	    	
             	    	companyFrames.push(frameModel);
             		} // for
             	}, errorDB);
