@@ -41,6 +41,7 @@ Here's a walk-through to use the ADT :
 10. Wait a bit till the application launches on your device (you may get an Eclipse window that asks you to choose your device).
  
 Main Git branch organisation (follows Git Flow) :
+
 	*) master : main branch;
 	*) hotfix : quick corrections;
 	*) develop : stable development branch before release version;
