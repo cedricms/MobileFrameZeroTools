@@ -2,10 +2,10 @@ function CompanyModel() {
   var self = this;
   
   self.id = ko.observable(0); 
-  self.name = null;
+  self.name = ko.observable('');
   self.dtCreated = null;
   self.dtModified = null;
-  self.companyPictureUrl = null;
+  self.companyPictureUrl = ko.observable('');
   self.frames = ko.observableArray();
   
   self.setId = function(pId) {
@@ -14,5 +14,9 @@ function CompanyModel() {
   
   self.setName = function(pName) {
     self.name = pName;
+  };
+  
+  self.setCompanyPictureUrl = function(pCompanyPictureUrl) {
+    self.companyPictureUrl = pCompanyPictureUrl;
   };
 }
