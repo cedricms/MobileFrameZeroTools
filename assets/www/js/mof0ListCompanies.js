@@ -23,7 +23,7 @@ function listCompanies() {
         	var row = results.rows.item(i);
 
 			var companyId = row.companyId;
-            $('#companyTable').append('<tr><td class="tableData"><input type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
+            $('#companyTable').append('<tr><td class="tableData"><input class="companyCheckbox" type="checkbox" name="selectedCompanies" value="' + row.companyId + '"></td>' +
             	'<td class="tableData text-center">' +
             	'<div><a href="./companyDetail.html?companyId=' + companyId + '">' +
 	            '<img alt="Company picture" class="mf0CompanyThumbnail" data-rel="external" id="companyPicture_' + companyId + '" src="./img/moF0LittleGuy/TwoMoF0LittleGuies_200_117.png"/>' +
@@ -126,4 +126,44 @@ function errorDB(tx, err) {
 // Transaction success callback
 function successDB() {
 	
+}
+
+function startGame() {
+	var companyCheckboxes = document.querySelectorAll('input.companyCheckbox:checked');
+	
+	var companyIds = '';
+	var selectedCompanyCount = 0;
+	for (var companyCheckboxIndex = 0; companyCheckboxIndex < companyCheckboxes.length; companyCheckboxIndex++) {
+		// There are several companies that are chosen
+		if (companyIds !== '') {
+			companyIds = companyIds + '|';
+		} // if
+		
+		companyIds = companyIds + companyCheckboxes[companyCheckboxIndex].value;
+		
+		selectedCompanyCount++;
+    } // for
+	
+    if (selectedCompanyCount < 2) {
+    	jQuery.i18n.prop('youMustChooseAtLeastTwoCompaniesMessage');
+    	alert(youMustChooseAtLeastTwoCompaniesMessage);
+    }
+    else if (selectedCompanyCount > 6) {
+    	jQuery.i18n.prop('youMustChooseLessThanSixCompaniesMessage');
+    	alert(youMustChooseLessThanSixCompaniesMessage);    	
+    }
+    else {
+    	window.location.href = './game.html?companyIds=' + companyIds;
+    } // if
+}
+
+function selectDeselectAllCompanies() {
+	companyListForm = document.getElementById("companyListForm");
+	selectCompanyState = companyListForm.elements["checkAllCompanies"].checked;
+
+	var companyCheckboxes = document.querySelectorAll('input.companyCheckbox');
+	
+	for (var companyCheckboxIndex = 0; companyCheckboxIndex < companyCheckboxes.length; companyCheckboxIndex++) {
+		companyCheckboxes[companyCheckboxIndex].checked = selectCompanyState;
+    } // for
 }

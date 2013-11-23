@@ -10,6 +10,7 @@ This application is based on the following frameworks :
 	*) PhoneGap (2.8.0);
 	*) jQuery (1.10.2);
 	*) jQuery.i18n.properties (1.0.9);
+	*) Knockout.js (3.0.0);
 	*) Bootstrap (3.0.0).
 	
 Devices tested on :
@@ -17,6 +18,7 @@ Devices tested on :
 	*) Google Nexus 7;
 	*) Asus Transformeer Prime;
 	*) HTC Desire;
+	*) HTC Legend;
 	*) Nexus Galaxy.
 	
 Should be compatible with (tests needed) :
@@ -38,3 +40,10 @@ Here's a walk-through to use the ADT :
 8. Click on the debug button, a Debug As window opens;
 9. Choose Android Application and press OK;
 10. Wait a bit till the application launches on your device (you may get an Eclipse window that asks you to choose your device).
+ 
+Main Git branch organisation (follows Git Flow) :
+
+	*) master : main branch;
+	*) hotfix : quick corrections;
+	*) develop : stable development branch before release version;
+	*) feature : you branch from here when a new feature needs coding.

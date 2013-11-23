@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Mobile Frame Zero Tools</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0.js"></script>
+    <script type="text/javascript" src="./js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/datamodel/frameModel.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/datamodel/companyModel.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/datamodel/gameModel.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/service/companyService.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/mof0Game.js"></script>
+    
+    <script type="text/javascript">
+      // load I18N bundles
+      jQuery(document).ready(function() {
+    	initLanguages()
+	  });
+		
+	  function loadBundles(lang) {
+	    jQuery.i18n.properties({
+	      name:'MoF0', 
+          path:'i18n/', 
+		  mode:'both',
+		  language:lang, 
+		  callback: function() {
+        jQuery.i18n.prop('applicationTitleMessage');
+		    jQuery.i18n.prop('gameMessage');
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + gameMessage + '</span>';
+		    
+		    jQuery.i18n.prop('roundsUntilDoomsDayMessage');
+		    document.getElementById('roundsUntilDoomsDayLabel').innerHTML = roundsUntilDoomsDayMessage
+	      }
+	    });
+	    
+	    initGame();
+	  }
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/respond.min.js"></script>
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/mof0.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <div class="gameRoundsBar">
+          <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
+          <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
+        </div>
+        <div data-bind="foreach: companies">
+          <div data-bind="text: name"></div>
+          <div data-bind="foreach: frames">
+            <div data-bind="text: name"></div>
+            <div data-bind="text: nbDefensive"></div>
+            <div data-bind="text: nbMovement"></div>
+            <div data-bind="text: nbSurveillanceCommunication"></div>
+            <div data-bind="text: nbHandToHand"></div>
+            <div data-bind="text: nbDirectFire"></div>
+            <div data-bind="text: nbArtilleryRange"></div>
+            <div data-bind="text: nbRockets"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
