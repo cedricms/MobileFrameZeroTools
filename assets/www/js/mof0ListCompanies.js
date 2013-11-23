@@ -129,8 +129,6 @@ function successDB() {
 }
 
 function startGame() {
-	companyListForm = document.getElementById("companyListForm");
-
 	var companyCheckboxes = document.querySelectorAll('input.companyCheckbox:checked');
 	
 	var companyIds = '';
@@ -157,4 +155,15 @@ function startGame() {
     else {
     	window.location.href = './game.html?companyIds=' + companyIds;
     } // if
+}
+
+function selectDeselectAllCompanies() {
+	companyListForm = document.getElementById("companyListForm");
+	selectCompanyState = companyListForm.elements["checkAllCompanies"].checked;
+
+	var companyCheckboxes = document.querySelectorAll('input.companyCheckbox');
+	
+	for (var companyCheckboxIndex = 0; companyCheckboxIndex < companyCheckboxes.length; companyCheckboxIndex++) {
+		companyCheckboxes[companyCheckboxIndex].checked = selectCompanyState;
+    } // for
 }
