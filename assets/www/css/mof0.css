@@ -37,6 +37,7 @@ h2 {
 }
 .pageSection {
   padding: 2rem;
+  background: #fff;
 }
 div.largeButton {
   display: inline-block;
@@ -82,7 +83,6 @@ a.backButton:visited {
   display: block;
   background: #900;
   text-decoration: none;
-  /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);*/
   padding: 1rem;
 }
 a.backButton:hover,
@@ -122,7 +122,6 @@ a.backButton span {
   margin: 1rem;
 }
 .home .pageSection {
-  background: -moz-linear-gradient(top, #990000 0%, #750000 100%);
   background: -webkit-linear-gradient(top, #990000 0%,#750000 100%);
   background: linear-gradient(to bottom, #990000 0%,#750000 100%);
 }
@@ -150,9 +149,6 @@ a.backButton span {
   margin: 0 0.5rem 0.5rem 0;
 }
 
-/* Play game page */
-
-
 /* Setup Battlefield page */
 #accordion .panel-heading {
   padding: 0;
@@ -171,7 +167,6 @@ img.mf0CompanyBigPicture {
   height:auto;
   width : 30rem;
 }
-
 img.mf0CompanyThumbnail {
   background-color : #fff;
   border : 0.25rem solid;
@@ -181,7 +176,6 @@ img.mf0CompanyThumbnail {
   height:auto;
   width : 10rem;
 }
-
 img.mf0FrameBigPicture {
   background-color : #fff;
   border : 0.5rem solid;
@@ -191,7 +185,6 @@ img.mf0FrameBigPicture {
   height:auto;
   width : 30rem;
 }
-
 img.mf0FrameThumbnail {
   background-color : #fff;
   border : 0.25rem solid;
@@ -201,16 +194,13 @@ img.mf0FrameThumbnail {
   height:auto;
   width : 10rem;
 }
-
 .mf0SmallNumericInput {
   text-align : right;
   width : 4rem;
 }
-
 .nextRoundButton {
 	margin-left : 6rem;
 }
-
 .roundsUntilDoomsDay {
   color: #333;
   float : left;
@@ -219,12 +209,10 @@ img.mf0FrameThumbnail {
   margin-right : 6rem;
   margin-top : 1rem;
 }
-
 .roundsUntilDoomsDayLabel {
   float : left;
   margin : 1rem;
 }
-
 div.smallButton {
   display: inline-block;
 }
@@ -243,22 +231,12 @@ a.smallButton:visited {
   text-decoration: none;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
 }
-
 a.smallButton:hover,
 a.smallButton:active,
 a.smallButton:focus {
   background: #900;
   color: #fff;
   text-decoration: none;
-}
-
-.systemDiceList {
-  /*background-color : #fff;
-  border : 0.2rem solid;
-  border-radius: 0.5rem 0.5rem;
-  color : #bc252a;
-  margin : 0.1rem 0.1rem 0.1rem 0.1rem;
-  padding : 0.2rem;*/
 }
 
 .systemDiceZone {
@@ -270,12 +248,10 @@ a.smallButton:focus {
   margin : 0.5rem 0.5rem 0.5rem 0.5rem;
   padding : 0.1rem;
 }
-
 .systemDie {
   float : left;
   margin : 0.1rem 0.1rem 0.1rem 0.1rem;
 }
-
 .systemRow {
   background-color : #fff;
   border : 0.2rem solid;
@@ -284,7 +260,6 @@ a.smallButton:focus {
   margin : 0.2rem;
   padding : 0.1rem;
 }
-
 .tableHeader {
   text-align : center;
 }
