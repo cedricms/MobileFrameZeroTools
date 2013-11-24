@@ -22,17 +22,18 @@
           <p>There are no mobile frame teams yet.</p>
         </div>
       </div>
-      <ul class="itemlist" data-bind="foreach: squadrons" style="margin-top: 1.5em;">
-        <li><button class="btn" data-bind="click: $root.viewSquadronDetails"><span data-bind="text: name"></span></button></li>
+      <ul class="itemlist list-unstyled" data-bind="foreach: squadrons">
+        <li><button class="btn btn-default" data-bind="click: $root.viewSquadronDetails"><span data-bind="text: name"></span></button></li>
       </ul>
-      <button class="btn" data-bind="click: addSquadron">+ Add team</button>
+      <button class="btn btn-primary" data-bind="click: addSquadron">+ Add team</button>
     </div>
   </div>
   
   <div id="squadronDetails" class="page" data-bind="with: squadronFocus">
     <h1 class="pageTitle">
       <a class="backButton" onclick="garage.nav('squadronList')"><span>‹</span></a>
-      <span class="title main-title"><input type="text" data-bind="value: name" class="namebar"></span>
+      <button class="btn btn-danger pull-right" data-bind="click: $root.delSquadron">x</button>
+      <input class="title main-title namebar" type="text" data-bind="value: name">
     </h1>
     <div class="pageSection">
       <div data-bind="ifnot: $root.anyFrames">
@@ -41,9 +42,9 @@
           <p>There are no pilots in your team yet.</p>
         </div>
       </div>
-      <ul class="itemlist" data-bind="foreach: frames">
+      <ul class="itemlist list-unstyled" data-bind="foreach: frames">
         <li>
-          <button class="btn" data-bind="click: $root.viewFrameDetails">
+          <button class="btn btn-default" data-bind="click: $root.viewFrameDetails">
             <span data-bind="text: name"></span>
             <span data-bind="foreach: systems">
               <span data-bind="css: type"></span>  
@@ -51,30 +52,24 @@
           </button>
         </li>
       </ul>
-      <button class="btn" data-bind="click: $root.addFrame">+ Add pilot</button>
-      <div class="actionbar">
-        <button class="btn danger" data-bind="click: $root.delSquadron">x Remove team</button>
-      </div>
+      <button class="btn btn-primary" data-bind="click: $root.addFrame">+ Add pilot</button>
     </div>
   </div>
   
   <div id="frameDetails" class="page" data-bind="with: frameFocus">
     <h1 class="pageTitle">
       <a class="backButton" onclick="garage.nav('squadronDetails')"><span>‹</span></a>
+      <button class="btn btn-danger pull-right" data-bind="click: $root.delFrame">x</button>
       <span class="title main-title"><input type="text" data-bind="value: name" class="namebar"></span>
     </h1>
     <div class="pageSection">
-      <div class="tabs">
-        <div id="tab-1" class="btn tab-btn active">
-          Systems
-        </div>
-        <div id="tab-2" class="btn tab-btn">
-          Dice
-        </div>
-        <div id="tab-3" class="btn tab-btn">
-          Special
-        </div>
-        <div id="tab-1-content" class="tab-content active">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#systems" data-toggle="tab">Systems</a></li>
+        <li><a href="#dice" data-toggle="tab">Dice</a></li>
+        <li><a href="#special" data-toggle="tab">Special</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="systems">
           <div data-bind="ifnot: $root.anySystems">
             <h2>Systems offline</h2>
             <p>Your pilot's frame needs systems to be effective in combat.</p>
@@ -82,7 +77,6 @@
           <div data-bind="if: $root.anySystems">
             <h2>Systems online</h2>
           </div>
-          
           <div class="systemlist">
             <!-- ko foreach: systems -->
               <div class="systempickerbox">
@@ -94,18 +88,15 @@
             <div class="clear"></div>
             <!-- <button class="btn" data-bind="click: $root.getFramePicture">Change picture</button> -->
           </div>
-          <button class="btn" onclick="garage.nav('addSystemDiag')" data-bind="visible: enoughSystems">+ Add system</button>
-          <p style="margin-top: 1em; color: #888;">You can remove systems by tapping them and selecting "Remove system"</p>
+          <button class="btn btn-primary" onclick="garage.nav('addSystemDiag')" data-bind="visible: enoughSystems">+ Add system</button>
+          <p class="text-muted">You can remove systems by tapping them and selecting "Remove system"</p>
         </div>
-        <div id="tab-2-content" class="tab-content">
+        <div class="tab-pane" id="dice">
           <div data-bind="html: $root.frameDice">Dice showing goes here</div>
         </div>
-        <div id="tab-3-content" class="tab-content">
+        <div class="tab-pane" id="special">
           <div data-bind="html: $root.specRules">Special rules go here</div>
         </div>
-      </div>
-      <div class="actionbar">
-        <button class="btn danger" data-bind="click: $root.delFrame">x Remove pilot</button>
       </div>
     </div>
   </div>
@@ -115,35 +106,35 @@
       <a class="backButton" onclick="garage.nav('frameDetails')"><span>‹</span></a>
       <span class="title main-title">Pick a system to add</span>
     </h1>
-    <div class="pageSection">
+    <div class="pageSection clearfix">
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('close range')}"><span class="close"></span> Close range</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('closerange')}"><span class="closerange"></span> Close range</button>
         </div>
       </div>
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('artillery')}"><span class="artillery"></span> Artillery</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('artillery')}"><span class="artillery"></span> Artillery</button>
         </div>
       </div>
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('direct fire')}"><span class="direct"></span> Direct fire</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('direct fire')}"><span class="direct"></span> Direct fire</button>
         </div>
       </div>
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('defense')}"><span class="defense"></span> Defense</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('defense')}"><span class="defense"></span> Defense</button>
         </div>
       </div>
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('movement')}"><span class="movement"></span> Movement</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('movement')}"><span class="movement"></span> Movement</button>
         </div>
       </div>
       <div class="systempickerbox">
         <div class="systempickerbox-inner">
-          <button class="btn" data-bind="click: function() {addSystem('spotting')}"><span class="spotting"></span> Spotting</button>
+          <button class="btn btn-default" data-bind="click: function() {addSystem('spotting')}"><span class="spotting"></span> Spotting</button>
         </div>
       </div>
     </div>
@@ -153,18 +144,14 @@
     <div data-bind="with: systemFocus">
       <h1 class="pageTitle">
         <a class="backButton" onclick="garage.nav('frameDetails')"><span>‹</span></a>
+        <button class="btn btn-danger pull-right" data-bind="click: $root.delSystem">x</button>
         <span class="title main-title">System</span>
       </h1>
       <div class="pageSection">
         <div class="content systemdetails">
-          <div style="text-align: center;">
-            <div id="systemImage" data-bind="css: type"></div>
-          </div>
+          <div id="systemImage" data-bind="css: type"></div>
           <h1><span data-bind="text: type"></span> system</h1>
           <div class="systemdescription"></div>
-        </div>
-        <div class="actionbar">
-          <button class="btn danger" data-bind="click: $root.delSystem">x Remove system</button>
         </div>
       </div>
     </div>

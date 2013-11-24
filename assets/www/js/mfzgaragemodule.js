@@ -73,7 +73,7 @@ function GarageViewModel() {
           directfire++;
         } else if (type === 'artillery') {
           artillerypiece++;
-        } else if (type === 'close') {
+        } else if (type === 'closerange') {
           closerange++;
         };
       };
@@ -326,7 +326,7 @@ function RulesLib() {
     specRuleLevel2: ['Add another <span class="redd8">Red 1d8</span> at <strong>medium</strong> range']
   };
   
-  this.close = {
+  this.closerange = {
     desc: 'Shock batons, combat knifes, repurposed jackhammers. Gives you an edge when attacking at close range.',
     specRuleLevel1: ['Add <span class="redd">Red 2d6</span><span class="redd"></span> at <strong>close</strong> range'],
     specRuleLevel2: ['Add another <span class="redd8">Red 1d8</span> at <strong>close</strong> range']
