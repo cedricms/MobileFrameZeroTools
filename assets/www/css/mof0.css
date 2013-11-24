@@ -33,7 +33,7 @@ h2 {
   background: #fff;
   border-radius: 0 0 2rem 2rem;
   padding: 0;
-  margin: 0 auto 2rem
+  margin: 0 auto;
 }
 .pageSection {
   padding: 2rem;
@@ -107,21 +107,31 @@ a.backButton span {
 
 .pageTitle .title {
   display: block;
-  margin: 1rem 0 1rem 6rem;
+  margin: 1rem 0 1rem 5rem;
 }
-.pageTitle .main-title {
-  margin: 1rem;
-  text-align: center;
-}
+
 
 /* Home page */
 
 .home a.backButton {
   text-indent: -1000em;
+  margin-left: 0.5rem;
 }
 .home h2 {
   display: inline-block;
   margin: 1rem;
+}
+.home .pageSection {
+  background: -moz-linear-gradient(top, #990000 0%, #750000 100%);
+  background: -webkit-linear-gradient(top, #990000 0%,#750000 100%);
+  background: linear-gradient(to bottom, #990000 0%,#750000 100%);
+}
+.home .menu h2,
+.home .menu div {
+  display: block;
+}
+.home .menu h2 {
+  color: #ccc;
 }
 
 /* Frame detail page */
@@ -140,14 +150,8 @@ a.backButton span {
   margin: 0 0.5rem 0.5rem 0;
 }
 
-.gameRoundsBar {
-  background-color : #ccc;
-  border : 0rem solid;
-  border-radius: 3rem;
-  color : #666;
-  padding : 1rem;
-  width : 100%;
-}
+/* Play game page */
+
 
 /* Setup Battlefield page */
 #accordion .panel-heading {
