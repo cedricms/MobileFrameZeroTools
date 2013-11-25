@@ -60,32 +60,30 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <h1 class="pageTitle" id="applicationTitle"></h1>
-      <div class="pageSection">
-        <form action="./game.html" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
-            <div class="mediumBackground">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th width="5%"><input type="checkbox" name="checkAllCompanies" onChange="javascript:selectDeselectAllCompanies();" value="selectAll"></th>
-                    <th width="35%"><div class="tableHeader" id="companyLabel"></div></th>
-                    <th width="20%"><div class="tableHeader" id="nbFramesLabel"></div></th>
-                    <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
-                    <th width="20%"><div class="tableHeader" id="actionsLabel"></div></th>
-                  </tr>
-                </thead>
-                <tbody id="companyTable"></tbody>
-              </table>
-            </div>
-            <div class="row largeRow">
-              <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="playGame"></div>
-            </div>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+    <div class="pageSection">
+      <form action="./game.html" class="navbar-form pull-left mof0Form" id="companyListForm" method="post" name="companyListForm">
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
+          <div class="mediumBackground">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="5%"><input type="checkbox" name="checkAllCompanies" onChange="javascript:selectDeselectAllCompanies();" value="selectAll"></th>
+                  <th width="35%"><div class="tableHeader" id="companyLabel"></div></th>
+                  <th width="20%"><div class="tableHeader" id="nbFramesLabel"></div></th>
+                  <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
+                  <th width="20%"><div class="tableHeader" id="actionsLabel"></div></th>
+                </tr>
+              </thead>
+              <tbody id="companyTable"></tbody>
+            </table>
           </div>
-        </form>
-      </div>
+          <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="playGame"></div>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
