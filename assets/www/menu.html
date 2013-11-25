@@ -48,6 +48,8 @@
 		    document.getElementById('about').innerHTML='<a class="largeButton" href="./about.html">' + aboutMessage + '</a>';
 			jQuery.i18n.prop('resetDatabaseMessage');
 		    document.getElementById('resetDatabase').innerHTML='<a class="largeButton" href="Javascript:resetDatabase()">' + resetDatabaseMessage + '</a>';
+			jQuery.i18n.prop('loadTestCompaniesMessage');
+		    document.getElementById('loadTestCompanies').innerHTML='<a class="largeButton" href="Javascript:loadTestCompanies()">' + loadTestCompaniesMessage + '</a>';
 	      }
 	    });
 	  }
@@ -92,6 +94,9 @@
           </div>
 		  <div class="row largeRow">
             <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="resetDatabase"></div>
+          </div>
+		  <div class="row largeRow">
+            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="loadTestCompanies"></div>
           </div>
         </div>
       </div>
