@@ -198,21 +198,6 @@ img.mf0FrameThumbnail {
   text-align : right;
   width : 4rem;
 }
-.nextRoundButton {
-	margin-left : 6rem;
-}
-.roundsUntilDoomsDay {
-  color: #333;
-  float : left;
-  font-weight: bold;
-  margin-bottom : 1rem;
-  margin-right : 6rem;
-  margin-top : 1rem;
-}
-.roundsUntilDoomsDayLabel {
-  float : left;
-  margin : 1rem;
-}
 div.smallButton {
   display: inline-block;
 }
@@ -262,4 +247,22 @@ a.smallButton:focus {
 }
 .tableHeader {
   text-align : center;
+}
+
+/* Gameplay page */
+.company-view {
+  padding: 0 1rem 1rem;
+}
+.frames-view h3 {
+  font-size: 1em;
+  border-top: solid 1px #eee;
+  padding-top: 0.5rem;
+}
+.initiative {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.sys-panel {
+  display: inline-block; margin: 0 0.5rem 0.5rem 0;
 }
