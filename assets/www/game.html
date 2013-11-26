@@ -52,25 +52,34 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <h1 class="pageTitle" id="applicationTitle"></h1>
-      <div class="pageSection">
-        <div class="gameRoundsBar">
-          <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
-          <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
-          <div class="nextRoundButton" id="nextRoundButton"></div>
-        </div>
-        <div data-bind="foreach: companies">
-          <div data-bind="text: name"></div>
-          <div data-bind="foreach: frames">
-            <div data-bind="text: name"></div>
-            <div data-bind="text: nbDefensive"></div>
-            <div data-bind="text: nbMovement"></div>
-            <div data-bind="text: nbSurveillanceCommunication"></div>
-            <div data-bind="text: nbHandToHand"></div>
-            <div data-bind="text: nbDirectFire"></div>
-            <div data-bind="text: nbArtilleryRange"></div>
-            <div data-bind="text: nbRockets"></div>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+    <div class="pageSection">
+      <div class="well">
+        <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
+        <h2>
+          <span class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></span>
+          <strong class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></strong>
+        </h2>
+      </div>
+      <div data-bind="foreach: companies" class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="panel company-view clearfix">
+            <button class="btn btn-default pull-right visible-xs" style="padding: 2rem 1rem" onclick="$(this).siblings('.frames-view').toggleClass('hidden-xs');"><span class="caret"></span></button>
+            <div class="pull-right well initiative">28</div>
+            <h2 data-bind="text: name"></h2>
+            <div>3 x Stations</div>
+            <div class="frames-view hidden-xs">
+              <div data-bind="foreach: frames">
+                <h3 data-bind="text: name"></h3>
+                <div class="sys-panel" data-bind="visible: nbDefensive"><span data-bind="text: nbDefensive"></span> x <img src="./img/dice/Defense.png"></div>
+                <div class="sys-panel" data-bind="visible: nbMovement"><span data-bind="text: nbMovement"></span> x <img src="./img/dice/Move.png"></div>
+                <div class="sys-panel" data-bind="visible: nbSurveillanceCommunication"><span data-bind="text: nbSurveillanceCommunication"></span> x <img src="./img/dice/Spotting.png"></div>
+                <div class="sys-panel" data-bind="visible: nbHandToHand"><span data-bind="text: nbHandToHand"></span> x <img src="./img/dice/HtH.png"></div>
+                <div class="sys-panel" data-bind="visible: nbDirectFire"><span data-bind="text: nbDirectFire"></span> x <img src="./img/dice/Direct.png"></div>
+                <div class="sys-panel" data-bind="visible: nbArtilleryRange"><span data-bind="text: nbArtilleryRange"></span> x <img src="./img/dice/Artillery.png"></div>
+                <div data-bind="visible: nbRockets"><span data-bind="text: nbRockets"></span> x One-shot Rockets</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
