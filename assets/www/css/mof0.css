@@ -91,8 +91,9 @@ a.backButton span {
   font-size: 2em;
   line-height: 1;
   color: #fff;
-  background: url(../img/icons/c6-front.png) no-repeat right center transparent;
+  background: url('../img/moF0LittleGuy/MoF0LittleGuy_200_225.png') no-repeat right center transparent;
   background-size: auto 100%;
+  border-radius: 2rem;
   display: block;
   padding: 0 3.5rem 0 0;
   margin: 0;
@@ -104,6 +105,7 @@ a.backButton span {
 
 .pageTitle .title {
   display: block;
+  font-weight : bold;
   margin: 1rem 0 1rem 5rem;
 }
 
@@ -119,18 +121,23 @@ a.backButton span {
   margin: 1rem;
 }
 body.home {
-  background: #750000;
+  /*background: #750000;*/
 }
-.home .pageSection {
+/*.home .pageSection {
   background: -webkit-linear-gradient(top, #990000 0%,#750000 100%);
   background: linear-gradient(to bottom, #990000 0%,#750000 100%);
-}
+}*/
 .home .menu h2,
 .home .menu div {
   display: block;
 }
 .home .menu h2 {
   color: #ccc;
+}
+
+legend .menu {
+	font-family: sans-serif;
+	font-weight : bold;
 }
 
 /* Frame detail page */
