@@ -161,6 +161,29 @@ function resetDatabase() {
 	} // if
 }
 
+function loadTestCompanies() {
+	jQuery.i18n.prop('areYouSureToWantToLoadTestCompaniesMessage');
+	var loadAction=confirm(areYouSureToWantToLoadTestCompaniesMessage);
+	if (loadAction == true) {		
+		var db = window.openDatabase("mof0DB", dbVersion, "Mobile Frame Zero Tools", dbSize);
+		
+		db.transaction(function(tx) {
+							tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("Company 1", datetime("now"));');
+							tx.executeSql('INSERT INTO company_frame (id_company, id_frame, nb_rockets, dt_created) SELECT (SELECT MAX(c.id) FROM company c), 1, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 1, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 1, 1, datetime("now");');
+							tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("Company 2", datetime("now"));');
+							tx.executeSql('INSERT INTO company_frame (id_company, id_frame, nb_rockets, dt_created) SELECT (SELECT MAX(c.id) FROM company c), 1, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 2, 2, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 3, 0, datetime("now");');
+							tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("Company 3", datetime("now"));');
+							tx.executeSql('INSERT INTO company_frame (id_company, id_frame, nb_rockets, dt_created) SELECT (SELECT MAX(c.id) FROM company c), 1, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 2, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 3, 1, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 4, 0, datetime("now") UNION ALL SELECT (SELECT MAX(c.id) FROM company c), 5, 0, datetime("now");');
+						}, errorDB, successDB);
+				
+		jQuery.i18n.prop('loadTestCompaniesConfirmationMessage');
+		alert(loadTestCompaniesConfirmationMessage);
+	}
+	else {
+		// Do nothing
+	} // if	
+}
+
 // Transaction error callback
 function errorDB(tx, err) {
 	alert("Error processing SQL: "+err);
