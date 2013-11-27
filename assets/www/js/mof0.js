@@ -35,6 +35,10 @@ function initLanguages() {
 	loadBundles(userLang);
 }
 
+function goToURL(pURL) {
+	window.location.href = pURL;
+}
+
 function supportsHtml5Ttorage() {
 	try {
 		return 'localStorage' in window && window['localStorage'] !== null;
