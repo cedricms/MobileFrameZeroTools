@@ -140,6 +140,15 @@ legend .menu {
 	font-weight : bold;
 }
 
+.formattedStartTime {
+  color: #333;
+  float : left;
+  font-weight: bold;
+  margin-bottom : 1rem;
+  margin-right : 2rem;
+  margin-top : 1rem;
+}
+
 /* Frame detail page */
 .framedetail .table .radio {
   margin: 0;
@@ -154,6 +163,16 @@ legend .menu {
 .framedetail .systemDie {
   display: inline-block;
   margin: 0 0.5rem 0.5rem 0;
+}
+
+.gameRoundsBar {
+  background-color : #ccc;
+  border : 0rem solid;
+  border-radius: 2rem;
+  /*color : #666;*/
+  display: inline-block;
+  padding : 1rem;
+  width : 100%;
 }
 
 /* Setup Battlefield page */
@@ -205,6 +224,25 @@ img.mf0FrameThumbnail {
   text-align : right;
   width : 4rem;
 }
+
+.nextRoundButton {
+
+}
+
+.roundsUntilDoomsDay {
+  color: #333;
+  float : left;
+  font-weight: bold;
+  margin-bottom : 1rem;
+  margin-right : 2rem;
+  margin-top : 1rem;
+}
+
+.roundsUntilDoomsDayLabel {
+  float : left;
+  margin : 1rem;
+}
+
 div.smallButton {
   display: inline-block;
 }
@@ -229,6 +267,11 @@ a.smallButton:focus {
   background: #900;
   color: #fff;
   text-decoration: none;
+}
+
+.startTimeLabel {
+  float : left;
+  margin : 1rem;
 }
 
 .systemDiceZone {

@@ -1,7 +1,10 @@
 function GameModel() {
 	var self = this;
 
-	self.startTime = new Date();
+	self.startTime = ko.observable(new Date());
+	self.formattedStartTime = ko.computed(function() {
+        return self.startTime().getHours() + ":" + self.startTime().getMinutes();
+    });
 	self.companies = ko.observableArray();
 	self.doomsdayClock = ko.observable(11);
 
