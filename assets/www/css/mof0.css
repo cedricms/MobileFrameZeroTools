@@ -109,7 +109,6 @@ a.backButton span {
 
 
 /* Home page */
-
 .home a.backButton {
   text-indent: -1000em;
   margin-left: 0.5rem;
@@ -119,19 +118,14 @@ a.backButton span {
   margin: 1rem;
 }
 body.home {
-  background: #750000;
-}
-.home .pageSection {
-  background: -webkit-linear-gradient(top, #990000 0%,#750000 100%);
-  background: linear-gradient(to bottom, #990000 0%,#750000 100%);
+  background: url(../img/frames/superthruster.jpg) no-repeat 0 0 #e2e2e2;
+  background-size: 50em auto;
 }
 .home .menu h2,
 .home .menu div {
   display: block;
 }
-.home .menu h2 {
-  color: #ccc;
-}
+
 
 /* Frame detail page */
 .framedetail .table .radio {
