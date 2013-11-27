@@ -29,11 +29,11 @@
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title main-title">' + applicationTitleMessage + '</span>';
 		    jQuery.i18n.prop('createFrameMessage');
-		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="./frameDetail.html">' + createFrameMessage + '</a>';
+		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="javascript:goToURL('./frameDetail.html');">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
-		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="./listFrames.html">' + listFramesMessage + '</a>';
+		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="javascript:goToURL('./listFrames.html');">' + listFramesMessage + '</a>';
 			jQuery.i18n.prop('companyCreationGuidelinesMessage');
-		    document.getElementById('companyCreationGuidelines').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="./companyCreationGuidelines.html">' + companyCreationGuidelinesMessage + '</a>';
+		    document.getElementById('companyCreationGuidelines').innerHTML='<a class="largeButton" href="javascript:;" onTouchStart="javascript:goToURL('./companyCreationGuidelines.html');">' + companyCreationGuidelinesMessage + '</a>';
 		    jQuery.i18n.prop('createCompanyMessage');
 		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';
 		    jQuery.i18n.prop('listCompaniesMessage');
