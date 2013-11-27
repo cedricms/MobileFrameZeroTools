@@ -118,8 +118,7 @@ a.backButton span {
   margin: 1rem;
 }
 body.home {
-  background: url(../img/frames/superthruster.jpg) no-repeat 0 0 #e2e2e2;
-  background-size: 50em auto;
+  background: #e2e2e2;
 }
 .home .menu h2,
 .home .menu div {
