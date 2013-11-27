@@ -28,23 +28,33 @@
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title main-title">' + applicationTitleMessage + '</span>';
+		    jQuery.i18n.prop('framesLegendMessage');
+		    document.getElementById('framesLegend').innerHTML=framesLegendMessage;
 		    jQuery.i18n.prop('createFrameMessage');
 		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="./frameDetail.html">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
 		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="./listFrames.html">' + listFramesMessage + '</a>';
+		    jQuery.i18n.prop('companiesLegendMessage');
+		    document.getElementById('companiesLegend').innerHTML=companiesLegendMessage;
 			jQuery.i18n.prop('companyCreationGuidelinesMessage');
 		    document.getElementById('companyCreationGuidelines').innerHTML='<a class="largeButton" href="./companyCreationGuidelines.html">' + companyCreationGuidelinesMessage + '</a>';
 		    jQuery.i18n.prop('createCompanyMessage');
 		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';
 		    jQuery.i18n.prop('listCompaniesMessage');
 		    document.getElementById('listCompanies').innerHTML='<a class="largeButton" href="./listCompanies.html">' + listCompaniesMessage + '</a>';
+		    jQuery.i18n.prop('gamePreparationLegendMessage');
+		    document.getElementById('gamePreparationLegend').innerHTML=gamePreparationLegendMessage;
 		    jQuery.i18n.prop('settingUpTheBattlefieldMessage');
 		    document.getElementById('settingUpTheBattlefield').innerHTML='<a class="largeButton" href="./settingUpTheBattlefield.html">' + settingUpTheBattlefieldMessage + '</a>';
+		    jQuery.i18n.prop('resourcesLegendMessage');
+		    document.getElementById('resourcesLegend').innerHTML=resourcesLegendMessage;
 			jQuery.i18n.prop('usefulLinksMessage');
 		    document.getElementById('usefulLinks').innerHTML='<a class="largeButton" href="./usefulLinks.html">' + usefulLinksMessage + '</a>';
 			jQuery.i18n.prop('faqMessage');
 		    document.getElementById('faq').innerHTML='<a class="largeButton" href="./faq.html">' + faqMessage + '</a>';
 			jQuery.i18n.prop('aboutMessage');
+			jQuery.i18n.prop('administrationToolsLegendMessage');
+		    document.getElementById('administrationToolsLegend').innerHTML=administrationToolsLegendMessage;
 		    document.getElementById('about').innerHTML='<a class="largeButton" href="./about.html">' + aboutMessage + '</a>';
 			jQuery.i18n.prop('resetDatabaseMessage');
 		    document.getElementById('resetDatabase').innerHTML='<a class="largeButton" href="Javascript:resetDatabase()">' + resetDatabaseMessage + '</a>';
@@ -72,12 +82,12 @@
             <div class="row">
               <div class="col-md-6">
               	<fieldset class="menu">
-              		<legend class="menu">Create mobile frames</legend>
+              		<legend class="menu" id="framesLegend"></legend>
               		<div class="largeButton" id="createFrame"></div>
               		<div class="largeButton" id="listFrames"></div>
                 </fieldset>
                 <fieldset class="menu">
-          			<legend class="menu">Create companies</legend>
+          			<legend class="menu" id="companiesLegend"></legend>
           			<div class="largeButton" id="companyCreationGuidelines"></div>
           			<div class="largeButton" id="createCompany"></div>
           			<div class="largeButton" id="listCompanies"></div>
@@ -85,17 +95,17 @@
               </div>
               <div class="col-md-6">
               	<fieldset class="menu">
-              		<legend class="menu">Game preparation</legend>
+              		<legend class="menu" id="gamePreparationLegend"></legend>
               		<div class="largeButton" id="settingUpTheBattlefield"></div>
               	</fieldset>
               	<fieldse class="menu"t>
-          			<legend class="menu">Resources</legend>
+          			<legend class="menu" id="resourcesLegend"></legend>
           			<div class="largeButton" id="usefulLinks"></div>
           			<div class="largeButton" id="faq"></div>
           			<div class="largeButton" id="about"></div>
           		</fieldset>
                 <fieldset class="menu">
-          			<legend class="menu">Debug</legend>
+          			<legend class="menu" id="administrationToolsLegend"></legend>
           			<div class="largeButton" id="resetDatabase"></div>
           			<div class="largeButton" id="loadTestCompanies"></div>
           			<a class="largeButton" href="./garageapp.html">Experimental company creation</a>
