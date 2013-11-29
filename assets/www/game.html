@@ -29,7 +29,7 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-        jQuery.i18n.prop('applicationTitleMessage');
+        	jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('gameMessage');
 		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + gameMessage + '</span>';
 		    
@@ -41,10 +41,10 @@
 		    
 		    jQuery.i18n.prop('nextRoundMessage');
 		    document.getElementById('nextRoundButton').innerHTML='<a class="smallButton" href="Javascript:nextRound();">' + nextRoundMessage + '</a>';
+		    
+	    	initGame();
 	      }
 	    });
-	    
-	    initGame();
 	  }
     </script>
     

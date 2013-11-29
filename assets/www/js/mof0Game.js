@@ -31,9 +31,42 @@ function addCompany(companyModel) {
 }
 
 function nextRound() {
-	if (gameModel.getDoomsdayClock() > 1) {
+	if (gameModel.getDoomsdayClock() > 0) {
 		gameModel.decrimentDoomsdayClock();
+
+		if (gameModel.getDoomsdayClock() > 0) {
+			companies = gameModel.companies();
+
+			for ( var companyIndex = 0; companyIndex < companies.length; companyIndex++) {
+				var company = companies[companyIndex];
+				var companyName = company.getName();
+				jQuery.i18n.prop('doYouWantToCountDownTheDoomsDayClockMessage');
+				var countDownConfirmationMessage = companyName + doYouWantToCountDownTheDoomsDayClockMessage + ' ' + gameModel.getDoomsdayClock() + ')';
+				var countDownAction = confirm(countDownConfirmationMessage);
+				if (countDownAction == true) {
+					gameModel.decrimentDoomsdayClock();
+					if (gameModel.getDoomsdayClock() > 0) {
+						continue;
+					}
+					else {
+						endOfGame();
+						break;
+					} // if
+				}
+				else {
+					continue;
+				} // if
+			} // for
+		} else {
+			// End of the game
+			endOfGame();
+		} // if
 	} else {
 		// End of the game
-	}
+		endOfGame();
+	} // if
+}
+
+function endOfGame() {
+	alert('End of game!');
 }
