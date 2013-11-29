@@ -22,6 +22,8 @@ function initGame() {
 	} // for
 
 	ko.applyBindings(gameModel);
+	
+	window.setInterval(gameModel.updateCurrentTime, 1000);
 }
 
 function addCompany(companyModel) {
