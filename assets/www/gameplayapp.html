@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mof0.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  
+  <div id="squadronOverview" class="page" style="display: block;">
+    <h1 class="pageTitle">
+      <div class="doomsdayclock pull-right">
+        Rounds left: <strong data-bind="text: $root.rounds"></strong>
+        <button class="btn btn-default" onclick="garage.countDown()">End round</button>
+      </div>
+      <a class="backButton" href="menu.html"><span>‹</span></a>
+      <span class="title main-title">Play MFZ</span>
+    </h1>
+    <div class="pageSection">
+      <div data-bind="ifnot: anySquadrons">
+        <div class="content" style="margin-top: 1em;">
+          <p>You need mobile frame teams to play the game.</p>
+          <p><a class="largeButton" href="garageapp.html">Go here and create some</a></p>
+        </div>
+      </div>
+      <ul class="overview-list list-unstyled" data-bind="foreach: squadrons">
+        <li class="col-xs-12 col-sm-6 col-md-4">
+          <div class="panel overview-box">
+            <strong class="init well pull-right" data-bind="text: initiative"></strong>
+            <h2 data-bind="text: name"></h2>
+            <div class="stations"><label>Stations</label><input type="text" data-bind="value: stations"></div>
+            <ul class="overview-frames list-unstyled" data-bind="foreach: frames">
+              <li>
+                <button type="button" class="btn btn-default" data-bind="click:  function(data, event){ $root.viewFrameDetailsPlay($parent, data, event) }"><span data-bind="text:name"></span></button>
+                <span data-bind="foreach: systems">
+                  <span data-bind="css: type"></span>  
+                </span>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div id="frameDetails" class="page" data-bind="with: frameFocus">
+    <h1 class="pageTitle">
+      <a class="backButton" data-bind="click: $root.nav('squadronOverview')"><span>‹</span></a>
+      <button type="button" class="btn btn-danger pull-right" data-bind="click: $root.killFrame">x</button>
+      <span class="title main-title"><input type="text" data-bind="value: name" class="namebar"></span>
+    </h1>
+    <div class="pageSection">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#systems" data-toggle="tab">Systems</a></li>
+        <li><a href="#dice" data-toggle="tab">Dice</a></li>
+        <li><a href="#special" data-toggle="tab">Special</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="systems">
+          <div data-bind="ifnot: $root.anySystems">
+            <h2>Systems offline</h2>
+            <p>Your pilot's frame needs systems to be effective in combat.</p>
+          </div>
+          <div data-bind="if: $root.anySystems">
+            <h2>Systems online</h2>
+          </div>
+          <div class="systemlist">
+            <!-- ko foreach: systems -->
+              <div class="systempickerbox">
+                <div class="systempickerbox-inner">
+                  <button type="button" class="btn btn-default" data-bind="click: $root.viewSystemDetails"><span data-bind="css: type"></span></button>
+                </div>
+              </div>
+            <!-- /ko -->
+            <div class="clear"></div>
+          </div>
+          <p class="text-muted">You can remove systems by tapping them and selecting "Remove system"</p>
+        </div>
+        <div class="tab-pane" id="dice">
+          <div data-bind="html: $root.frameDice">Dice showing goes here</div>
+        </div>
+        <div class="tab-pane" id="special">
+          <div data-bind="html: $root.specRules">Special rules go here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="systemDetails" class="page" data-bind="with: frameFocus">
+    <div data-bind="with: systemFocus">
+      <h1 class="pageTitle">
+        <a class="backButton" data-bind="click: $root.nav('frameDetails')"><span>‹</span></a>
+        <button type="button" class="btn btn-danger pull-right" data-bind="click: $root.delSystem">x</button>
+        <span class="title main-title">System</span>
+      </h1>
+      <div class="pageSection">
+        <div class="content systemdetails">
+          <div id="systemImage" data-bind="css: type"></div>
+          <h1><span data-bind="text: type"></span> system</h1>
+          <div class="systemdescription"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/jquery-1.10.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/knockout-3.0.0.js"></script>
+  <script src="js/mfzgaragemodule.js"></script>
+  <script>
+    garage.calcInit();
+  </script>
+  
+</body>
+</html>

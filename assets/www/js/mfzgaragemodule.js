@@ -38,6 +38,96 @@ function GarageViewModel() {
     };
   };
   
+  /* Calculate init */
+  
+  self.calcInit = function() {
+    // Compare number of frames and systems on teams, then recalculate asset value
+    console.log('******* Comparing team asset values *******');
+    var teamstatus = [];
+    var hasmostframes = [];
+    var hasleastframes = [];
+    var hasmostsystems = [];
+    var hasleastsystems = [];
+    for (var t in self.squadrons()) {
+      var frames = self.squadrons()[t].frames().length;
+      var systems = 0;
+      for (var f in self.squadrons()[t].frames()) {
+        systems = systems + self.squadrons()[t].frames()[f].systems().length;
+      };
+      teamstatus.push({team: self.squadrons()[t], frames: frames, systems: systems});
+    };
+    for (var t in teamstatus) { 
+      // See which teams have the most and least frames
+      if (hasmostframes[0] == undefined) {
+        hasmostframes.push({team: teamstatus[t].team, frames: teamstatus[t].frames});
+      } else if (hasmostframes[0].frames > teamstatus[t].frames) {
+        hasleastframes.push({team: teamstatus[t].team, frames: teamstatus[t].frames});
+      } else if (hasmostframes[0].frames < teamstatus[t].frames) {
+        if (hasleastframes[0] == undefined || hasleastframes[0].frames >= hasmostframes[0].frames) {
+          for (var f in hasmostframes) {
+            hasleastframes.push(hasmostframes[f]);  
+          };
+        };
+        if (hasleastframes[0].frames > hasmostframes[0].frames) {
+          hasleastframes = [];
+        };
+        hasmostframes = [];
+        hasmostframes.push({team: teamstatus[t].team, frames: teamstatus[t].frames});
+      } else if (hasmostframes[0].frames === teamstatus[t].frames) {
+        hasmostframes.push({team: teamstatus[t].team, frames: teamstatus[t].frames});
+      } else {
+        hasleastframes.push({team: teamstatus[t].team, frames: teamstatus[t].frames});
+      };
+      // See which teams have the most and least systems
+      if (hasmostsystems[0] == undefined) {
+        hasmostsystems.push({team: teamstatus[t].team, systems: teamstatus[t].systems});
+      } else if (hasmostsystems[0].systems > teamstatus[t].systems) {
+        hasleastsystems.push({team: teamstatus[t].team, systems: teamstatus[t].systems});
+      } else if (hasmostsystems[0].systems < teamstatus[t].systems) {
+        if (hasleastsystems[0] == undefined || hasleastsystems[0].systems >= hasmostsystems[0].systems) {
+          for (var f in hasmostsystems) {
+            hasleastsystems.push(hasmostsystems[f]);  
+          };
+        };
+        if (hasleastsystems[0].systems > hasmostsystems[0].systems) {
+          hasleastsystems = [];
+        };
+        hasmostsystems = [];
+        hasmostsystems.push({team: teamstatus[t].team, systems: teamstatus[t].systems});
+      } else if (hasmostsystems[0].systems === teamstatus[t].systems) {
+        hasmostsystems.push({team: teamstatus[t].team, systems: teamstatus[t].systems});
+      } else {
+        hasleastsystems.push({team: teamstatus[t].team, systems: teamstatus[t].systems});
+      };
+    };
+    // Adjust asset values of teams accordingly
+    for (var t in hasmostframes) {
+      var val = hasmostframes[t].team.assetValue();
+      val--;
+      hasmostframes[t].team.assetValue(val);
+    };
+    for (var t in hasleastframes) {
+      var val = hasleastframes[t].team.assetValue();
+      val++;
+      hasleastframes[t].team.assetValue(val);
+    };
+    for (var t in hasmostsystems) {
+      var val = hasmostsystems[t].team.assetValue();
+      val--;
+      hasmostsystems[t].team.assetValue(val);
+    };
+    for (var t in hasleastsystems) {
+      var val = hasleastsystems[t].team.assetValue();
+      val++;
+      hasleastsystems[t].team.assetValue(val);
+    };
+    console.log('Asset values:');
+    for (var t in self.squadrons()) {
+      console.log(self.squadrons()[t].name() + ' (' + self.squadrons()[t].assetValue() + ') ');
+    };
+    console.log('******* End of asset value adjustment *******');
+  };
+  
   
   /* Frame methods and values */
   
@@ -110,17 +200,12 @@ function GarageViewModel() {
   self.viewFrameDetails = function(frame) {
     self.frameFocus(frame);
     self.nav('frameDetails');
-    
-    $('.tab-btn').on("click", function() {
-      var tabId = $(this).attr('id');
-      var contentId = tabId + '-content';
-      console.log(tabId);
-      $('.tabs .tab-btn').removeClass('active');
-      $('.tabs .tab-content').removeClass('active');
-      $('#' + tabId).addClass('active');
-      $('#' + contentId).addClass('active');
-    });
-    
+  };
+  
+  self.viewFrameDetailsPlay = function(squadron, frame) {
+    self.squadronFocus(squadron);
+    self.frameFocus(frame);
+    self.nav('frameDetails');
   };
   
   self.addFrame = function() {
@@ -133,6 +218,13 @@ function GarageViewModel() {
   self.delFrame = function(frame) {
     if (confirm('Do you really want to dismiss this pilot?')) {
       self.nav('squadronDetails');
+      self.squadronFocus().frames.remove(frame);
+    };
+  };
+  
+  self.killFrame = function(frame) {
+    if (confirm('Boom?')) {
+      self.nav('squadronOverview');
       self.squadronFocus().frames.remove(frame);
     };
   };
@@ -255,11 +347,44 @@ function GarageViewModel() {
   /* Navigation methods */
   
   self.nav = function(pageId) {
-    $('.page').slideUp();
-    $('#' + pageId).slideDown();
+    $('.page').hide();
+    $('#' + pageId).show();
     self.saveSquadrons();
   };
   
+  
+  /* Gameplay methods */
+  
+  self.rounds = ko.observable(11);
+  
+  // Count down to doomsday, check for game over
+  self.countDown = function() {
+    var bestTeam = [];
+    var rounds = self.rounds();
+    rounds--;
+    for (var s in self.squadrons()) {
+      var answer = confirm(self.squadrons()[s].name() + ': Count down to doomsday?');
+      if (answer == true) {
+        rounds--;
+      };
+      if (bestTeam[0] == undefined) {
+        bestTeam.push(self.squadrons()[s]);
+      } else {
+        if (self.squadrons()[s].initiative() >= bestTeam[0].initiative()) {
+          console.log(self.squadrons()[s].initiative());
+          bestTeam.unshift(self.squadrons()[s]);
+        }
+      }
+    };
+    self.rounds(rounds);
+    if (self.rounds() <= 0) {
+      if (bestTeam.length === 1) {
+        alert(bestTeam[0].name() + ' WINS');
+      } else {
+        alert('It is a tie');
+      };
+    };
+  };
   
 };
 
@@ -273,6 +398,14 @@ function SquadronModel() {
   this.name = ko.observable('Unknown Team');
   
   this.frames = ko.observableArray();
+  
+  this.assetValue = ko.observable(5);
+  
+  this.stations = ko.observable(3);
+  
+  this.initiative = ko.computed(function() {
+    return (this.frames().length + parseInt(this.stations())) * this.assetValue(); 
+  }, this);
   
 };
 
