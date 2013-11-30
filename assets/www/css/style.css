@@ -1,0 +1,73 @@
+/************************************************/
+/* The Garageapp styles */
+/************************************************/
+
+/* Hide pages at start */
+.page {display: none;}
+
+/* Style */
+.dialog {padding: 1em;}
+.content {padding: 1em;}
+.titlebar {position: fixed; top: 0; left: 0; right: 0; height: auto; background: #666; min-height: 3em;}
+.actionbar {position: fixed; bottom: 0; left: 0; right: 0; height: 3em; background: #222; text-align: right;}
+.clear {width: 100%; clear: both;}
+
+/* Lists */
+.itemlist {list-style: none; display: block;}
+.itemlist li {display: block; margin: 0.5rem 0;}
+.itemlist li button {display: block; width: 100%; text-align: left;}
+.systemlist {margin-bottom: 1em;}
+.systemlist .btn {float: left; width: 50%;}
+.systemlist .btn span {padding: 0.1em; height: 3em; width: 3em; margin: 0; border: solid 0.25em #fff;}
+#tab-3-content ul {list-style: square; padding-left: 1.5em;}
+
+/* Inputs */
+.namebar {background: transparent; border: none; color: #fff;}
+.systemselect {background: #fff; padding: 0; vertical-align: baseline; display: block; border: none;}
+.systemselect option {padding: 1em 1em 1em 4em; margin: 0 0 0.1em; border: none; display: block; background-size: contain; background-repeat: no-repeat; background-position: 0 0;}
+
+/* System icons */
+.direct, .artillery, .closerange, .movement, .defense, .spotting {display: inline-block; width: 2em; height: 2em; margin: 0 0 0 0.5em; background-repeat: no-repeat; background-position: 0 0; background-color: #fff; background-size: cover; border-radius: 0.25em; vertical-align: middle;}
+.direct, .systemselect option[value="direct fire"] {background-image: url(../img/systems/direct.png)}
+.artillery, .systemselect option[value="artillery"] {background-image: url(../img/systems/artillery.png)}
+.closerange, .systemselect option[value="closerange"] {background-image: url(../img/systems/hand.png)}
+.defense, .systemselect option[value="defense"] {background-image: url(../img/systems/defense.png)}
+.movement, .systemselect option[value="movement"] {background-image: url(../img/systems/move.png)}
+.spotting, .systemselect option[value="spotting"] {background-image: url(../img/systems/spot.png)}
+.systempickerbox {width: 33.33%; float: left; max-width: 8em; height: 9em; overflow: hidden;}
+.systempickerbox-inner {padding: 1em 0.5em 0;}
+.systempickerbox .btn {text-align: center; width: 100%; padding: 1em 0;}
+.systempickerbox .btn span {display: block; border: solid 0.25em #fff; margin: 0 auto 0.5em; padding: 0;}
+
+/* Dice icons */
+.redd, .redd8, .blued, .greend, .greend8, .yellowd, .whited {display: inline-block; width: 3em; height: 3em; background-repeat: no-repeat; background-position: 0 0; background-color: transparent; background-size: contain; text-indent: -1000em; vertical-align: middle; margin: 0.25em;}
+.redd8, .greend8 {width: 3.5em; height: 3.5em;}
+.redd {background-image: url(../img/dice/redd.png)}
+.redd8 {background-image: url(../img/dice/redd8.png)}
+.blued {background-image: url(../img/dice/blued.png)}
+.greend {background-image: url(../img/dice/greend.png)}
+.greend8 {background-image: url(../img/dice/greend8.png)}
+.yellowd {background-image: url(../img/dice/yellowd.png)}
+.whited {background-image: url(../img/dice/whited.png)}
+
+/* System detail page */
+#systemImage {height: 4em; width: 4em; text-align: center; border: solid 0.5em #fff;}
+.systemdescription h2 {margin-top: 1em;}
+.systemdescription .redd, .systemdescription .greend, .systemdescription .blued, .systemdescription .yellowd, .systemdescription .redd8 {width: 2em; height: 2em; margin: 0;}
+
+/* Frame detail page */
+.tab-content {background: #fff; padding: 1em; margin: 0; border: 1px solid #ddd; border-width: 0 1px 1px;}
+.systemlist .systempickerbox {width: 25%; height: auto;}
+.systemlist .systempickerbox .btn {padding: 1em 0.5em;}
+
+
+
+/************************************************/
+/* The Gameapp styles */
+/************************************************/
+
+.doomsdayclock button {margin: 0 0 0 0.5em;}
+.overview-box {padding: 0.5em;}
+.overview-frames li {padding: 0.5em 0;}
+.stations label {}
+.stations input {width: 3em; margin: 0 0.5em;}

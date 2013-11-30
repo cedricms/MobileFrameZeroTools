@@ -29,9 +29,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('companyDetailMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + companyDetailMessage;
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + companyDetailMessage + '</span>';
 		    
 		    jQuery.i18n.prop('companyNameMessage');
 		    document.getElementById('companyNameLabel').innerHTML= companyNameMessage;
@@ -71,63 +71,81 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <form action="" class="navbar-form pull-left mof0Form" id="companyForm" method="post" name="companyForm">
-          	  <input name="companyId" type="hidden"/>
-          	  <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-	          <div class="row">
-	            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="companyNameLabel"></div>
-	            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="companyName" type="text"/></div>
-	          </div>
-	          <fieldset>
-	              <legend class="mof0Legend" id="framesLabel">Frames</legend>
-	          	  <div class="row">
-	              	<div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          	  </div>
-	              <div class="row">
-	                <!-- div class="col-1 col-sm-1 col-lg-3">&nbsp;</div-->
-		            <div class="col-6 col-sm-6 col-lg-6" id="frameSelect"></div>
-		            <div class="col-6 col-sm-6 col-lg-6"><a href="JavaScript:addFrameToCompany();"><img alt="Add frame" src="./img/icons/add.png"></a></div>
-	                <!-- div class="col-6 col-sm-6 col-lg-3">&nbsp;</div-->
-		          </div>
-	          	  <!-- div class="row">
-	              	<div class="col-12 col-sm-12 col-lg-12" id="selectedFrameInformation">&nbsp;</div>
-	          	  </div -->
-		          <div class="row">		            
-                    <div class="mediumBackground">
-                      <input name="nbFrames" type="hidden" value="0"/>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th width="30%"><div class="tableHeader" id="frameLabel"></div></th>
-                            <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
-                            <th width="40%"><div class="tableHeader" id="diceLabel"></div></th>
-                            <th width="5%"><div class="tableHeader" id="nbRocketsLabel"></div></th>
-                            <th width="5%"><div class="tableHeader" id="actionsLabel"></div></th>
-                          </tr>
-                        </thead>
-                        <tbody id="frameTable">
-              
-                        </tbody>
-                      </table>
-                    </div>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <form action="" class="navbar-form pull-left mof0Form" id="companyForm" method="post" name="companyForm">
+            <input name="companyId" type="hidden"/>
+            <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12 text-center"><img alt="Company picture" class="mf0CompanyBigPicture img-responsive" data-rel="external" id="companyPicture" src="./img/backgrounds/camera/camera_600_600.png"/></div>
+          </div>
+            <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+          <div class="row">
+            <div class="col-3 col-sm-3 col-lg-3">&nbsp;</div>
+            <div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:captureCompanyPhoto();"><img alt="Capture photo" src="./img/icons/camera.png" /></a></div>
+            <div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:getPhoto(pictureSource.PHOTOLIBRARY);"><img alt="Photo Library" src="./img/icons/pictures.png" /></a></div>
+            <div class="col-1 col-sm-1 col-lg-1"><a class="smallButton" href="JavaScript:getPhoto(pictureSource.SAVEDPHOTOALBUM);"><img alt="Photo Album" src="./img/icons/report_picture.png" /></a></div>
+            <!--div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:getPhotoByURL();"><img alt="Photo URL" src="./img/icons/picture_link.png" /></a></div-->
+            <div class="col-4 col-sm-4 col-lg-4">&nbsp;</div>
+          </div>
+          <input name="companyPictureURL" type="hidden"/>
+            <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+          <div class="row">
+            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="companyNameLabel"></div>
+            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="companyName" type="text"/></div>
+          </div>
+          <fieldset>
+              <legend class="mof0Legend" id="framesLabel">Frames</legend>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+              </div>
+              <div class="row">
+              <div class="col-12 col-sm-12 col-lg-12 text-center" id="frameSelect"></div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+              </div>
+              <div class="row">
+              <div class="col-12 col-sm-12 col-lg-12 text-center"><a class="smallButton" href="JavaScript:addFrameToCompany();"><img alt="Add frame" src="./img/icons/add.png"></a></div>
+            </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+              </div>
+              <!-- div class="row">
+                <div class="col-12 col-sm-12 col-lg-12" id="selectedFrameInformation">&nbsp;</div>
+              </div -->
+            <div class="row">		            
+                  <div class="mediumBackground">
+                    <input name="nbFrames" type="hidden" value="0"/>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th width="30%"><div class="tableHeader" id="frameLabel"></div></th>
+                          <th width="20%"><div class="tableHeader" id="nbSystemsLabel"></div></th>
+                          <th width="40%"><div class="tableHeader" id="diceLabel"></div></th>
+                          <th width="5%"><div class="tableHeader" id="nbRocketsLabel"></div></th>
+                          <th width="5%"><div class="tableHeader" id="actionsLabel"></div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="frameTable">
+            
+                      </tbody>
+                    </table>
                   </div>
-		      </fieldset>
-		      <div class="row">
-	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
-		          <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
-		          <div class="col-12 col-sm-12 col-lg-12"><a class="largeButton" href="JavaScript:validateCompany();" id="okLabel">OK</a></div>
-		      </div>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-	      </form>
+                </div>
+        </fieldset>
+        <div class="row">
+              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
+            <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
+            <div class="col-12 col-sm-12 col-lg-12 text-center"><a class="largeButton" href="JavaScript:validateCompany();" id="okLabel">OK</a></div>
         </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+      </form>
       </div>
     </div>
   </body>

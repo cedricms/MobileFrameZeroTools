@@ -1,3 +1,18 @@
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+
+var companyImageUrl;
+var companyImageData;
+
+//Wait for device API libraries to load
+//
+document.addEventListener("deviceready",onDeviceReadyPhoto,false);
+
+function onDeviceReadyPhoto() {
+  pictureSource=navigator.camera.PictureSourceType;
+  destinationType=navigator.camera.DestinationType;
+}
+
 function validateCompany() {
 	companyForm = document.getElementById("companyForm");
 
@@ -104,7 +119,12 @@ function queryCompanyIdSuccess(tx, results) {
     	companyName = companyForm.elements["companyName"];
     	companyName.value = row.name;
     	
-    	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [row.id], queryFrameForRowSuccess, errorDB);
+    	companyPictureUrl = row.company_picture_url;
+    	if ((typeof companyPictureUrl != 'undefined') && (companyPictureUrl != null) && (companyPictureUrl != '') && (companyPictureUrl !== '')) {
+    		loadCompanyPhoto(companyPictureUrl);
+    	} // if
+    	
+    	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, nb_rockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [row.id], queryFrameForRowSuccess, errorDB);
     	
     	break;
     } // for
@@ -113,9 +133,10 @@ function queryCompanyIdSuccess(tx, results) {
 function queryFrameForRowSuccess(tx, results) {
 	var len = results.rows.length;
     
+    var framePhotoIdMap = new Object();
     for (var i=0; i<len; i++){
     	var row = results.rows.item(i);
-		addFrameRow(row);
+		addFrameRow(row, framePhotoIdMap);
     
     	companyForm = document.getElementById("companyForm");
     	
@@ -137,9 +158,9 @@ function queryCreateCompany(tx) {
 
 	companyName = companyForm.elements["companyName"].value;
 	
-	//console.log('companyName : ' + companyName);
+    companyPictureURL = companyForm.elements['companyPictureURL'].value;
 	
-	tx.executeSql('INSERT INTO company (name, dt_created) VALUES ("' + companyName + '", datetime("now"))');
+	tx.executeSql('INSERT INTO company (name, company_picture_url, dt_created) VALUES ("' + companyName + '", "' + companyPictureURL + '", datetime("now"))');
 	
 	// Shitty hack to go around the dreaded SQLite error 23 bug
 	nbFrames = parseInt(companyForm.elements["nbFrames"].value);
@@ -202,8 +223,11 @@ function queryModifyCompany(tx) {
 	companyId = companyForm.elements["companyId"].value;
 	
 	companyName = companyForm.elements["companyName"].value;
+
+    companyPictureURL = companyForm.elements['companyPictureURL'].value;
 	
 	updateQuery = 'UPDATE company SET name="' + companyName + '"' +
+			', company_picture_url="' + companyPictureURL + '"' +
 			' WHERE id=' + companyId;
 	
 	tx.executeSql(updateQuery);
@@ -226,7 +250,6 @@ function queryModifyCompany(tx) {
 		while (iFrame <= nbFrames) {
 			companyForm = document.getElementById("companyForm");
 			frameId = companyForm.elements["frameId_" + iFrame];
-			//alert('frameId : ' + frameId);
 			deleted = false;
 			if ((typeof frameId === "undefined") || (frameId == '') || (frameId === '')) {
 				// Probably a deleted frame
@@ -257,11 +280,7 @@ function queryModifyCompany(tx) {
 		
 		sqlInsertCompanyFrame = sqlInsertCompanyFrame + ';';
 		
-		//alert('sqlInsertCompanyFrame : ' + sqlInsertCompanyFrame);
-		
 		tx.executeSql(sqlInsertCompanyFrame);
-		
-		//console.log('Modficaton done');
 	} // if
 }
 
@@ -304,22 +323,23 @@ function queryAddFrameToCompany(tx) {
 	
 	frameToAddId = getSelectedOptionIntValue(frameToAdd);
 	
-    tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range FROM frame f WHERE f.id=?', [frameToAddId], queryAddFrameToCompanySuccess, errorDB);
+    tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range FROM frame f WHERE f.id=?', [frameToAddId], queryAddFrameToCompanySuccess, errorDB);
 }
 
 function queryAddFrameToCompanySuccess(tx, results) {
     var len = results.rows.length;
-        
+       
+    var framePhotoIdMap = new Object();
     for (var i=0; i<len; i++){
       	var row = results.rows.item(i);
-            
-        addFrameRow(row);
+        
+        addFrameRow(row, framePhotoIdMap);
     	
     	break;
    	} // for
 }
 
-function addFrameRow(row) {
+function addFrameRow(row, framePhotoIdMap) {
 	frameToAddMarkUp = '';
     	var nbDefensive = row.nb_defensive;
         var defensiveDice = '';
@@ -405,23 +425,74 @@ function addFrameRow(row) {
 	    nbFrames = parseInt(companyForm.elements["nbFrames"].value);
 	    nbFrames++;
 	    companyForm.elements["nbFrames"].value = nbFrames;
-            
-        frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.frameId + '"/><td class="tableData"><a class="frameNameLink" href="./frameDetail.html?frameId=' + row.frameId + '">' + 
-         	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
-           	tooManySystems + 
-           	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
-           	'<td class="tableData"><input class="mf0SmallNumericInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
-           	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
+           
+    var frameId = row.frameId;
+    frameToAddMarkUp = '<tr id="frame_' + nbFrames + '"><input name="frameId_' + nbFrames + '" type="hidden" value="' + row.frameId + '"/>' +
+    	'<td class="tableData">' +
+        '<div><a href="./frameDetail.html?frameId=' + frameId + '">' +
+	    '<img alt="Frame picture" class="mf0FrameThumbnail" data-rel="external" id="framePicture_' + frameId + '" src="./img/moF0LittleGuy/MoF0LittleGuy_200_225.png"/>' +
+    	'</a></div>' +
+    	'<div><a class="frameNameLink" href="./frameDetail.html?frameId=' + frameId + '">' + 
+      	tooManySystems + ' ' + row.frameName + ' ' + tooManySystems + '</a></div></td><td class="tableData">' + tooManySystems + ' ' + nbSystems + '/4 ' + 
+       	tooManySystems + 
+       	'</td><td class="tableData"><div class="systemDiceList">' + dice + '</div></td>' +
+       	'<td class="tableData"><input class="mf0SmallNumericInput" name="nbRockets_' + nbFrames + '" type="text" value="0"/></td>' +
+       	'<td class="tableData"><a href="Javascript:removeFrame(' + nbFrames + ');"><img alt="Delete" src="./img/icons/cross.png"/></a></td></tr>';
 
 	$('#frameTable').append(frameToAddMarkUp);
+
+            var framePictureUrl = row.framePictureUrl;
+            if ((typeof framePictureUrl != 'undefined') && (framePictureUrl != null) && (framePictureUrl != '') && (framePictureUrl !== '')) {
+            	framePhotoIdMap[framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length)] = frameId;
+            	
+            	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+            		function (fileSystem) {
+						fileSystem.root.getDirectory('MobileFrameZeroTools', null, 
+							function (mfztDirectory) {
+								mfztDirectory.getDirectory('frame', null, 
+									function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
+										frameImageName = framePictureUrl.substring('/MobileFrameZeroTools/frame/'.length, framePictureUrl.length);
+										frameDirectory.getFile(frameImageName, null, 
+											function (fileEntry) {
+    											fileEntry.file(function (file){
+													var reader = new FileReader();
+    												reader.onloadend = function(evt) {
+       	 													frameImageData = evt.target.result;
+        
+    														// Get image handle
+	        												var framePicture = document.getElementById('framePicture_' + framePhotoIdMap[file.name]);
+    	    												// Show the captured photo
+        													// The inline CSS rules are used to resize the image
+        													framePicture.src = "data:image/jpeg;base64," + frameImageData;
+   														};
+    													reader.readAsBinaryString(file);
+													}, 
+    												function (error) {
+  														alert('Unable to load the following file : framePictureUrl (' + error.code + ')');
+													});
+											}, 
+											function (error) {
+  												alert('Unable to find the following file : frameImageName (' + error.code + ')');
+											});
+									}, 
+									function (error) {
+  										alert('Unable to find the following directory : frame (' + error.code + ')');
+									});
+							}, 
+							function (error) {
+  								alert('Unable to find the following directory : MobileFrameZeroTools (' + error.code + ')');
+							});
+					}, 
+	            	function (error) {
+  						alert('Unable to load  : ' + framePictureUrl + ' (' + error.code + ')');
+					});
+			} // if
 }
 
 function removeFrame(frameNumber) {
   companyForm = document.getElementById("companyForm");
   frameId = companyForm.elements["frameId_" + frameNumber];
-  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
   frameId.value = '';
-  //alert('frameNumber : ' + frameNumber + ' frameId : ' + frameId.value);
   
   $('#frame_' + frameNumber).remove();
 }
@@ -471,4 +542,145 @@ function queryShowFrameInfoOnSelectSuccess(tx, results) {
 	//$('#selectedFrameInformation').text(frameSelectMarkUp);
 	
 	//$('#selectedFrameInformation').val($("<div/>").html(frameSelectMarkUp).text());
+}
+
+function captureCompanyPhoto() {
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.DATA_URL });
+}
+
+//A button will call this function
+function getPhoto(source) {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL , sourceType: source });
+}
+
+function onPhotoSuccess(imageData) {
+  if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
+	companyImageData = imageData;
+	
+    // Get image handle
+    var companyPicture = document.getElementById('companyPicture');
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    companyPicture.src = "data:image/jpeg;base64," + companyImageData;
+    
+	// Init file system
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
+  } // if
+}
+
+//Called if something bad happens.
+function onPhotoFail(message) {
+  alert('Failed because: ' + message);
+}
+
+function onFileSystemSuccess(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', {create: true}, onGetMfztDirectory, onGetMfztDirectoryFail);
+}
+
+function onGetMfztDirectory(mfztDirectory) {
+	mfztDirectory.getDirectory('company', {create: true}, onGetCompanyDirectory, onGetCompanyDirectoryFail);
+}
+
+function onGetCompanyDirectory(companyDirectory) {
+	currentDate = new Date();
+	fileName = 'company_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.base64jpg';
+	companyDirectory.getFile(fileName, {create: true}, createCompanyImageEntry, createCompanyImageEntryFail);
+
+	companyForm = document.getElementById('companyForm');
+	companyPictureURL = companyForm.elements['companyPictureURL'];
+	companyPictureURL.value = '/MobileFrameZeroTools/company/' + fileName;
+}
+
+function createCompanyImageEntry(imageFileEntry) {
+	imageFileEntry.createWriter(writeFrameImage, onFileSystemFail);
+}
+
+function writeFrameImage(writer) {
+	writer.onwrite = function(evt) {
+        // Nothing else to do
+    };
+    
+    writer.write(companyImageData);
+}
+
+function onGetMfztDirectoryFail(error) {
+    alert('onGetMfztDirectoryFail : ' + error.code);
+}
+
+function onGetCompanyDirectoryFail(error) {
+    alert('onGetCompanyDirectoryFail : ' + error.code);
+}
+
+function createCompanyImageEntryFail(error) {
+    alert('createCompanyImageEntryFail : ' + error.code);
+}
+
+function onFileSystemFail(error) {
+    alert('onFileSystemFail : ' + error.code);
+}
+
+function loadCompanyPhoto(companyPictureUrl) {
+	companyImageUrl = companyPictureUrl;
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, getFileSystemLoadCompanyPhoto, getFileSystemLoadCompanyPhotoFail);
+}
+
+function getFileSystemLoadCompanyPhoto(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadCompanyPhoto, onGetMfztDirectoryLoadCompanyPhotoFail);
+}
+
+function onGetMfztDirectoryLoadCompanyPhoto(mfztDirectory) {
+	mfztDirectory.getDirectory('company', null, onGetCompanyDirectoryLoadCompanyPhoto, onGetCompanyDirectoryLoadCompanyPhotoFail);
+}
+
+function onGetCompanyDirectoryLoadCompanyPhoto(companyDirectory) {
+	companyImageName = companyImageUrl.substring('/MobileFrameZeroTools/company/'.length, companyImageUrl.length);
+	companyDirectory.getFile(companyImageName, null, getFileEntryLoadCompanyPhoto, getFileEntryLoadCompanyPhotoFail);
+}
+
+function onGetCompanyDirectoryLoadCompanyPhotoFail(error) {
+    alert('onGetCompanyDirectoryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function onGetMfztDirectoryLoadCompanyPhotoFail(error) {
+    alert('onGetMfztDirectoryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadCompanyPhoto(fileEntry) {
+    fileEntry.file(getFileLoadCompanyPhoto, getFileLoadCompanyPhotoFail);
+}
+
+function getFileLoadCompanyPhoto(file){
+	var reader = new FileReader();
+    reader.onloadend = function(evt) {
+        companyImageData = evt.target.result;
+        
+    	// Get image handle
+        var companyPicture = document.getElementById('companyPicture');
+        // Show the captured photo
+        // The inline CSS rules are used to resize the image
+        companyPicture.src = "data:image/jpeg;base64," + companyImageData;
+    };
+    reader.readAsBinaryString(file);
+}
+
+function getFileLoadCompanyPhotoFail(error) {
+    alert('getFileLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadCompanyPhotoFail(error) {
+    alert('getFileEntryLoadCompanyPhotoFail : ' + error.code);
+}
+
+function getFileSystemLoadCompanyPhotoFail(error) {
+    alert('getFileSystemLoadCompanyPhotoFail : ' + error.code);
 }

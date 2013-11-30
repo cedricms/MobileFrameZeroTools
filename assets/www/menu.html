@@ -15,8 +15,6 @@
       // load I18N bundles
       jQuery(document).ready(function() {
     	initLanguages();
-
-	    initDb();
 	  });
 		
 	  function loadBundles(lang) {
@@ -27,27 +25,7 @@
 		  language:lang, 
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage;
-		    jQuery.i18n.prop('createFrameMessage');
-		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="./frameDetail.html">' + createFrameMessage + '</a>';
-		    jQuery.i18n.prop('listFramesMessage');
-		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="./listFrames.html">' + listFramesMessage + '</a>';
-			jQuery.i18n.prop('companyCreationGuidelinesMessage');
-		    document.getElementById('companyCreationGuidelines').innerHTML='<a class="largeButton" href="./companyCreationGuidelines.html">' + companyCreationGuidelinesMessage + '</a>';
-		    jQuery.i18n.prop('createCompanyMessage');
-		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';
-		    jQuery.i18n.prop('listCompaniesMessage');
-		    document.getElementById('listCompanies').innerHTML='<a class="largeButton" href="./listCompanies.html">' + listCompaniesMessage + '</a>';
-		    jQuery.i18n.prop('settingUpTheBattlefieldMessage');
-		    document.getElementById('settingUpTheBattlefield').innerHTML='<a class="largeButton" href="./settingUpTheBattlefield.html">' + settingUpTheBattlefieldMessage + '</a>';
-			jQuery.i18n.prop('usefulLinksMessage');
-		    document.getElementById('usefulLinks').innerHTML='<a class="largeButton" href="./usefulLinks.html">' + usefulLinksMessage + '</a>';
-			jQuery.i18n.prop('faqMessage');
-		    document.getElementById('faq').innerHTML='<a class="largeButton" href="./faq.html">' + faqMessage + '</a>';
-			jQuery.i18n.prop('aboutMessage');
-		    document.getElementById('about').innerHTML='<a class="largeButton" href="./about.html">' + aboutMessage + '</a>';
-			jQuery.i18n.prop('resetDatabaseMessage');
-		    document.getElementById('resetDatabase').innerHTML='<a class="largeButton" href="Javascript:resetDatabase()">' + resetDatabaseMessage + '</a>';
+          document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title main-title">' + applicationTitleMessage + '</span>';
 	      }
 	    });
 	  }
@@ -59,40 +37,20 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
-  <body>
-    <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createFrame"></div>
+  <body class="home">
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 hidden-xs">
+            <img src="img/frames/superthruster.jpg" class="img-responsive" style="position: relative; bottom: 20px; right: 20px;">
           </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="listFrames"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="companyCreationGuidelines"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="createCompany"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="listCompanies"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="settingUpTheBattlefield"></div>
-          </div>
-		  <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="usefulLinks"></div>
-          </div>
-		  <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="faq"></div>
-          </div>
-		  <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="about"></div>
-          </div>
-		  <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="resetDatabase"></div>
+          <div class="col-xs-12 col-sm-6 col-md-8 menu">
+            <div class="row">
+              <div class="col-md-6">
+                <h2><a class="largeButton" href="./garageapp.html">Create mobile frames and squadrons</a></h2>
+                <h2><a class="largeButton" href="./gameplayapp.html">Play the game</a></h2>
+              </div>
+            </div>
           </div>
         </div>
       </div>

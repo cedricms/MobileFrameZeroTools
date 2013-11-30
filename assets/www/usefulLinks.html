@@ -23,9 +23,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('usefulLinksMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + usefulLinksMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + usefulLinksMessage + '</span>';
 
 		    jQuery.i18n.prop('officialSiteMessage');
 		    document.getElementById('officialSiteLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'http://mobileframezero.com/mfz/\', \'_system\');">' + officialSiteMessage + '</a>';
@@ -68,6 +68,12 @@
 		    
 		    jQuery.i18n.prop('mobileFrameZeroWikiMessage');
 		    document.getElementById('mobileFrameZeroWikiLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'http://mobileframezero.wikia.com/wiki/Mobile_Frame_Zero:_Rapid_Attack_Wiki\', \'_system\');">' + mobileFrameZeroWikiMessage + '</a>';
+
+		    jQuery.i18n.prop('applicationRoadmapMessage');
+		    document.getElementById('applicationRoadmapLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'https://trello.com/b/l1l0AopN/mobile-frame-zero-tools\', \'_system\');">' + applicationRoadmapMessage + '</a>';
+		    
+		    jQuery.i18n.prop('mf0tOnGPlusMessage');
+		    document.getElementById('mf0tOnGPlusLabel').innerHTML = '<a class="largeButton" href="javascript:window.open(\'https://plus.google.com/u/0/communities/116296458798799037491\', \'_system\');">' + mf0tOnGPlusMessage + '</a>';
 	      }
 	    });
 	  }
@@ -80,52 +86,55 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="officialSiteLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="divNullLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mechatonicLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mf0OnGPlusLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameHangarLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="noBsJustAbsLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="orion6Label"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mfdfDesignBlogLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameGarageLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroDicerollerLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroFacebookPageLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroFlickrGroupLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroSubredditLabel"></div>
-          </div>
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroWikiLabel"></div>
-          </div>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="officialSiteLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="divNullLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mechatonicLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mf0OnGPlusLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameHangarLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="noBsJustAbsLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="orion6Label"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mfdfDesignBlogLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameGarageLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroDicerollerLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroFacebookPageLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroFlickrGroupLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroSubredditLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mobileFrameZeroWikiLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="applicationRoadmapLabel"></div>
+        </div>
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12 text-center largeButton" id="mf0tOnGPlusLabel"></div>
         </div>
       </div>
     </div>

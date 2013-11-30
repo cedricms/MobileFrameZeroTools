@@ -24,9 +24,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('companyCreationGuidelinesMessage');
-		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + companyCreationGuidelinesMessage;
+		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + companyCreationGuidelinesMessage + '</span>';
 
 		    jQuery.i18n.prop('skirmishMessage');
 		    document.getElementById('skirmishLabel').innerHTML = skirmishMessage;
@@ -75,37 +75,54 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <div class="row largeRow">
-            <div class="col-12 col-sm-12 col-lg-12">
-              <ul id="tabs" class="nav nav-tabs mf0Tab" data-tabs="tabs">
-                <li class="active mf0Tab"><a class="mf0Tab" href="#skirmish" data-toggle="tab" id="skirmishLabel"></a></li>
-                <li class="mf0Tab"><a class="mf0Tab" href="#battle" data-toggle="tab" id="battleLabel"></a></li>
-              </ul>
-              <div id="my-tab-content" class="tab-content mfzTabContent">
-                <div class="tab-pane active" id="skirmish">
-                  <ul class="bulletPoint">
-                    <li id="skirmish2PlayersLabel"></li>
-                    <li id="skirmish3PlayersLabel"></li>
-                    <li id="skirmish4PlayersLabel"></li>
-                    <li id="skirmish5PlayersLabel"></li>
-                  </ul>
-                  <p id="skirmish3SingleShotRocketsLabel"></p>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <div class="row largeRow">
+          <div class="col-12 col-sm-12 col-lg-12">
+            
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                      <span id="skirmishLabel"></span>
+                    </a>
+                  </h4>
                 </div>
-                <div class="tab-pane" id="battle">
-                  <ul class="bulletPoint">
-                    <li id="battle2PlayersLabel"></li>
-                    <li id="battle3PlayersLabel"></li>
-                    <li id="battle4PlayersLabel"></li>
-                    <li id="battle5PlayersLabel"></li>
-                  </ul>
-                  <p id="battle3SingleShotRocketsLabel"></p>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <ul class="bulletPoint">
+                      <li id="skirmish2PlayersLabel"></li>
+                      <li id="skirmish3PlayersLabel"></li>
+                      <li id="skirmish4PlayersLabel"></li>
+                      <li id="skirmish5PlayersLabel"></li>
+                    </ul>
+                    <p id="skirmish3SingleShotRocketsLabel"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      <span id="battleLabel"></span>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ul class="bulletPoint">
+                      <li id="battle2PlayersLabel"></li>
+                      <li id="battle3PlayersLabel"></li>
+                      <li id="battle4PlayersLabel"></li>
+                      <li id="battle5PlayersLabel"></li>
+                    </ul>
+                    <p id="battle3SingleShotRocketsLabel"></p>
+                  </div>
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>

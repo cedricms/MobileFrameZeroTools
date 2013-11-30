@@ -1,5 +1,20 @@
 var systemsMessage = "";
 
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+
+var frameImageUrl;
+var frameImageData;
+
+//Wait for device API libraries to load
+//
+document.addEventListener("deviceready",onDeviceReadyPhoto,false);
+
+function onDeviceReadyPhoto() {
+  pictureSource=navigator.camera.PictureSourceType;
+  destinationType=navigator.camera.DestinationType;
+}
+
 function getNbSystems() {
 	result = 0;
 	
@@ -107,6 +122,8 @@ function queryCreateFrame(tx) {
 
 	frameName = frameForm.elements["frameName"].value;
 	
+    framePictureURL = frameForm.elements['framePictureURL'].value;
+	
 	defensiveSystem = frameForm.elements["defensiveSystem"];	
 	defensiveSystemValue = getRadioIntValue(defensiveSystem);
 
@@ -125,8 +142,9 @@ function queryCreateFrame(tx) {
 	artilleryRangeWeaponSystem = frameForm.elements["artilleryRangeWeaponSystem"];
 	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
 	
-	tx.executeSql('INSERT INTO frame (name, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("' + 
+	tx.executeSql('INSERT INTO frame (name, frame_picture_url, nb_defensive, nb_movement, nb_surveillance_communication, nb_hand_to_hand, nb_direct_fire, nb_artillery_range, dt_created) VALUES ("' + 
 			frameName + '", ' + 
+			'"' + framePictureURL + '", ' + 
 			defensiveSystemValue + ', ' +
 			movementSystemValue + ', ' +
 			surveillanceCommunicationSystemValue + ', ' +
@@ -147,6 +165,8 @@ function queryModifyFrame(tx) {
 	frameId = frameForm.elements["frameId"].value;
 	
 	frameName = frameForm.elements["frameName"].value;
+
+    framePictureURL = frameForm.elements['framePictureURL'].value;
 	
 	defensiveSystem = frameForm.elements["defensiveSystem"];	
 	defensiveSystemValue = getRadioIntValue(defensiveSystem);
@@ -167,6 +187,7 @@ function queryModifyFrame(tx) {
 	artilleryRangeWeaponSystemValue = getRadioIntValue(artilleryRangeWeaponSystem);
 	
 	updateQuery = 'UPDATE frame SET name="' + frameName + '"' +
+			', frame_picture_url="' + framePictureURL + '"' +
 			', nb_defensive=' + defensiveSystemValue +
 			', nb_movement=' + movementSystemValue +
 			', nb_surveillance_communication=' + surveillanceCommunicationSystemValue +
@@ -449,6 +470,11 @@ function queryFrameByIdSuccess(tx, results) {
     	frameName = frameForm.elements["frameName"];
     	frameName.value = row.name;
     	
+    	framePictureUrl = row.frame_picture_url;
+    	if ((typeof framePictureUrl != 'undefined') && (framePictureUrl != null) && (framePictureUrl != '') && (framePictureUrl !== '')) {
+    		loadFramePhoto(framePictureUrl);
+    	} // if
+    	
     	defensiveSystem = frameForm.elements["defensiveSystem"];
     	setRadioValue(defensiveSystem, row.nb_defensive);
     	
@@ -474,4 +500,198 @@ function queryFrameByIdSuccess(tx, results) {
 // Transaction error callback
 function errorDB(tx, err) {
 	alert("Error processing SQL: "+err);
+}
+
+function captureFramePhoto() {
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, allowEdit: true, destinationType: destinationType.DATA_URL });
+}
+
+//A button will call this function
+function getPhoto(source) {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoSuccess, onPhotoFail, { quality: 90, destinationType: destinationType.DATA_URL , sourceType: source });
+}
+
+function onPhotoSuccess(imageData) {
+  if ((typeof imageData != 'undefined') && (imageData != null) && (imageData != '') && (imageData !== '')) {
+	frameImageData = imageData;
+	
+    // Get image handle
+    var framePicture = document.getElementById('framePicture');
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    framePicture.src = "data:image/jpeg;base64," + frameImageData;
+    
+	// Init file system
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
+  } // if
+}
+
+function movePic(file){ 
+    window.resolveLocalFileSystemURI(file, resolveMoveToLocalFrameGalleryOnSuccess, resolveMoveToLocalFrameGalleryOnError); 
+}
+
+//Callback function when the file system uri has been resolved
+function resolveMoveToLocalFrameGalleryOnSuccess(entry){ 
+  currentDate = new Date();
+  fileName = 'frame_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.jpg';
+  var mobileFrameZeroToolsFolder = 'MobileFrameZeroTools';
+  var frameFolder = 'frame';
+
+  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+	  //The folder is created if doesn't exist
+	  fileSys.root.getDirectory( mobileFrameZeroToolsFolder,
+                  {create:true, exclusive: false},
+                  function(mfztDirectory) {
+                	  mfztDirectory.getDirectory(frameFolder, {create: true}, function(frameDirectory) {                    	  
+                          entry.copyTo(frameDirectory, fileName,  successMove, resolveMoveToLocalFrameGalleryOnError);
+                      }, resolveMoveToLocalFrameGalleryOnError);
+                  },
+                  resolveMoveToLocalFrameGalleryOnError);
+                  },
+                  resolveMoveToLocalFrameGalleryOnError);
+}
+
+//Callback function when the file has been moved successfully - inserting the complete path
+function successMove(entry) {
+	frameForm = document.getElementById('frameForm');
+	framePictureURL = frameForm.elements['framePictureURL'];
+	newFramePhotoPath = entry.fullPath;
+	framePictureURL.value = newFramePhotoPath;
+}
+
+function resolveMoveToLocalFrameGalleryOnError(error) {
+  alert('resolveMoveToLocalFrameGalleryOnError : ' + error.code);
+}
+
+function onFileSystemSuccess(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', {create: true}, onGetMfztDirectory, onGetMfztDirectoryFail);
+}
+
+function onGetMfztDirectory(mfztDirectory) {
+	mfztDirectory.getDirectory('frame', {create: true}, onGetFrameDirectory, onGetFrameDirectoryFail);
+}
+
+function onGetFrameDirectory(frameDirectory) {
+	currentDate = new Date();
+	fileName = 'frame_' +
+			   currentDate.getFullYear() + '_' + 
+			   currentDate.getMonth() + '_' + 
+			   currentDate.getUTCDate() + '_' + 
+			   currentDate.getUTCHours() + '_' + 
+			   currentDate.getUTCMinutes() + '_' + 
+			   currentDate.getUTCSeconds() + '_' + 
+			   currentDate.getUTCMilliseconds() + '.base64jpg';
+	frameDirectory.getFile(fileName, {create: true}, createFrameImageEntry, createFrameImageEntryFail);
+
+	frameForm = document.getElementById('frameForm');
+	framePictureURL = frameForm.elements['framePictureURL'];
+	framePictureURL.value = '/MobileFrameZeroTools/frame/' + fileName;
+}
+
+function createFrameImageEntry(imageFileEntry) {
+	imageFileEntry.createWriter(writeFrameImage, onFileSystemFail);
+}
+
+function writeFrameImage(writer) {
+	writer.onwrite = function(evt) {
+        // Nothing else to do
+    };
+    
+    writer.write(frameImageData);
+}
+
+function onGetMfztDirectoryFail(error) {
+    alert('onGetMfztDirectoryFail : ' + error.code);
+}
+
+function onGetFrameDirectoryFail(error) {
+    alert('onGetFrameDirectoryFail : ' + error.code);
+}
+
+function createFrameImageEntryFail(error) {
+    alert('createFrameImageEntryFail : ' + error.code);
+}
+
+function onFileSystemFail(error) {
+    alert('onFileSystemFail : ' + error.code);
+}
+
+//Called if something bad happens.
+function onPhotoFail(message) {
+  alert('Failed because: ' + message);
+}
+
+function getPhotoByURL() {
+  frameForm = document.getElementById('frameForm');
+  framePictureURL = frameForm.elements['framePictureURL'];
+  
+  jQuery.i18n.prop('pleaseEnterAUrlMessage');
+  imageURL = prompt(pleaseEnterAUrlMessage + ' : ',framePictureURL.value);
+  onPhotoURISuccess(imageURL);
+}
+
+function loadFramePhoto(framePictureUrl) {
+	frameImageUrl = framePictureUrl;
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, getFileSystemLoadFramePhoto, getFileSystemLoadFramePhotoFail);
+}
+
+function getFileSystemLoadFramePhoto(fileSystem) {
+	fileSystem.root.getDirectory('MobileFrameZeroTools', null, onGetMfztDirectoryLoadFramePhoto, onGetMfztDirectoryLoadFramePhotoFail);
+}
+
+function onGetMfztDirectoryLoadFramePhoto(mfztDirectory) {
+	mfztDirectory.getDirectory('frame', null, onGetFrameDirectoryLoadFramePhoto, onGetFrameDirectoryLoadFramePhotoFail);
+}
+
+function onGetFrameDirectoryLoadFramePhoto(frameDirectory) {
+	frameImageName = frameImageUrl.substring('/MobileFrameZeroTools/frame/'.length, frameImageUrl.length);
+	frameDirectory.getFile(frameImageName, null, getFileEntryLoadFramePhoto, getFileEntryLoadFramePhotoFail);
+}
+
+function onGetFrameDirectoryLoadFramePhotoFail(error) {
+    alert('onGetFrameDirectoryLoadFramePhotoFail : ' + error.code);
+}
+
+function onGetMfztDirectoryLoadFramePhotoFail(error) {
+    alert('onGetMfztDirectoryLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadFramePhoto(fileEntry) {
+    fileEntry.file(getFileLoadFramePhoto, getFileLoadFramePhotoFail);
+}
+
+function getFileLoadFramePhoto(file){
+	var reader = new FileReader();
+    reader.onloadend = function(evt) {
+        frameImageData = evt.target.result;
+        
+    	// Get image handle
+        var framePicture = document.getElementById('framePicture');
+        // Show the captured photo
+        // The inline CSS rules are used to resize the image
+        framePicture.src = "data:image/jpeg;base64," + frameImageData;
+    };
+    reader.readAsBinaryString(file);
+}
+
+function getFileLoadFramePhotoFail(error) {
+    alert('getFileLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileEntryLoadFramePhotoFail(error) {
+    alert('getFileEntryLoadFramePhotoFail : ' + error.code);
+}
+
+function getFileSystemLoadFramePhotoFail(error) {
+    alert('getFileSystemLoadFramePhotoFail : ' + error.code);
 }

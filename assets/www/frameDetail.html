@@ -30,9 +30,9 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-		    jQuery.i18n.prop('applicationTitleMessage');
+        jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('frameDetailMessage');
-		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + applicationTitleMessage + '<br/>' + frameDetailMessage;
+		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + frameDetailMessage + '</span>';
 		    
 		    jQuery.i18n.prop('frameNameMessage');
 		    document.getElementById('frameNameLabel').innerHTML= frameNameMessage;
@@ -60,110 +60,122 @@
     <link href="./css/mof0.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <div class="col-12 col-sm-12 col-lg-12 pageTitle" id="applicationTitle"></div>
-      <div class="row text-center">
-        <div class="col-12 col-sm-12 col-lg-12 pageSection">
-          <form action="" class="navbar-form pull-left mof0Form" id="frameForm" method="post" name="frameForm">
-          	  <input name="frameId" type="hidden"/>
-          	  <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-	          <div class="row">
-	            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="frameNameLabel"></div>
-	            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="frameName" type="text"/></div>
-	          </div>
-	          <fieldset>
-	              <legend class="mof0Legend" id="systemsLabel">Systems</legend>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="2">2</label></div>
-		          </div>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Movement" src="./img/dice/Move.png"/></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="2">2</label></div>
-		          </div>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="2">2</label></div>
-		          </div>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="2">2</label></div>
-		          </div>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="2">2</label></div>
-		          </div>
-		          <div class="row systemRow">
-		            <div class="col-3 col-sm-3 col-lg-3"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="0">0</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="1">1</label></div>
-		            <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="2">2</label></div>
-		          </div>
-		      </fieldset>
-		      <fieldset>
-                  <legend class="mof0Legend" id="diceLabel">Dice</legend>
-	              <div class="row">
-	                  <div class="col-12 col-sm-12 col-lg-12">
-	                      <div class="systemDiceZone">
-	                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
-	                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
-	                      </div>
-	                      <div class="systemDiceZone" id="defensiveDice">
-	                          <div class="systemDie" id="defensive1"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
-	                          <div class="systemDie" id="defensive2"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
-                          </div>
-	                      <div class="systemDiceZone" id="moveDice">
-	                          <div class="systemDie" id="move1"><img alt="Movement" src="./img/dice/Move.png"/></div>
-	                          <div class="systemDie" id="move2"><img alt="Movement" src="./img/dice/Move.png"/></div>
-	                          <div class="systemDie" id="moveD8"><img alt="Movement" src="./img/dice/Move D8.png"/></div>
-                          </div>
-	                      <div class="systemDiceZone" id="spottingDice">
-	                          <div class="systemDie" id="spotting1"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
-	                          <div class="systemDie" id="spotting2"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
-                          </div>
-	                      <div class="systemDiceZone" id="hthDice">
-	                          <div class="systemDie" id="hth1"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
-	                          <div class="systemDie" id="hth2"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
-	                          <div class="systemDie" id="hthD8"><img alt="Hand-to-hand weapon" src="./img/dice/HtH D8.png"></div>
-                          </div>
-	                      <div class="systemDiceZone" id="directDice">
-	                          <div class="systemDie" id="direct1"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
-	                          <div class="systemDie" id="direct2"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
-	                          <div class="systemDie" id="directD8"><img alt="Direct fire weapon" src="./img/dice/Direct D8.png"></div>
-                          </div>
-	                      <div class="systemDiceZone" id="artilleryDice">
-	                          <div class="systemDie" id="artillery1"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
-	                          <div class="systemDie" id="artillery2"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
-	                          <div class="systemDie" id="artilleryD8"><img alt="Artillery range weapon" src="./img/dice/Artillery D8.png"></div>
-                          </div>
-	                  </div>
-	              </div>
-	          </fieldset>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-		      <div class="row">
-	              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
-		          <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
-		          <div class="col-12 col-sm-12 col-lg-12"><a class="largeButton" href="JavaScript:validateFrame();" id="okLabel">OK</a></div>
-		      </div>
-	          <div class="row">
-	            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
-	          </div>
-	      </form>
+    <h1 class="pageTitle" id="applicationTitle"></h1>
+      <div class="pageSection">
+        <form action="" class="navbar-form mof0Form" id="frameForm" method="post" name="frameForm">
+            <input name="frameId" type="hidden"/>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-lg-12 text-center"><img alt="Frame picture" class="mf0FrameBigPicture img-responsive" data-rel="external" id="framePicture" src="./img/backgrounds/camera/camera_600_600.png"/></div>
+            </div>
+            <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+          <div class="row">
+            <div class="col-3 col-sm-3 col-lg-3">&nbsp;</div>
+            <div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:captureFramePhoto();"><img alt="Capture photo" src="./img/icons/camera.png" /></a></div>
+            <div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:getPhoto(pictureSource.PHOTOLIBRARY);"><img alt="Photo Library" src="./img/icons/pictures.png" /></a></div>
+            <div class="col-1 col-sm-1 col-lg-1"><a class="smallButton" href="JavaScript:getPhoto(pictureSource.SAVEDPHOTOALBUM);"><img alt="Photo Album" src="./img/icons/report_picture.png" /></a></div>
+            <!--div class="col-2 col-sm-2 col-lg-2"><a class="smallButton" href="JavaScript:getPhotoByURL();"><img alt="Photo URL" src="./img/icons/picture_link.png" /></a></div-->
+            <div class="col-4 col-sm-4 col-lg-4">&nbsp;</div>
+          </div>
+          <input name="framePictureURL" type="hidden"/>
+            <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+          <div class="row">
+            <div class="col-3 col-sm-3 col-lg-3 formLabel" id="frameNameLabel"></div>
+            <div class="col-9 col-sm-9 col-lg-9"><input class="span4" name="frameName" type="text"/></div>
+          </div>
+          <fieldset>
+              <legend class="mof0Legend" id="systemsLabel">Systems</legend>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="defensiveSystem" value="2">2</label></div>
+            </div>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Movement" src="./img/dice/Move.png"/></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="movementSystem" value="2">2</label></div>
+            </div>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="surveillanceCommunicationSystem" value="2">2</label></div>
+            </div>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="handToHandWeaponSystem" value="2">2</label></div>
+            </div>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="directFireWeaponSystem" value="2">2</label></div>
+            </div>
+            <div class="row systemRow">
+              <div class="col-3 col-sm-3 col-lg-3"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="0">0</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="1">1</label></div>
+              <div class="col-3 col-sm-3 col-lg-3"><label onClick="updateFrame()"><input type="radio" name="artilleryRangeWeaponSystem" value="2">2</label></div>
+            </div>
+        </fieldset>
+        <fieldset>
+                <legend class="mof0Legend" id="diceLabel">Dice</legend>
+              <div class="row">
+                  <div class="col-12 col-sm-12 col-lg-12">
+                      <div class="systemDiceZone">
+                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
+                          <div class="systemDie"><img alt="Wild" src="./img/dice/White Die.png"></div>
+                      </div>
+                      <div class="systemDiceZone" id="defensiveDice">
+                          <div class="systemDie" id="defensive1"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
+                          <div class="systemDie" id="defensive2"><img alt="Defensive" src="./img/dice/Defense.png"/></div>
+                        </div>
+                      <div class="systemDiceZone" id="moveDice">
+                          <div class="systemDie" id="move1"><img alt="Movement" src="./img/dice/Move.png"/></div>
+                          <div class="systemDie" id="move2"><img alt="Movement" src="./img/dice/Move.png"/></div>
+                          <div class="systemDie" id="moveD8"><img alt="Movement" src="./img/dice/Move D8.png"/></div>
+                        </div>
+                      <div class="systemDiceZone" id="spottingDice">
+                          <div class="systemDie" id="spotting1"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
+                          <div class="systemDie" id="spotting2"><img alt="Surveillance/communication" src="./img/dice/Spotting.png"></div>
+                        </div>
+                      <div class="systemDiceZone" id="hthDice">
+                          <div class="systemDie" id="hth1"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
+                          <div class="systemDie" id="hth2"><img alt="Hand-to-hand weapon" src="./img/dice/HtH.png"></div>
+                          <div class="systemDie" id="hthD8"><img alt="Hand-to-hand weapon" src="./img/dice/HtH D8.png"></div>
+                        </div>
+                      <div class="systemDiceZone" id="directDice">
+                          <div class="systemDie" id="direct1"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
+                          <div class="systemDie" id="direct2"><img alt="Direct fire weapon" src="./img/dice/Direct.png"></div>
+                          <div class="systemDie" id="directD8"><img alt="Direct fire weapon" src="./img/dice/Direct D8.png"></div>
+                        </div>
+                      <div class="systemDiceZone" id="artilleryDice">
+                          <div class="systemDie" id="artillery1"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
+                          <div class="systemDie" id="artillery2"><img alt="Artillery range weapon" src="./img/dice/Artillery.png"></div>
+                          <div class="systemDie" id="artilleryD8"><img alt="Artillery range weapon" src="./img/dice/Artillery D8.png"></div>
+                        </div>
+                  </div>
+              </div>
+          </fieldset>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+        <div class="row">
+              <!--div class="col-6 col-sm-6 col-lg-6"><button type="reset" class="btn formButton" id="resetLabel">Reset</button></div-->
+            <!--div class="col-12 col-sm-12 col-lg-12"><button type="submit" class="btn formButton" id="okLabel">OK</button></div-->
+            <div class="col-12 col-sm-12 col-lg-12 text-center"><a class="largeButton" href="JavaScript:validateFrame();" id="okLabel">OK</a></div>
         </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">&nbsp;</div>
+          </div>
+      </form>
       </div>
     </div>
   </body>
