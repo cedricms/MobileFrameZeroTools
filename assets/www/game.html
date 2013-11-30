@@ -3,7 +3,7 @@
   <head>
     <title>Mobile Frame Zero Tools</title>
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     
     <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
@@ -29,19 +29,22 @@
 		  mode:'both',
 		  language:lang, 
 		  callback: function() {
-        jQuery.i18n.prop('applicationTitleMessage');
+        	jQuery.i18n.prop('applicationTitleMessage');
 		    jQuery.i18n.prop('gameMessage');
 		    document.getElementById('applicationTitle').innerHTML = getBackButtonMarkup(applicationTitleMessage) + '<span class="title">' + gameMessage + '</span>';
 		    
 		    jQuery.i18n.prop('roundsUntilDoomsDayMessage');
-		    document.getElementById('roundsUntilDoomsDayLabel').innerHTML = roundsUntilDoomsDayMessage
+		    document.getElementById('roundsUntilDoomsDayLabel').innerHTML = roundsUntilDoomsDayMessage;
+		    
+		    jQuery.i18n.prop('startTimeMessage');
+		    document.getElementById('startTimeLabel').innerHTML = startTimeMessage;
 		    
 		    jQuery.i18n.prop('nextRoundMessage');
 		    document.getElementById('nextRoundButton').innerHTML='<a class="smallButton" href="Javascript:nextRound();">' + nextRoundMessage + '</a>';
+		    
+	    	initGame();
 	      }
 	    });
-	    
-	    initGame();
 	  }
     </script>
     
@@ -54,12 +57,17 @@
   <body>
     <h1 class="pageTitle" id="applicationTitle"></h1>
     <div class="pageSection">
-      <div class="well">
-        <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
-        <h2>
-          <span class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></span>
-          <strong class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></strong>
-        </h2>
+      <div class="gameRoundsBar">
+          <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
+          <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
+          <div class="startTimeLabel" id="startTimeLabel"></div>
+          <div class="formattedStartTime" data-bind="text: formattedStartTime"></div>
+          <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          &nbsp;
+        </div>
       </div>
       <div data-bind="foreach: companies" class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -77,7 +85,7 @@
                 <div class="sys-panel" data-bind="visible: nbHandToHand"><span data-bind="text: nbHandToHand"></span> x <img src="./img/dice/HtH.png"></div>
                 <div class="sys-panel" data-bind="visible: nbDirectFire"><span data-bind="text: nbDirectFire"></span> x <img src="./img/dice/Direct.png"></div>
                 <div class="sys-panel" data-bind="visible: nbArtilleryRange"><span data-bind="text: nbArtilleryRange"></span> x <img src="./img/dice/Artillery.png"></div>
-                <div data-bind="visible: nbRockets"><span data-bind="text: nbRockets"></span> x One-shot Rockets</div>
+                <div data-bind="visible: nbRockets"><span data-bind="text: nbRockets"></span> x <img src="./img/dice/One-Shot Rocket.png"></div>
               </div>
             </div>
           </div>

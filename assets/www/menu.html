@@ -3,7 +3,7 @@
   <head>
     <title>Mobile Frame Zero Tools</title>
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     
     <script type="text/javascript" charset="utf-8" src="./js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/jquery-1.10.2.min.js"></script>
@@ -28,23 +28,33 @@
 		  callback: function() {
 		    jQuery.i18n.prop('applicationTitleMessage');
 		    document.getElementById('applicationTitle').innerHTML= getBackButtonMarkup(applicationTitleMessage) + '<span class="title main-title">' + applicationTitleMessage + '</span>';
+		    jQuery.i18n.prop('framesLegendMessage');
+		    document.getElementById('framesLegend').innerHTML=framesLegendMessage;
 		    jQuery.i18n.prop('createFrameMessage');
 		    document.getElementById('createFrame').innerHTML='<a class="largeButton" href="./frameDetail.html">' + createFrameMessage + '</a>';
 		    jQuery.i18n.prop('listFramesMessage');
 		    document.getElementById('listFrames').innerHTML='<a class="largeButton" href="./listFrames.html">' + listFramesMessage + '</a>';
+		    jQuery.i18n.prop('companiesLegendMessage');
+		    document.getElementById('companiesLegend').innerHTML=companiesLegendMessage;
 			jQuery.i18n.prop('companyCreationGuidelinesMessage');
 		    document.getElementById('companyCreationGuidelines').innerHTML='<a class="largeButton" href="./companyCreationGuidelines.html">' + companyCreationGuidelinesMessage + '</a>';
 		    jQuery.i18n.prop('createCompanyMessage');
 		    document.getElementById('createCompany').innerHTML='<a class="largeButton" href="./companyDetail.html">' + createCompanyMessage + '</a>';
 		    jQuery.i18n.prop('listCompaniesMessage');
 		    document.getElementById('listCompanies').innerHTML='<a class="largeButton" href="./listCompanies.html">' + listCompaniesMessage + '</a>';
+		    jQuery.i18n.prop('gamePreparationLegendMessage');
+		    document.getElementById('gamePreparationLegend').innerHTML=gamePreparationLegendMessage;
 		    jQuery.i18n.prop('settingUpTheBattlefieldMessage');
 		    document.getElementById('settingUpTheBattlefield').innerHTML='<a class="largeButton" href="./settingUpTheBattlefield.html">' + settingUpTheBattlefieldMessage + '</a>';
+		    jQuery.i18n.prop('resourcesLegendMessage');
+		    document.getElementById('resourcesLegend').innerHTML=resourcesLegendMessage;
 			jQuery.i18n.prop('usefulLinksMessage');
 		    document.getElementById('usefulLinks').innerHTML='<a class="largeButton" href="./usefulLinks.html">' + usefulLinksMessage + '</a>';
 			jQuery.i18n.prop('faqMessage');
 		    document.getElementById('faq').innerHTML='<a class="largeButton" href="./faq.html">' + faqMessage + '</a>';
 			jQuery.i18n.prop('aboutMessage');
+			jQuery.i18n.prop('administrationToolsLegendMessage');
+		    document.getElementById('administrationToolsLegend').innerHTML=administrationToolsLegendMessage;
 		    document.getElementById('about').innerHTML='<a class="largeButton" href="./about.html">' + aboutMessage + '</a>';
 			jQuery.i18n.prop('resetDatabaseMessage');
 		    document.getElementById('resetDatabase').innerHTML='<a class="largeButton" href="Javascript:resetDatabase()">' + resetDatabaseMessage + '</a>';
@@ -71,35 +81,34 @@
           <div class="col-xs-12 col-sm-6 col-md-8 menu">
             <div class="row">
               <div class="col-md-6">
-                <h2>Create mobile frames</h2>
-                <div class="well">
-                  <div class="largeButton" id="createFrame"></div>
-                  <div class="largeButton" id="listFrames"></div>
-                </div>
-                <h2>Create companies</h2>
-                <div class="well">
-                  <div class="largeButton" id="companyCreationGuidelines"></div>
-                  <div class="largeButton" id="createCompany"></div>
-                  <div class="largeButton" id="listCompanies"></div>
-                </div>
+              	<fieldset class="menu">
+              		<legend class="menu" id="framesLegend"></legend>
+              		<div class="largeButton" id="createFrame"></div>
+              		<div class="largeButton" id="listFrames"></div>
+                </fieldset>
+                <fieldset class="menu">
+          			<legend class="menu" id="companiesLegend"></legend>
+          			<div class="largeButton" id="companyCreationGuidelines"></div>
+          			<div class="largeButton" id="createCompany"></div>
+          			<div class="largeButton" id="listCompanies"></div>
+          		</fieldset>
               </div>
               <div class="col-md-6">
-                <h2>Game preparation</h2>
-                <div class="well">
-                  <div class="largeButton" id="settingUpTheBattlefield"></div>
-                </div>
-                <h2>Resources</h2>
-                <div class="well">
+              	<fieldset class="menu">
+              		<legend class="menu" id="gamePreparationLegend"></legend>
+              		<div class="largeButton" id="settingUpTheBattlefield"></div>
+              	</fieldset>
+              	<fieldset class="menu">
+                  <legend class="menu" id="resourcesLegend"></legend>
                   <div class="largeButton" id="usefulLinks"></div>
                   <div class="largeButton" id="faq"></div>
                   <div class="largeButton" id="about"></div>
-                </div>
-                <h2>Debug</h2>
-                <div class="well">
+                </fieldset>
+                <fieldset class="menu">
+                  <legend class="menu" id="administrationToolsLegend"></legend>
                   <div class="largeButton" id="resetDatabase"></div>
-                  <a class="largeButton" href="./garageapp.html">Experimental company creation</a>
                   <div class="largeButton" id="loadTestCompanies"></div>
-                </div>
+                </fieldset>
               </div>
             </div>
           </div>

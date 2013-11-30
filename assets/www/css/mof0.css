@@ -91,8 +91,9 @@ a.backButton span {
   font-size: 2em;
   line-height: 1;
   color: #fff;
-  background: url(../img/icons/c6-front.png) no-repeat right center transparent;
+  background: url('../img/moF0LittleGuy/MoF0LittleGuy_200_225.png') no-repeat right center transparent;
   background-size: auto 100%;
+  border-radius: 2rem;
   display: block;
   padding: 0 3.5rem 0 0;
   margin: 0;
@@ -104,6 +105,7 @@ a.backButton span {
 
 .pageTitle .title {
   display: block;
+  font-weight : bold;
   margin: 1rem 0 1rem 5rem;
 }
 
@@ -124,7 +126,19 @@ body.home {
 .home .menu div {
   display: block;
 }
+legend .menu {
+	font-family: sans-serif;
+	font-weight : bold;
+}
 
+.formattedStartTime {
+  color: #333;
+  float : left;
+  font-weight: bold;
+  margin-bottom : 1rem;
+  margin-right : 2rem;
+  margin-top : 1rem;
+}
 
 /* Frame detail page */
 .framedetail .table .radio {
@@ -140,6 +154,16 @@ body.home {
 .framedetail .systemDie {
   display: inline-block;
   margin: 0 0.5rem 0.5rem 0;
+}
+
+.gameRoundsBar {
+  background-color : #fff;
+  border : 0rem solid;
+  border-radius: 2rem;
+  /*color : #666;*/
+  display: inline-block;
+  padding : 1rem;
+  width : 100%;
 }
 
 /* Setup Battlefield page */
@@ -191,6 +215,25 @@ img.mf0FrameThumbnail {
   text-align : right;
   width : 4rem;
 }
+
+.nextRoundButton {
+
+}
+
+.roundsUntilDoomsDay {
+  color: #333;
+  float : left;
+  font-weight: bold;
+  margin-bottom : 1rem;
+  margin-right : 2rem;
+  margin-top : 1rem;
+}
+
+.roundsUntilDoomsDayLabel {
+  float : left;
+  margin : 1rem;
+}
+
 div.smallButton {
   display: inline-block;
 }
@@ -215,6 +258,11 @@ a.smallButton:focus {
   background: #900;
   color: #fff;
   text-decoration: none;
+}
+
+.startTimeLabel {
+  float : left;
+  margin : 1rem;
 }
 
 .systemDiceZone {

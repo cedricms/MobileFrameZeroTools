@@ -11,6 +11,10 @@ function CompanyModel() {
 	self.getFrames = function() {
 		return self.frames;
 	};
+	
+	self.getName = function() {
+		return self.name;
+	};
 
 	self.setId = function(pId) {
 		self.id = pId;
