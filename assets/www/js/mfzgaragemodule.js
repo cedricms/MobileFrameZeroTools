@@ -147,13 +147,15 @@ function GarageViewModel() {
   
   self.frameDice = ko.computed(function() {
     if (self.frameFocus()) {
-      var mydice = '<span class="whited"></span><span class="whited"></span>';
+      var mydice = '';
       var directfire = 0;
       var closerange = 0;
       var artillerypiece = 0;
       for (var sys in self.frameFocus().systems()) {
         var type = self.frameFocus().systems()[sys].type().split(' ')[0];
-        if (type === 'defense') {
+        if (type === 'hull') {
+          mydice += '<span class="whited"></span>';
+        } else if (type === 'defense') {
           mydice += '<span class="blued"></span>';
         } else if (type === 'movement') {
           mydice += '<span class="greend"></span>';
@@ -211,6 +213,12 @@ function GarageViewModel() {
   self.addFrame = function() {
     var newFrame = new FrameModel();
     newFrame.name('Unknown pilot');
+    newFrame.systems.push(new SystemModel('hull'));
+    newFrame.systems.push(new SystemModel('hull'));
+    newFrame.systems.push(new SystemModel('direct'));
+    newFrame.systems.push(new SystemModel('closerange'));
+    newFrame.systems.push(new SystemModel('spotting'));
+    newFrame.systems.push(new SystemModel('defense'));
     this.frames.push(newFrame);
     self.saveSquadrons();
   };
@@ -384,6 +392,12 @@ function GarageViewModel() {
         alert('It is a tie');
       };
     };
+    for (var s in self.squadrons()) {
+      for (var f in self.squadrons()[s].frames()) {
+        self.squadrons()[s].frames()[f].hadTurn(false);
+      };  
+    };
+    
   };
   
 };
@@ -410,6 +424,7 @@ function SquadronModel() {
 };
 
 
+
 /************************************************/
 /* The Frame model */
 /************************************************/
@@ -425,14 +440,37 @@ function FrameModel() {
   this.imgSrc = ko.observable();
   
   this.enoughSystems = ko.computed(function() {
-    if (this.systems().length < 4) {
+    if (this.systems().length < 6) {
       return true;
     } else {
       return false;
     }
   }, this);
+  
+  this.hadTurn = ko.observable(false);
+  
+  this.status = ko.computed(function() {
+    if (this.systems().length < 1) {
+      return 'Dead';
+    } else if (this.hadTurn() === true) {
+      return 'Done';
+    } else {
+      return 'Ready'; 
+    }
+  }, this);
+  
+  this.toggleStatus = function() {
+    if (this.hadTurn()) {
+      this.hadTurn(false);
+      console.log('now it is false');
+    } else {
+      this.hadTurn(true);
+      console.log('now it is true');
+    };
+  };
 
 };
+
 
 
 /************************************************/
@@ -443,6 +481,14 @@ function SystemModel(system) {
   
   this.type = ko.observable(system);
   
+  this.systemNotHull = ko.computed(function() {
+    if (this.type() === 'hull') {
+      return false;
+    } else {
+      return true;
+    }
+  }, this);
+  
 };
 
 
@@ -452,6 +498,12 @@ function SystemModel(system) {
 /************************************************/
 
 function RulesLib() {
+  
+  this.hull = {
+    desc: 'Your frame just needs this to work.',
+    specRuleLevel1: ['Add <span class="whited">White 1d6</span> Frame hull is at 50% capacity'],
+    specRuleLevel2: ['Add another <span class="whited">White 1d6</span> Frame hull is at 100% capacity']
+  };
   
   this.direct = {
     desc: 'Assault rifles, grenade launchers, flamethrowers, beam weapons. Enables you to attack at medium range.',

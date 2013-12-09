@@ -47,7 +47,7 @@
           <button class="btn btn-default" data-bind="click: $root.viewFrameDetails">
             <span data-bind="text: name"></span>
             <span data-bind="foreach: systems">
-              <span data-bind="css: type"></span>  
+              <span data-bind="visible: systemNotHull, css: type"></span>  
             </span>
           </button>
         </li>
@@ -79,14 +79,13 @@
           </div>
           <div class="systemlist">
             <!-- ko foreach: systems -->
-              <div class="systempickerbox">
+              <div data-bind="visible: systemNotHull" class="systempickerbox">
                 <div class="systempickerbox-inner">
                   <button class="btn btn-default" data-bind="click: $root.viewSystemDetails"><span data-bind="css: type"></span></button>
                 </div>
               </div>
             <!-- /ko -->
             <div class="clear"></div>
-            <!-- <button class="btn" data-bind="click: $root.getFramePicture">Change picture</button> -->
           </div>
           <button class="btn btn-primary" onclick="garage.nav('addSystemDiag')" data-bind="visible: enoughSystems">+ Add system</button>
           <p class="text-muted">You can remove systems by tapping them and selecting "Remove system"</p>
