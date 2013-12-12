@@ -27,7 +27,7 @@
 .systemselect option {padding: 1em 1em 1em 4em; margin: 0 0 0.1em; border: none; display: block; background-size: contain; background-repeat: no-repeat; background-position: 0 0;}
 
 /* System icons */
-.direct, .artillery, .closerange, .movement, .defense, .spotting, .hull {display: inline-block; width: 2em; height: 2em; margin: 0 0 0 0.5em; background-repeat: no-repeat; background-position: 0 0; background-color: #fff; background-size: cover; border-radius: 0.25em; vertical-align: middle;}
+.direct, .artillery, .closerange, .movement, .defense, .spotting, .hull, .rocket {display: inline-block; width: 2em; height: 2em; margin: 0 0 0 0.5em; background-repeat: no-repeat; background-position: 0 0; background-color: #fff; background-size: cover; border-radius: 0.25em; vertical-align: middle;}
 .direct, .systemselect option[value="direct fire"] {background-image: url(../img/systems/direct.png)}
 .artillery, .systemselect option[value="artillery"] {background-image: url(../img/systems/artillery.png)}
 .closerange, .systemselect option[value="closerange"] {background-image: url(../img/systems/hand.png)}
@@ -35,6 +35,7 @@
 .movement, .systemselect option[value="movement"] {background-image: url(../img/systems/move.png)}
 .spotting, .systemselect option[value="spotting"] {background-image: url(../img/systems/spot.png)}
 .hull, .systemselect option[value="hull"] {background-image: url(../img/systems/hull.png)}
+.rocket {background-image: url(../img/systems/rocket.png)}
 .systempickerbox {width: 33.33%; float: left; max-width: 8em; height: 9em; overflow: hidden;}
 .systempickerbox-inner {padding: 1em 0.5em 0;}
 .systempickerbox .btn {text-align: center; width: 100%; padding: 1em 0;}

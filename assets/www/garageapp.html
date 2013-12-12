@@ -67,6 +67,7 @@
         <li class="active"><a href="#systems" data-toggle="tab">Systems</a></li>
         <li><a href="#dice" data-toggle="tab">Dice</a></li>
         <li><a href="#special" data-toggle="tab">Special</a></li>
+        <li><a href="#rockets" data-toggle="tab">Rockets</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="systems">
@@ -95,6 +96,12 @@
         </div>
         <div class="tab-pane" id="special">
           <div data-bind="html: $root.specRules">Special rules go here</div>
+        </div>
+        <div class="tab-pane" id="rockets">
+          <p>Add or remove one shot rockets to your mobile frame.</p>
+          <div data-bind="html: $root.rockets">Rockets showing goes here</div>
+          <button class="btn btn-default addrocket" data-bind="click: $root.changeRockets('add')">+ Add rocket</button>
+          <button class="btn btn-default removerocket" data-bind="click: $root.changeRockets('remove')">- Remove rocket</button>
         </div>
       </div>
     </div>

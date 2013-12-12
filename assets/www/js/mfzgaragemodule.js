@@ -237,11 +237,51 @@ function GarageViewModel() {
     };
   };
   
-  self.getFramePicture = function(frame) {
-    self.nav('framePhotoBooth');
-    console.log('getting ze pic ' + frame.name());
-    frame.imgSrc(getCameraPic());
-    console.log(frame.imgSrc());
+  
+  /* Rocket methods and values */
+  
+  self.rockets = ko.computed(function() {
+    var rocStr = '';
+    if (self.frameFocus()) {
+      for (r = 0; r < self.frameFocus().rockets(); r++) {
+        rocStr += '<div class="icon rocket"></div>';  
+      };
+    };
+    return rocStr;
+  }, this);
+  
+  self.changeRockets = function(action) {
+    var allTheRockets;
+    var frameRockets;
+    if (self.frameFocus().rockets() === undefined) {
+      frameRockets = 0;
+    } else {
+      frameRockets = self.frameFocus().rockets();
+    };
+    if (self.squadronFocus().rockets() === undefined) {
+      allTheRockets = 0;
+    } else {
+      allTheRockets = self.squadronFocus().rockets();
+    };
+    if (action === 'add') {
+      frameRockets++;
+      allTheRockets++;
+    } else if (action === 'remove') {
+      frameRockets--;
+      allTheRockets--;
+    } else {
+      consoloe.log('action must be either add or remove');
+    };
+    $('.addrocket').hide();
+    $('.removerocket').hide();
+    if (allTheRockets < 3 && frameRockets < 3) {
+      $('.addrocket').show();
+    };
+    if (allTheRockets > 0 && frameRockets > 0) {
+      $('.removerocket').show();
+    };
+    self.frameFocus().rockets(frameRockets);
+    self.squadronFocus().rockets(allTheRockets);
   };
   
   
@@ -334,10 +374,12 @@ function GarageViewModel() {
       for (var squadron in retrieveobj) {
         var loadedSquadron = new SquadronModel();
         loadedSquadron.name(retrieveobj[squadron].name);
+        loadedSquadron.rockets(retrieveobj[squadron].rockets);
         self.squadrons.push(loadedSquadron);
         for (var frame in retrieveobj[squadron].frames) {
           var loadedFrame = new FrameModel();
           loadedFrame.name(retrieveobj[squadron].frames[frame].name);
+          loadedFrame.rockets(retrieveobj[squadron].frames[frame].rockets);
           self.squadrons()[squadron].frames.push(loadedFrame);
           for (var system in retrieveobj[squadron].frames[frame].systems) {
             var loadedSystem = new SystemModel(retrieveobj[squadron].frames[frame].systems[system].type);
@@ -363,7 +405,7 @@ function GarageViewModel() {
   
   /* Gameplay methods */
   
-  self.rounds = ko.observable(11);
+  self.rounds = ko.observable(5);
   
   // Count down to doomsday, check for game over
   self.countDown = function() {
@@ -375,14 +417,18 @@ function GarageViewModel() {
       if (answer == true) {
         rounds--;
       };
-      if (bestTeam[0] == undefined) {
+      if (bestTeam[0] === undefined) {
         bestTeam.push(self.squadrons()[s]);
+        console.log('putting team in empty array');
+      } else if (self.squadrons()[s].initiative() === bestTeam[0].initiative()) {
+        console.log(self.squadrons()[s].name() + ' has init = ' + bestTeam[0].name());
+        bestTeam.unshift(self.squadrons()[s]);
+      } else if (self.squadrons()[s].initiative() > bestTeam[0].initiative()) {
+        console.log(self.squadrons()[s].name() + ' has init > ' + bestTeam[0].name());
+        bestTeam[0] = self.squadrons()[s];
       } else {
-        if (self.squadrons()[s].initiative() >= bestTeam[0].initiative()) {
-          console.log(self.squadrons()[s].initiative());
-          bestTeam.unshift(self.squadrons()[s]);
-        }
-      }
+        console.log(self.squadrons()[s].name() + ' has init < ' + bestTeam[0].name());
+      };
     };
     self.rounds(rounds);
     if (self.rounds() <= 0) {
@@ -397,7 +443,6 @@ function GarageViewModel() {
         self.squadrons()[s].frames()[f].hadTurn(false);
       };  
     };
-    
   };
   
 };
@@ -417,6 +462,8 @@ function SquadronModel() {
   
   this.stations = ko.observable(3);
   
+  this.rockets = ko.observable();
+  
   this.initiative = ko.computed(function() {
     return (this.frames().length + parseInt(this.stations())) * this.assetValue(); 
   }, this);
@@ -434,6 +481,8 @@ function FrameModel() {
   this.name = ko.observable();
   
   this.systems = ko.observableArray();
+  
+  this.rockets = ko.observable();
   
   this.systemFocus = ko.observable();
   
@@ -453,7 +502,7 @@ function FrameModel() {
     if (this.systems().length < 1) {
       return 'Dead';
     } else if (this.hadTurn() === true) {
-      return 'Done';
+      return 'Moved';
     } else {
       return 'Ready'; 
     }
@@ -466,6 +515,14 @@ function FrameModel() {
     } else {
       this.hadTurn(true);
       console.log('now it is true');
+    };
+  };
+  
+  this.fireRocket = function() {
+    if (confirm('Fire rocket for 1 extra red D8?')) {
+      var frameRockets = this.rockets();
+      frameRockets--;
+      this.rockets(frameRockets);
     };
   };
 

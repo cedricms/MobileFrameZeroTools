@@ -35,10 +35,14 @@
             <ul class="overview-frames list-unstyled" data-bind="foreach: frames">
               <li class="btn-group">
                 <button type="button" class="btn btn-default" data-bind="click: function(data, event){ $root.viewFrameDetailsPlay($parent, data, event) }, css: { inactive: hadTurn() === true }">
-                  <span data-bind="text:name"></span>
+                  <strong data-bind="text:name"></strong>
+                  <br>
                   <span class="overview-frame-systems" data-bind="foreach: systems">
                     <span data-bind="css: type"></span>
                   </span>
+                </button>
+                <button type="button" class="btn btn-default" data-bind="click: fireRocket">
+                  <span data-bind="text: rockets"></span>x<span class="icon rocket"></span>
                 </button>
                 <button type="button" class="btn btn-default" data-bind="click: toggleStatus">
                   <span data-bind="text: status"></span>
@@ -59,6 +63,11 @@
     </h1>
     <div class="pageSection">
       
+      <h2>Dice</h2>
+      <div data-bind="html: $root.frameDice">Dice showing goes here</div>
+      
+      <div data-bind="html: $root.specRules">Special rules go here</div>
+      
       <div data-bind="ifnot: $root.anySystems">
         <h2>Systems offline</h2>
         <p>Your pilot's frame needs systems to be effective in combat.</p>
@@ -74,11 +83,6 @@
         <div class="clear"></div>
       </div>
       <p class="text-muted">You can remove systems by tapping them and selecting "Remove system"</p>
-      
-      <h2>Dice</h2>
-      <div data-bind="html: $root.frameDice">Dice showing goes here</div>
-      
-      <div data-bind="html: $root.specRules">Special rules go here</div>
       
     </div>
   </div>
