@@ -42,6 +42,9 @@
 		    jQuery.i18n.prop('nextRoundMessage');
 		    document.getElementById('nextRoundButton').innerHTML='<a class="smallButton" href="Javascript:nextRound();">' + nextRoundMessage + '</a>';
 		    
+		    jQuery.i18n.prop('nbStationsMessage');
+		    document.getElementById('nbStationsLabel').innerHTML = nbStationsMessage;
+		    
 	    	initGame();
 	      }
 	    });
@@ -75,7 +78,8 @@
             <button class="btn btn-default pull-right visible-xs" style="padding: 2rem 1rem" onclick="$(this).siblings('.frames-view').toggleClass('hidden-xs');"><span class="caret"></span></button>
             <div class="pull-right well initiative">28</div>
             <h2 data-bind="text: name"></h2>
-            <div>3 x Stations</div>
+            <div class="nbStations" data-bind="text: nbStations"></div>
+            <div class="nbStationsLabel" id="nbStationsLabel"></div>
             <div class="frames-view hidden-xs">
               <div data-bind="foreach: frames">
                 <h3 data-bind="text: name"></h3>

@@ -220,6 +220,10 @@ img.mf0FrameThumbnail {
 
 }
 
+.nbStations {
+  float : left;
+}
+
 .roundsUntilDoomsDay {
   color: #333;
   float : left;
