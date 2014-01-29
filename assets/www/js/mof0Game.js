@@ -23,7 +23,16 @@ function initGame() {
 
 	ko.applyBindings(gameModel);
 	
-	window.setInterval(gameModel.updateCurrentTime, 1000);
+	//gameModel.updateScorePerAsset();
+	
+	window.setInterval(updateGame, 1000);
+}
+
+function updateGame() {
+	gameModel.updateCurrentTime();
+	if (gameModel.doomsdayClock() === 11) {
+		gameModel.updateScorePerAsset();
+	} // if
 }
 
 function addCompany(companyModel) {

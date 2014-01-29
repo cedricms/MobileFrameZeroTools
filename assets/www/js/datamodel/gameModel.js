@@ -72,4 +72,76 @@ function GameModel() {
 			} // if
 		} // if
 	};
+	
+	var companyWithTheMostFrames = null;
+	var companyWithTheLeastFrames = null;
+	var companyWithTheMostSystems = null;
+	
+	self.updateScorePerAsset = function() {
+		companyWithTheMostFrames = null;
+		companyWithTheLeastFrames = null;
+		companyWithTheMostSystems = null;
+		
+		var currentCompanies = self.companies();
+		var nbCompanies = currentCompanies.length;
+		//alert('nbCompanies : ' + nbCompanies);
+		
+		for ( var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
+			var companyModel = currentCompanies[companiesIndex];
+			companyModel.setScorePerAsset(5);
+			var companyModelFrames = companyModel.getFrames();
+
+			//alert('companyModelFrames.length : ' + companyModelFrames.length);
+			
+			//alert('companyWithTheMostFrames : ' + companyWithTheMostFrames);
+			if ((companyWithTheMostFrames === null) || (typeof companyWithTheMostFrames === 'undefined')) {
+				companyWithTheMostFrames = companyModel;
+			}
+			else {
+				var companyWithTheMostFramesFrames = companyWithTheMostFrames.getFrames();
+				//alert('companyWithTheMostFramesFrames.length : ' + companyWithTheMostFramesFrames.length);
+				if (companyModelFrames.length > companyWithTheMostFramesFrames.length) {
+					companyWithTheMostFrames = companyModel;
+				} // if
+			} // if
+			
+			//alert('companyWithTheLeastFrames : ' + companyWithTheLeastFrames);
+			if ((companyWithTheLeastFrames === null) || (typeof companyWithTheLeastFrames === 'undefined')) {
+				companyWithTheLeastFrames = companyModel;
+			}
+			else {
+				//alert('companyWithTheLeastFrames.getFrames().length : ' + companyWithTheLeastFrames.getFrames().length);
+				if (companyModelFrames.length < companyWithTheLeastFrames.getFrames().length) {
+					companyWithTheLeastFrames = companyModel;
+				} // if
+			} // if
+
+			//alert('companyWithTheMostSystems : ' + companyWithTheMostSystems);
+			if ((companyWithTheMostSystems === null) || (typeof companyWithTheMostSystems === 'undefined')) {
+				companyWithTheMostSystems = companyModel;
+			}
+			else {
+				//alert('companyWithTheMostSystems.getFrames().length : ' + companyWithTheMostSystems.getFrames().length);
+			} // if
+		} // for
+
+		if ((companyWithTheMostFrames !== null) && (typeof companyWithTheMostFrames !== 'undefined')) {		
+			alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
+			companyWithTheMostFrames.setScorePerAsset(companyWithTheMostFrames.getScorePerAsset() - 1);
+			alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
+		}// if
+		
+		if ((companyWithTheLeastFrames !== null) && (typeof companyWithTheLeastFrames !== 'undefined')) {		
+			alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
+			companyWithTheLeastFrames.setScorePerAsset(companyWithTheLeastFrames.getScorePerAsset() + 1);
+			alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
+		} // if
+		
+		/*companyWithTheMostFramesScoreValue = companyWithTheMostFrames.getNbStations() * companyWithTheMostFrames.getScorePerAsset();
+		companyWithTheMostFrames.setScore(companyWithTheMostFramesScoreValue + ' [' + companyWithTheMostFrames.getScorePerAsset()  + ']');
+
+		companyWithTheLeastFramesScoreValue = companyWithTheLeastFrames.getNbStations() * companyWithTheLeastFrames.getScorePerAsset();
+		companyWithTheLeastFrames.setScore(companyWithTheLeastFramesScoreValue + ' [' + companyWithTheLeastFrames.getScorePerAsset()  + ']');*/
+	};
+	
 }
