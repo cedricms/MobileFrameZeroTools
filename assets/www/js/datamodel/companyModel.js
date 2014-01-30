@@ -15,7 +15,7 @@ function CompanyModel() {
 		scoreValue = self.nbStations() * self.scorePerAsset();
 		//alert('scoreValue : ' + scoreValue);
         return scoreValue + ' [' + self.scorePerAsset()  + ']';
-    });
+    }, this);
 
 	self.getFrames = function() {
 		return self.frames;
