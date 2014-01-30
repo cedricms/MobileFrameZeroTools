@@ -19,6 +19,8 @@ function initGame() {
 		var companyId = companyIdsArray[companyIdsArrayIndex];
 
 		var companyModel = companyService.getById(companyId, addCompany);
+
+		//ko.applyBindings(companyModel);
 	} // for
 
 	ko.applyBindings(gameModel);

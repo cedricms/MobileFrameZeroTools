@@ -35,7 +35,7 @@ function GameModel() {
 		} // if
 		
         return startTimeHours + ':' + startTimeMinutes + ' (' + deltaHour + ':' + deltaMinute + ':' + deltaSecond + ')';
-    });
+    }, this);
 	self.companies = ko.observableArray();
 	self.doomsdayClock = ko.observable(11);
 
@@ -126,15 +126,15 @@ function GameModel() {
 		} // for
 
 		if ((companyWithTheMostFrames !== null) && (typeof companyWithTheMostFrames !== 'undefined')) {		
-			alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
+			//alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
 			companyWithTheMostFrames.setScorePerAsset(companyWithTheMostFrames.getScorePerAsset() - 1);
-			alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
+			//alert('companyWithTheMostFrames.getScorePerAsset() : ' + companyWithTheMostFrames.getScorePerAsset());
 		}// if
 		
 		if ((companyWithTheLeastFrames !== null) && (typeof companyWithTheLeastFrames !== 'undefined')) {		
-			alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
+			//alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
 			companyWithTheLeastFrames.setScorePerAsset(companyWithTheLeastFrames.getScorePerAsset() + 1);
-			alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
+			//alert('companyWithTheLeastFrames.getScorePerAsset() : ' + companyWithTheLeastFrames.getScorePerAsset());
 		} // if
 		
 		/*companyWithTheMostFramesScoreValue = companyWithTheMostFrames.getNbStations() * companyWithTheMostFrames.getScorePerAsset();

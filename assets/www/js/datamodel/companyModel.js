@@ -12,9 +12,10 @@ function CompanyModel() {
 	self.companyScore = ko.computed(function() {
 		//alert('self.nbStations() : ' + self.nbStations());
 		//alert('self.scorePerAsset() : ' + self.scorePerAsset());
-		scoreValue = self.nbStations() * self.scorePerAsset();
+		//scoreValue = self.nbStations() * self.scorePerAsset();
 		//alert('scoreValue : ' + scoreValue);
-        return scoreValue + ' [' + self.scorePerAsset()  + ']';
+        //return scoreValue + ' [' + self.scorePerAsset()  + ']';
+		return self.nbStations() * self.scorePerAsset();
     }, this);
 
 	self.getFrames = function() {
