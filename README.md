@@ -19,7 +19,8 @@ Devices tested on :
 	*) Asus Transformeer Prime;
 	*) HTC Desire;
 	*) HTC Legend;
-	*) Nexus Galaxy.
+	*) Nexus Galaxy;
+	*) Google Nexus 5.
 	
 Should be compatible with (tests needed) :
 
