@@ -15,7 +15,7 @@ function CompanyModel() {
 	self.scorePerAssetSystemsCalculated = ko.observable(false);
 	
 	self.companyScore = ko.computed(function() {
-		scoreValue = self.nbStations() * self.scorePerAsset();
+		scoreValue = (self.nbFrames() + self.nbStations()) * self.scorePerAsset();
         return scoreValue + ' [' + self.scorePerAsset()  + ']';
     });
 
