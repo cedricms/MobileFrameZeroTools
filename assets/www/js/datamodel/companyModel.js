@@ -8,22 +8,35 @@ function CompanyModel() {
 	self.dtModified = null;
 	self.companyPictureUrl = ko.observable('');
 	self.frames = ko.observableArray();
+	self.nbFrames = ko.observable(0);
+	self.nbSystems = ko.observable(0);
 	self.scorePerAsset = ko.observable(5);
+	self.scorePerAssetFramesCalculated = ko.observable(false);
+	self.scorePerAssetSystemsCalculated = ko.observable(false);
+	
 	self.companyScore = ko.computed(function() {
-		//alert('self.nbStations() : ' + self.nbStations());
-		//alert('self.scorePerAsset() : ' + self.scorePerAsset());
-		//scoreValue = self.nbStations() * self.scorePerAsset();
-		//alert('scoreValue : ' + scoreValue);
-        //return scoreValue + ' [' + self.scorePerAsset()  + ']';
-		return self.nbStations() * self.scorePerAsset();
-    }, this);
+		scoreValue = self.nbStations() * self.scorePerAsset();
+        return scoreValue + ' [' + self.scorePerAsset()  + ']';
+    });
 
 	self.getFrames = function() {
 		return self.frames;
 	};
 	
+	self.getId = function() {
+		return self.id;
+	};
+	
 	self.getName = function() {
 		return self.name;
+	};
+
+	self.getNbFrames = function() {
+		return self.nbFrames;
+	};
+
+	self.getNbSystems = function() {
+		return self.nbSystems;
 	};
 	
 	self.getScorePerAsset = function() {
@@ -46,8 +59,16 @@ function CompanyModel() {
 		self.name = pName;
 	};
 
+	self.setNbFrames = function(pNbFrames) {
+		self.nbFrames = pNbFrames;
+	};
+	
 	self.setNbStations = function(pNbStations) {
 		self.nbStations(pNbStations);
+	};
+
+	self.setNbSystems = function(pNbSystems) {
+		self.nbSystems = pNbSystems;
 	};
 
 	self.setScorePerAsset = function(pScorePerAsset) {

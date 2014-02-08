@@ -13,7 +13,7 @@ function initGame() {
 	var companyIdsArray = companyIds.split('|');
 
 	var companyService = new CompanyService(db);
-	companies = gameModel.getCompanies();
+	companies = gameModel.companies;
 
 	for ( var companyIdsArrayIndex = 0; companyIdsArrayIndex < companyIdsArray.length; companyIdsArrayIndex++) {
 		var companyId = companyIdsArray[companyIdsArrayIndex];
@@ -30,15 +30,15 @@ function initGame() {
 	window.setInterval(updateGame, 1000);
 }
 
+function addCompany(companyModel) {
+	companies.push(companyModel);
+}
+
 function updateGame() {
 	gameModel.updateCurrentTime();
 	if (gameModel.doomsdayClock() === 11) {
 		gameModel.updateScorePerAsset();
 	} // if
-}
-
-function addCompany(companyModel) {
-	companies.push(companyModel);
 }
 
 function nextRound() {

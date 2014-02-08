@@ -6,17 +6,28 @@ function CompanyService(pDb) {
 	var companyModel = new CompanyModel();
 	companyModel.setId(pCompanyId);
     
-    self.db.transaction(function queryCompanyId(tx) {        
-        tx.executeSql('SELECT * FROM company WHERE id=?', [pCompanyId], function queryCompanyIdSuccess(tx, companyResults) {
+    self.db.transaction(function queryCompanyId(tx) {
+    	companyQuery = 'SELECT c.id AS companyId, c.name AS companyName, c.company_picture_url AS companyPictureUrl, count(cf.id_frame) AS nbFrames, ifnull(sum(f.nb_defensive + f.nb_movement + f.nb_surveillance_communication + f.nb_hand_to_hand + f.nb_direct_fire + f.nb_artillery_range), 0) AS nbSystems FROM company c LEFT OUTER JOIN company_frame cf ON c.id = cf.id_company LEFT OUTER JOIN frame f ON cf.id_frame = f.id WHERE c.id=? GROUP BY cf.id_company ORDER BY upper(c.name) asc';
+    	
+        tx.executeSql(companyQuery, [pCompanyId], function queryCompanyIdSuccess(tx, companyResults) {
             var len = companyResults.rows.length;
                         
             for (var i=0; i<len; i++){
             	var companyRow = companyResults.rows.item(i);
             	
-            	name = companyRow.name;
-            	companyModel.setName(name);
+            	companyId = companyRow.companyId;
+            	companyModel.setId(companyId)
             	
-            	companyPictureUrl = companyRow.company_picture_url;
+            	companyName = companyRow.companyName;
+            	companyModel.name(companyName);
+            	
+            	nbFrames = companyRow.nbFrames;
+            	companyModel.nbFrames(nbFrames);
+            	
+            	nbSystems = companyRow.nbSystems;
+            	companyModel.nbSystems(nbSystems);
+            	
+            	companyPictureUrl = companyRow.companyPictureUrl;
             	if ((typeof companyPictureUrl != 'undefined') && (companyPictureUrl != null) && (companyPictureUrl != '') && (companyPictureUrl !== '')) {
             		companyModel.setCompanyPictureUrl(companyPictureUrl);
             	} // if
@@ -26,7 +37,7 @@ function CompanyService(pDb) {
             		loadCompanyPhoto(companyPictureUrl);
             	} // if
             	*/
-            	tx.executeSql('SELECT f.id AS frameId, f.name AS frameName, f.frame_picture_url AS framePictureUrl, nb_defensive AS nbDefensive, nb_movement AS nbMovement, nb_surveillance_communication AS nbSurveillanceCommunication, nb_hand_to_hand AS nbHandToHand, nb_direct_fire AS nbDirectFire, nb_artillery_range AS nbArtilleryRange, nb_rockets AS nbRockets FROM company_frame cf, frame f WHERE cf.id_company=? AND cf.id_frame=f.id ORDER BY f.name', [companyRow.id], function queryFrameForRowSuccess(tx, frameResults) {
+            	tx.executeSql('SELECT f2.id AS frameId, f2.name AS frameName, f2.frame_picture_url AS framePictureUrl, f2.nb_defensive AS nbDefensive, f2.nb_movement AS nbMovement, f2.nb_surveillance_communication AS nbSurveillanceCommunication, f2.nb_hand_to_hand AS nbHandToHand, f2.nb_direct_fire AS nbDirectFire, f2.nb_artillery_range AS nbArtilleryRange, cf2.nb_rockets AS nbRockets FROM company_frame cf2, frame f2 WHERE cf2.id_company=? AND cf2.id_frame=f2.id ORDER BY f2.name', [companyId], function queryFrameForRowSuccess(tx, frameResults) {
             		var len = frameResults.rows.length;
             		            	    
             	    var companyFrames = companyModel.getFrames();
@@ -34,16 +45,16 @@ function CompanyService(pDb) {
             	    	var frameRow = frameResults.rows.item(i);
             	    	
             	    	var frameModel = new FrameModel();
-            	    	frameModel.setId(frameRow.frameId);
-            	    	frameModel.setName(frameRow.frameName);
-            	    	frameModel.setFramePictureUrl(frameRow.framePictureUrl);
-            	    	frameModel.setNbDefensive(frameRow.nbDefensive);
-            	    	frameModel.setNbMovement(frameRow.nbMovement);
-            	    	frameModel.setNbSurveillanceCommunication(frameRow.nbSurveillanceCommunication);
-            	    	frameModel.setNbHandToHand(frameRow.nbHandToHand);
-            	    	frameModel.setNbDirectFire(frameRow.nbDirectFire);
-            	    	frameModel.setNbArtilleryRange(frameRow.nbArtilleryRange);
-            	    	frameModel.setNbRockets(frameRow.nbRockets);
+            	    	frameModel.id(frameRow.frameId);
+            	    	frameModel.name(frameRow.frameName);
+            	    	frameModel.framePictureUrl(frameRow.framePictureUrl);
+            	    	frameModel.nbDefensive(frameRow.nbDefensive);
+            	    	frameModel.nbMovement(frameRow.nbMovement);
+            	    	frameModel.nbSurveillanceCommunication(frameRow.nbSurveillanceCommunication);
+            	    	frameModel.nbHandToHand(frameRow.nbHandToHand);
+            	    	frameModel.nbDirectFire(frameRow.nbDirectFire);
+            	    	frameModel.nbArtilleryRange(frameRow.nbArtilleryRange);
+            	    	frameModel.nbRockets(frameRow.nbRockets);
             	    	            	    	
             	    	companyFrames.push(frameModel);
             		} // for
@@ -58,5 +69,5 @@ function CompanyService(pDb) {
 
 //Transaction error callback
 function errorDB(tx, err) {
-	alert("Error processing SQL: "+err);
+	alert("Error processing SQL: " + err.message);
 }
