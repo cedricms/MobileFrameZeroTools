@@ -85,182 +85,100 @@ function GameModel() {
 	};
 	
 	self.updateScorePerAsset = function() {
-		var companyWithTheMostFramesId = null;
-		var companyWithTheMostFramesNbFrames = 0;
-		var companyWithTheLeastFramesId = null;
-		var companyWithTheLeastFramesNbFrames = 0;
-		var companyWithTheMostSystemsId = null;
-		var companyWithTheMostSystemsNbSystems = 0;
-		var companyWithTheLeastSystemsId = null;
-		var companyWithTheLeastSystemsNbSystems = 0;
+		var maxNbFrames = 0;
+		var minNbFrames = 8;
+		var maxNbSystems = 0;
+		var minNbSystems = 32;
 		
-		/*
-		var companyWithTheMostFrames = new CompanyModel();
-		var companyWithTheLeastFrames = new CompanyModel();
-		var companyWithTheMostSystems = new CompanyModel();
-		var companyWithTheLeastSystems = new CompanyModel();
-		*/
 		var currentCompanies = self.companies();
 		var nbCompanies = currentCompanies.length;
-		//alert('nbCompanies : ' + nbCompanies);
 		
 		for (var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
-			currentCompany = currentCompanies[companiesIndex];
+			var currentCompany = currentCompanies[companiesIndex];
 
-			// Init DB connection
-			var db = window.openDatabase("mof0DB", dbVersion,
-					"Mobile Frame Zero Tools", dbSize);
-			
-			var companyService = new CompanyService(db);
-			
-			if ((companyWithTheMostFramesId === null) || (typeof companyWithTheMostFramesId === 'undefined')) {
-				companyWithTheMostFramesId = currentCompany.getId();
-				companyWithTheMostFramesNbFrames = parseFloat(currentCompany.getNbFrames());
-			}
-			else {
-				//companyService.getById(companyWithTheMostFramesId, checkCompanyWithTheMostFrames);
-				
-				currentCompanyNbFrames = parseFloat(currentCompany.nbFrames());
-				if (currentCompanyNbFrames > companyWithTheMostFramesNbFrames) {
-					companyWithTheMostFramesId = currentCompany.getId();
-					companyWithTheMostFramesNbFrames = parseFloat(currentCompany.getNbFrames());
-				} // if
+			currentCompanyNbFrames = parseFloat(currentCompany.nbFrames());
+			if (currentCompanyNbFrames > maxNbFrames) {
+				maxNbFrames = currentCompanyNbFrames;
 			} // if
 			
-			if ((companyWithTheLeastFramesId === null) || (typeof companyWithTheLeastFramesId === 'undefined')) {
-				companyWithTheLeastFramesId = currentCompany.getId();
-				companyWithTheLeastFramesNbFrames = parseFloat(currentCompany.getNbFrames());
-			}
-			else {
-				//companyService.getById(companyWithTheLeastFramesId, checkCompanyWithTheLeastFrames)
-				currentCompanyNbFrames = parseFloat(currentCompany.nbFrames());
-				if (currentCompanyNbFrames < companyWithTheLeastFramesNbFrames) {
-					companyWithTheLeastFramesId = currentCompany.getId();
-					companyWithTheLeastFramesNbFrames = parseFloat(currentCompany.getNbFrames());
-				} // if
+			if (currentCompanyNbFrames < minNbFrames) {
+				minNbFrames = currentCompanyNbFrames;
 			} // if
 
-			if ((companyWithTheMostSystemsId === null) || (typeof companyWithTheMostSystemsId === 'undefined')) {
-				companyWithTheMostSystemsId = currentCompany.getId();
-				companyWithTheMostSystemsNbSystems = parseFloat(currentCompany.getNbSystems());
-			}
-			else {
-				//companyService.getById(companyWithTheMostSystemsId, checkCompanyWithTheMostSystems);
-				
-				currentCompanyNbSystems = parseFloat(currentCompany.nbSystems());
-				if (currentCompanyNbSystems > companyWithTheMostSystemsNbSystems) {
-					companyWithTheMostSystemsId = currentCompany.getId();
-					companyWithTheMostSystemsNbSystems = parseFloat(currentCompany.getNbSystems());
-				} // if
+			currentCompanyNbSystems = parseFloat(currentCompany.nbSystems());
+			if (currentCompanyNbSystems > maxNbSystems) {
+				maxNbSystems = currentCompanyNbSystems;
 			} // if
-
-			if ((companyWithTheLeastSystemsId === null) || (typeof companyWithTheLeastSystemsId === 'undefined')) {
-				companyWithTheLeastSystemsId = currentCompany.getId();
-				companyWithTheLeastSystemsNbSystems = parseFloat(currentCompany.getNbSystems());
-			}
-			else {
-				//companyService.getById(companyWithTheLeastSystemsId, checkCompanyWithTheLeastSystems);
-				
-				currentCompanyNbSystems = parseFloat(currentCompany.nbSystems());
-				if (currentCompanyNbSystems < companyWithTheLeastSystemsNbSystems) {
-					companyWithTheLeastSystemsId = currentCompany.getId();
-					companyWithTheLeastSystemsNbSystems = parseFloat(currentCompany.getNbSystems());
-				} // if
+			
+			if (currentCompanyNbSystems < minNbSystems) {
+				minNbSystems = currentCompanyNbSystems;
 			} // if
 		} // for
 		
-		if ((companyWithTheMostFramesId !== null) && (typeof companyWithTheMostFramesId !== 'undefined')) {
-			alert('companyWithTheMostFrames ' + companyWithTheMostFramesId + ', ' + companyWithTheMostFramesNbFrames);
-			var companyWithTheMostFrames = findCompanyById(companyWithTheMostFramesId);
-			
-			if (companyWithTheMostFrames.scorePerAssetFramesCalculated() === false) {				
-				companyWithTheMostFrames.scorePerAsset(companyWithTheMostFrames.scorePerAsset() - 1);
-				companyWithTheMostFrames.scorePerAssetFramesCalculated(true);
-			} // if
-		} // if
-		
-		if ((companyWithTheLeastFramesId !== null) && (typeof companyWithTheLeastFramesId !== 'undefined')) {
-			alert('companyWithTheLeastFrames ' + companyWithTheLeastFramesId + ', ' + companyWithTheLeastFramesNbFrames);
-			var companyWithTheLeastFrames = findCompanyById(companyWithTheLeastFramesId);
-			
-			if (companyWithTheLeastFrames.scorePerAssetFramesCalculated() === false) {				
-				companyWithTheLeastFrames.scorePerAsset(companyWithTheLeastFrames.scorePerAsset() + 1);
-				companyWithTheLeastFrames.scorePerAssetFramesCalculated(true);
-			} // if
-		} // if
-		
-		if ((companyWithTheMostSystemsId !== null) && (typeof companyWithTheMostSystemsId !== 'undefined')) {
-			alert('companyWithTheMostSystems ' + companyWithTheMostSystemsId + ', ' + companyWithTheMostSystemsNbSystems);		
-			var companyWithTheMostSystems = findCompanyById(companyWithTheMostSystemsId);
-			
-			if (companyWithTheMostSystems.scorePerAssetSystemsCalculated() === false) {				
-				companyWithTheMostSystems.scorePerAsset(companyWithTheMostSystems.scorePerAsset() - 1);
-				companyWithTheMostSystems.scorePerAssetSystemsCalculated(true);
-			} // if
-		} // if
-		
-		if ((companyWithTheLeastSystemsId !== null) && (typeof companyWithTheLeastSystemsId !== 'undefined')) {	
-			alert('companyWithTheLeastSystems ' + companyWithTheLeastSystemsId + ', ' + companyWithTheLeastSystemsNbSystems);	
-			var companyWithTheLeastSystems = findCompanyById(companyWithTheLeastSystemsId);
-			
-			if (companyWithTheLeastSystems.scorePerAssetSystemsCalculated() === false) {				
-				companyWithTheLeastSystems.scorePerAsset(companyWithTheLeastSystems.scorePerAsset() + 1);
-				companyWithTheLeastSystems.scorePerAssetSystemsCalculated(true);
-			} // if
-		} // if
+		updateScorePerAssetForMaxNbFrames(currentCompanies, maxNbFrames);
+		updateScorePerAssetForMinNbFrames(currentCompanies, minNbFrames);
+		updateScorePerAssetForMaxNbSystems(currentCompanies, maxNbSystems);
+		updateScorePerAssetForMinNbSystems(currentCompanies, minNbSystems);
 	};
 
 }
 
-function checkCompanyWithTheMostFrames(companyWithTheMostFrames) {
-	currentCompanyNbFrames = parseFloat(currentCompany.nbFrames());
-	companyWithTheMostFramesNbFrames = parseFloat(companyWithTheMostFrames.nbFrames());
-	alert('checkCompanyWithTheMostFrames ' + companyWithTheMostFramesId + ' ' + companyWithTheMostFramesNbFrames + ' ' + currentCompany.getId() + ' ' + currentCompanyNbFrames);
-	if (currentCompanyNbFrames > companyWithTheMostFramesNbFrames) {
-		companyWithTheMostFramesId = currentCompany.getId();
-	} // if
-}
-
-function checkCompanyWithTheLeastFrames(companyWithTheLeastFrames) {
-	currentCompanyNbFrames = parseFloat(currentCompany.nbFrames());
-	companyWithTheLeastFramesNbFrames = parseFloat(companyWithTheLeastFrames.nbFrames());
-	alert('checkCompanyWithTheLeastFrames ' + companyWithTheLeastFramesId + ' ' + companyWithTheLeastFramesNbFrames + ' ' + currentCompany.getId() + ' ' + currentCompanyNbFrames);
-	if (currentCompany.getNbFrames() < companyWithTheLeastFrames.getNbFrames()) {
-		companyWithTheLeastFramesId = currentCompany.getId();
-	} // if
-}
-
-function checkCompanyWithTheMostSystems(companyWithTheMostSystems) {
-	currentCompanyNbSystems = parseFloat(currentCompany.nbSystems());
-	companyWithTheMostFramesNbSystems = parseFloat(companyWithTheMostSystems.nbSystems());
-	alert('checkCompanyWithTheMostSystems ' + companyWithTheMostSystemsId + ' ' + companyWithTheMostFramesNbSystems + ' ' + currentCompany.getId() + ' ' + currentCompanyNbSystems);
-	if (currentCompany.getNbSystems() > companyWithTheMostSystems.getNbSystems()) {
-		companyWithTheMostSystemsId = currentCompany.getId();
-	} // if
-}
-
-function checkCompanyWithTheLeastSystems(companyWithTheLeastSystems) {
-	currentCompanyNbSystems = parseFloat(currentCompany.nbSystems());
-	companyWithTheLeastFramesNbSystems = parseFloat(companyWithTheLeastSystems.nbSystems());
-	alert('checkCompanyWithTheLeastSystems ' + companyWithTheLeastSystemsId + ' ' + companyWithTheLeastFramesNbSystems + ' ' + currentCompany.getId() + ' ' + currentCompanyNbSystems);
-	if (currentCompany.getNbSystems() < companyWithTheLeastSystems.getNbSystems()) {
-		companyWithTheLeastSystemsId = currentCompany.getId();
-	} // if
-}
-
-function findCompanyById(companyId) {
-	var company = null;
-	
-	var currentCompanies = self.companies();
+function updateScorePerAssetForMaxNbFrames(currentCompanies, maxNbFrames) {
 	var nbCompanies = currentCompanies.length;
 	
-	for ( var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
-		currentCompany = currentCompanies[companiesIndex];
-		
-		if (currentCompany.id === companyId) {
-			company = currentCompany;
-			break;
+	for (var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
+		var currentCompany = currentCompanies[companiesIndex];
+
+		if (currentCompany.scorePerAssetFramesCalculated() === false) {
+			if (parseFloat(currentCompany.nbFrames()) === maxNbFrames) {
+				currentCompany.scorePerAsset(currentCompany.scorePerAsset() - 1);
+				currentCompany.scorePerAssetFramesCalculated(true);
+			} // if
 		} // if
 	} // for
-	return company;
+}
+
+function updateScorePerAssetForMinNbFrames(currentCompanies, minNbFrames) {
+	var nbCompanies = currentCompanies.length;
+	
+	for (var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
+		var currentCompany = currentCompanies[companiesIndex];
+
+		if (currentCompany.scorePerAssetFramesCalculated() === false) {
+			if (parseFloat(currentCompany.nbFrames()) === minNbFrames) {
+				currentCompany.scorePerAsset(currentCompany.scorePerAsset() + 1);
+				currentCompany.scorePerAssetFramesCalculated(true);
+			} // if
+		} // if
+	} // for
+}
+
+function updateScorePerAssetForMaxNbSystems(currentCompanies, maxNbSystems) {
+	var nbCompanies = currentCompanies.length;
+	
+	for (var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
+		var currentCompany = currentCompanies[companiesIndex];
+
+		if (currentCompany.scorePerAssetSystemsCalculated() === false) {
+			if (parseFloat(currentCompany.nbSystems()) === maxNbSystems) {
+				currentCompany.scorePerAsset(currentCompany.scorePerAsset() - 1);
+				currentCompany.scorePerAssetSystemsCalculated(true);
+			} // if
+		} // if
+	} // for
+}
+
+function updateScorePerAssetForMinNbSystems(currentCompanies, minNbSystems) {
+	var nbCompanies = currentCompanies.length;
+	
+	for (var companiesIndex = 0; companiesIndex < nbCompanies; companiesIndex++) {
+		var currentCompany = currentCompanies[companiesIndex];
+
+		if (currentCompany.scorePerAssetSystemsCalculated() === false) {
+			if (parseFloat(currentCompany.nbSystems()) === minNbSystems) {
+				currentCompany.scorePerAsset(currentCompany.scorePerAsset() + 1);
+				currentCompany.scorePerAssetSystemsCalculated(true);
+			} // if
+		} // if
+	} // for
 }
