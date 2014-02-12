@@ -4,6 +4,14 @@ function CompanyModel() {
 	self.id = ko.observable(0);
 	self.name = ko.observable('');
 	self.nbStations = ko.observable(3);
+	self.addStation = function() {
+		self.nbStations(self.nbStations() + 1);
+    }
+	self.removeStation = function() {
+		if (parseFloat(self.nbStations()) > 0) {
+			self.nbStations(self.nbStations() - 1);
+		} // if
+    }
 	self.dtCreated = null;
 	self.dtModified = null;
 	self.companyPictureUrl = ko.observable('');

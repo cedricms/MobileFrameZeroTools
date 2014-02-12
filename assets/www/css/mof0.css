@@ -15,6 +15,15 @@
     font-style: normal;
 }
 
+.addStation {
+  background-image: url( '../img/icons/add.png' );
+  background-size: 16px 16px;
+  float : left;
+  height: 20px;  
+  margin : 5px
+  width: 20px;
+}
+
 body {
   background: #eee;
 }
@@ -222,6 +231,18 @@ img.mf0FrameThumbnail {
 
 .nbStations {
   float : left;
+}
+
+.nbStationsLabel {
+  float : left;
+}
+
+.removeStation {
+  background-image: url( '../img/icons/delete.png' );
+  background-size: 16px 16px;
+  height: 20px;
+  margin : 5px
+  width: 20px;
 }
 
 .roundsUntilDoomsDay {
