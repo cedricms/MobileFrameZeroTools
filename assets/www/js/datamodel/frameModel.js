@@ -4,6 +4,31 @@ function FrameModel() {
 	self.id = ko.observable(0);
 	self.name = ko.observable('');
 	self.nbDefensive = ko.observable(0);
+	self.removeDefensive = function() {
+		if (parseFloat(self.nbDefensive()) > 0) {
+			self.nbDefensive(self.nbDefensive() - 1);
+		} // if
+    }
+	self.defensiveValue1 = ko.observable(0);
+	self.defensiveValue2 = ko.observable(0);
+	self.rollDefensive = function() {
+		if (parseFloat(self.nbDefensive()) > 0) {
+			self.defensiveValue1(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbDefensive()) > 1) {
+			self.defensiveValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+    }
+	
+	self.defensiveValue1Css = ko.computed(function() {
+        return 'blued' + parseFloat(self.defensiveValue1());
+    }, self);
+	
+	self.defensiveValue2Css = ko.computed(function() {
+        return 'blued' + parseFloat(self.defensiveValue2());
+    }, self);
+	
 	self.nbMovement = ko.observable(0);
 	self.nbSurveillanceCommunication = ko.observable(0);
 	self.nbHandToHand = ko.observable(0);

@@ -24,6 +24,54 @@
   width: 20px;
 }
 
+.blued1 {
+  background-image: url( '../img/dice/blued1.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.blued2 {
+  background-image: url( '../img/dice/blued2.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.blued3 {
+  background-image: url( '../img/dice/blued3.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.blued4 {
+  background-image: url( '../img/dice/blued4.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.blued5 {
+  background-image: url( '../img/dice/blued5.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.blued6 {
+  background-image: url( '../img/dice/blued6.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
 body {
   background: #eee;
 }
@@ -331,4 +379,24 @@ a.smallButton:focus {
 }
 .sys-panel {
   display: inline-block; margin: 0 0.5rem 0.5rem 0;
+}
+
+.rollingDice {
+  background-image: url( '../img/icons/rollingDice.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.systemDamage {
+  background-image: url( '../img/icons/damage.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  width: 25px;
+}
+
+.frameSystem {
+  margin: 0 0.5rem 0.5rem 0;
 }
