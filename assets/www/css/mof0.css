@@ -152,6 +152,78 @@
   max-width: 20px;
 }
 
+.redd0 {
+  background-image: url( '../img/dice/redd0.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd1 {
+  background-image: url( '../img/dice/redd1.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd2 {
+  background-image: url( '../img/dice/redd2.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd3 {
+  background-image: url( '../img/dice/redd3.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd4 {
+  background-image: url( '../img/dice/redd4.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  max-width: 25px;
+}
+
+.redd5 {
+  background-image: url( '../img/dice/redd5.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd6 {
+  background-image: url( '../img/dice/redd6.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd7 {
+  background-image: url( '../img/dice/redd7.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.redd8 {
+  background-image: url( '../img/dice/redd8.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
 .yellowd0 {
   background-image: url( '../img/dice/yellowd0.png' );
   background-size: 20px 20px;

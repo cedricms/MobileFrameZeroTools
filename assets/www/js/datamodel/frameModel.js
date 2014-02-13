@@ -91,6 +91,37 @@ function FrameModel() {
     }, self);
 	
 	self.nbHandToHand = ko.observable(0);
+	self.removeHandToHand = function() {
+		if (parseFloat(self.nbHandToHand()) > 0) {
+			self.nbHandToHand(self.nbHandToHand() - 1);
+		} // if
+    }
+	self.handToHandValue1 = ko.observable(0);
+	self.handToHandValue2 = ko.observable(0);
+	self.handToHandValue3 = ko.observable(0);
+	self.rollHandToHand = function() {
+		if (parseFloat(self.nbHandToHand()) > 0) {
+			self.handToHandValue1(Math.floor(Math.random() * 6) + 1);
+			self.handToHandValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbHandToHand()) > 1) {
+			self.handToHandValue3(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.handToHandValue1Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.handToHandValue1());
+    }, self);
+	
+	self.handToHandValue2Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.handToHandValue2());
+    }, self);
+	
+	self.handToHandValue3Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.handToHandValue3());
+    }, self);
+	
 	self.nbDirectFire = ko.observable(0);
 	self.nbArtilleryRange = ko.observable(0);
 	self.dtCreated = null;
