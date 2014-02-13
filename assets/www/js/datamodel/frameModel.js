@@ -155,6 +155,36 @@ function FrameModel() {
     }, self);
 	
 	self.nbArtilleryRange = ko.observable(0);
+	self.removeArtilleryRange = function() {
+		if (parseFloat(self.nbArtilleryRange()) > 0) {
+			self.nbArtilleryRange(self.nbArtilleryRange() - 1);
+		} // if
+    }
+	self.artilleryRangeValue1 = ko.observable(0);
+	self.artilleryRangeValue2 = ko.observable(0);
+	self.artilleryRangeValue3 = ko.observable(0);
+	self.rollArtilleryRange = function() {
+		if (parseFloat(self.nbArtilleryRange()) > 0) {
+			self.artilleryRangeValue1(Math.floor(Math.random() * 6) + 1);
+			self.artilleryRangeValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbArtilleryRange()) > 1) {
+			self.artilleryRangeValue3(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.artilleryRangeValue1Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.artilleryRangeValue1());
+    }, self);
+	
+	self.artilleryRangeValue2Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.artilleryRangeValue2());
+    }, self);
+	
+	self.artilleryRangeValue3Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.artilleryRangeValue3());
+    }, self);
 	self.dtCreated = null;
 	self.dtModified = null;
 	self.framePictureUrl = ko.observable('');
