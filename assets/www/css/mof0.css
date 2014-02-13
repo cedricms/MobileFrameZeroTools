@@ -152,6 +152,62 @@
   max-width: 20px;
 }
 
+.yellowd0 {
+  background-image: url( '../img/dice/yellowd0.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.yellowd1 {
+  background-image: url( '../img/dice/yellowd1.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.yellowd2 {
+  background-image: url( '../img/dice/yellowd2.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.yellowd3 {
+  background-image: url( '../img/dice/yellowd3.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.yellowd4 {
+  background-image: url( '../img/dice/yellowd4.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  max-width: 25px;
+}
+
+.yellowd5 {
+  background-image: url( '../img/dice/yellowd5.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.yellowd6 {
+  background-image: url( '../img/dice/yellowd6.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
 body {
   background: #eee;
 }
