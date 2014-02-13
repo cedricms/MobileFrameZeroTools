@@ -123,6 +123,37 @@ function FrameModel() {
     }, self);
 	
 	self.nbDirectFire = ko.observable(0);
+	self.removeDirectFire = function() {
+		if (parseFloat(self.nbDirectFire()) > 0) {
+			self.nbDirectFire(self.nbDirectFire() - 1);
+		} // if
+    }
+	self.directFireValue1 = ko.observable(0);
+	self.directFireValue2 = ko.observable(0);
+	self.directFireValue3 = ko.observable(0);
+	self.rollDirectFire = function() {
+		if (parseFloat(self.nbDirectFire()) > 0) {
+			self.directFireValue1(Math.floor(Math.random() * 6) + 1);
+			self.directFireValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbDirectFire()) > 1) {
+			self.directFireValue3(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.directFireValue1Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.directFireValue1());
+    }, self);
+	
+	self.directFireValue2Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.directFireValue2());
+    }, self);
+	
+	self.directFireValue3Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.directFireValue3());
+    }, self);
+	
 	self.nbArtilleryRange = ko.observable(0);
 	self.dtCreated = null;
 	self.dtModified = null;
