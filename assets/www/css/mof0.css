@@ -24,28 +24,36 @@
   width: 20px;
 }
 
+.blued0 {
+  background-image: url( '../img/dice/blued0.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
 .blued1 {
   background-image: url( '../img/dice/blued1.png' );
   background-size: 20px 20px;
-  height: 25px;
+  height: 20px;
   margin : 5px
-  width: 25px;
+  max-width: 20px;
 }
 
 .blued2 {
   background-image: url( '../img/dice/blued2.png' );
   background-size: 20px 20px;
-  height: 25px;
+  height: 20px;
   margin : 5px
-  width: 25px;
+  max-width: 20px;
 }
 
 .blued3 {
   background-image: url( '../img/dice/blued3.png' );
   background-size: 20px 20px;
-  height: 25px;
+  height: 20px;
   margin : 5px
-  width: 25px;
+  max-width: 20px;
 }
 
 .blued4 {
@@ -53,23 +61,95 @@
   background-size: 20px 20px;
   height: 25px;
   margin : 5px
-  width: 25px;
+  max-width: 25px;
 }
 
 .blued5 {
   background-image: url( '../img/dice/blued5.png' );
   background-size: 20px 20px;
-  height: 25px;
+  height: 20px;
   margin : 5px
-  width: 25px;
+  max-width: 20px;
 }
 
 .blued6 {
   background-image: url( '../img/dice/blued6.png' );
   background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend0 {
+  background-image: url( '../img/dice/greend0.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend1 {
+  background-image: url( '../img/dice/greend1.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend2 {
+  background-image: url( '../img/dice/greend2.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend3 {
+  background-image: url( '../img/dice/greend3.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend4 {
+  background-image: url( '../img/dice/greend4.png' );
+  background-size: 20px 20px;
   height: 25px;
   margin : 5px
-  width: 25px;
+  max-width: 25px;
+}
+
+.greend5 {
+  background-image: url( '../img/dice/greend5.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend6 {
+  background-image: url( '../img/dice/greend6.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend7 {
+  background-image: url( '../img/dice/greend7.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.greend8 {
+  background-image: url( '../img/dice/greend8.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
 }
 
 body {

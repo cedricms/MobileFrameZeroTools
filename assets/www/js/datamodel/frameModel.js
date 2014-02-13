@@ -30,6 +30,40 @@ function FrameModel() {
     }, self);
 	
 	self.nbMovement = ko.observable(0);
+	self.removeMovement = function() {
+		if (parseFloat(self.nbMovement()) > 0) {
+			self.nbMovement(self.nbMovement() - 1);
+		} // if
+    }
+	self.movementValue1 = ko.observable(0);
+	self.movementValue2 = ko.observable(0);
+	self.movementValue3 = ko.observable(0);
+	self.rollMovement = function() {
+		if (parseFloat(self.nbMovement()) > 0) {
+			self.movementValue1(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbMovement()) > 1) {
+			self.movementValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if ((parseFloat(self.nbDirectFire()) === 0) || (parseFloat(self.nbArtilleryRange()) === 0)) {
+			self.movementValue3(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.movementValue1Css = ko.computed(function() {
+        return 'greend' + parseFloat(self.movementValue1());
+    }, self);
+	
+	self.movementValue2Css = ko.computed(function() {
+        return 'greend' + parseFloat(self.movementValue2());
+    }, self);
+	
+	self.movementValue3Css = ko.computed(function() {
+        return 'greend' + parseFloat(self.movementValue3());
+    }, self);
+	
 	self.nbSurveillanceCommunication = ko.observable(0);
 	self.nbHandToHand = ko.observable(0);
 	self.nbDirectFire = ko.observable(0);
