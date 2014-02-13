@@ -64,6 +64,20 @@ function GameModel() {
 	
 	self.decrimentDoomsdayClock = function() {
 		self.doomsdayClock(self.doomsdayClock() - 1);
+		
+		var lCompanies = this.companies();
+
+		for ( var companyIndex = 0; companyIndex < lCompanies.length; companyIndex++) {
+			var company = lCompanies[companyIndex];
+			
+			var lFrames = company.frames();
+
+			for ( var frameIndex = 0; frameIndex < lFrames.length; frameIndex++) {
+				var frame = lFrames[frameIndex];
+				
+				frame.resetDiceValues();
+			} // for
+		} // for
 	};
 	
 	self.updateCurrentTime = function() {

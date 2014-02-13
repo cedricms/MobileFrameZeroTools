@@ -244,4 +244,30 @@ function FrameModel() {
 	self.setNbRockets = function(pNbRockets) {
 		self.nbRockets = pNbRockets;
 	};
+	
+	self.resetDiceValues = function() {
+		self.defensiveValue1(parseFloat(0));
+		self.defensiveValue2(parseFloat(0));
+		
+		self.movementValue1(parseFloat(0));
+		self.movementValue2(parseFloat(0));
+		self.movementValue3(parseFloat(0));
+		
+		self.surveillanceCommunicationValue1(parseFloat(0));
+		self.surveillanceCommunicationValue2(parseFloat(0));
+		
+		self.handToHandValue1(parseFloat(0));
+		self.handToHandValue2(parseFloat(0));
+		self.handToHandValue3(parseFloat(0));
+		
+		self.directFireValue1(parseFloat(0));
+		self.directFireValue2(parseFloat(0));
+		self.directFireValue3(parseFloat(0));
+		
+		self.artilleryRangeValue1(parseFloat(0));
+		self.artilleryRangeValue2(parseFloat(0));
+		self.artilleryRangeValue3(parseFloat(0));
+		
+		self.rocketsValue1(parseFloat(0));
+	};
 }

@@ -46,13 +46,13 @@ function nextRound() {
 		gameModel.decrimentDoomsdayClock();
 
 		if (gameModel.getDoomsdayClock() > 0) {
-			companies = gameModel.companies();
+			var companies = gameModel.companies();
 
 			for ( var companyIndex = 0; companyIndex < companies.length; companyIndex++) {
 				var company = companies[companyIndex];
 				var companyName = company.getName();
 				jQuery.i18n.prop('doYouWantToCountDownTheDoomsDayClockMessage');
-				var countDownConfirmationMessage = companyName + doYouWantToCountDownTheDoomsDayClockMessage + ' ' + gameModel.getDoomsdayClock() + ')';
+				var countDownConfirmationMessage = companyName + doYouWantToCountDownTheDoomsDayClockMessage + ' ' + parseFloat(gameModel.getDoomsdayClock()) + ')';
 				var countDownAction = confirm(countDownConfirmationMessage);
 				if (countDownAction == true) {
 					gameModel.decrimentDoomsdayClock();
