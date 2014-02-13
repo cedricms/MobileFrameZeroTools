@@ -189,7 +189,22 @@ function FrameModel() {
 	self.dtModified = null;
 	self.framePictureUrl = ko.observable('');
 	self.nbRockets = ko.observable(0);
-
+	self.removeRockets = function() {
+		if (parseFloat(self.nbRockets()) > 0) {
+			self.nbRockets(self.nbRockets() - 1);
+		} // if
+    }
+	self.rocketsValue1 = ko.observable(0);
+	self.rollRockets = function() {
+		if (parseFloat(self.nbRockets()) > 0) {
+			self.rocketsValue1(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.rocketsValue1Css = ko.computed(function() {
+        return 'redd' + parseFloat(self.rocketsValue1());
+    }, self);
+	
 	self.setId = function(pId) {
 		self.id = pId;
 	};
