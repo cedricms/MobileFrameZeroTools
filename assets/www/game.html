@@ -42,6 +42,9 @@
 		    jQuery.i18n.prop('nextRoundMessage');
 		    document.getElementById('nextRoundButton').innerHTML='<a class="smallButton" href="Javascript:nextRound();">' + nextRoundMessage + '</a>';
 		    
+		    jQuery.i18n.prop('damageChartRemindersMessage');
+		    document.getElementById('damageChartRemindersLabel').innerHTML = damageChartRemindersMessage;
+		    
 		    jQuery.i18n.prop('nbStationsMessage');
 		    document.getElementById('nbStationsLabel').innerHTML = nbStationsMessage;
 		    
@@ -66,7 +69,19 @@
           <div class="startTimeLabel" id="startTimeLabel"></div>
           <div class="formattedStartTime" data-bind="text: formattedStartTime"></div>
           <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><div id="damageChartRemindersLabel"></div></button>
       </div>
+      <div id="myModal" class="modal fade">
+		  <div class="modal-dialog">
+		      <div class="modal-content">
+		          <!-- dialog body -->
+		          <div class="modal-body">
+		              <button type="button" class="close" data-dismiss="modal">&times;</button>
+		              Hello world!
+		          </div>
+		  	  </div>
+		  </div>
+	  </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           &nbsp;
