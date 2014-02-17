@@ -19,7 +19,8 @@
     <script type="text/javascript">
       // load I18N bundles
       jQuery(document).ready(function() {
-    	initLanguages()
+    	initLanguages();
+    	//$("#tabs").tab();
 	  });
 		
 	  function loadBundles(lang) {
@@ -48,6 +49,21 @@
 		    jQuery.i18n.prop('nbStationsMessage');
 		    document.getElementById('nbStationsLabel').innerHTML = nbStationsMessage;
 		    
+		    jQuery.i18n.prop('handToHandAttacksMessage');
+		    document.getElementById('handToHandAttacksLabel').innerHTML='<a href="#handToHandAttacksTab" data-toggle="tab">' + handToHandAttacksMessage + '</a>';
+		    
+		    jQuery.i18n.prop('rangedAttackNoCoverMessage');
+		    document.getElementById('rangedAttackNoCoverLabel').innerHTML='<a href="#rangedAttackNoCoverTab" data-toggle="tab">' + rangedAttackNoCoverMessage + '</a>';
+		    
+		    jQuery.i18n.prop('rangedAttackNormalCoverMessage');
+		    document.getElementById('rangedAttackNormalCoverLabel').innerHTML='<a href="#rangedAttackNormalCoverTab" data-toggle="tab">' + rangedAttackNormalCoverMessage + '</a>';
+		    
+		    jQuery.i18n.prop('rangedAttackCoveredByMobileFrameMessage');
+		    document.getElementById('rangedAttackCoveredByMobileFrameLabel').innerHTML='<a href="#rangedAttackCoveredByMobileFrameTab" data-toggle="tab">' + rangedAttackCoveredByMobileFrameMessage + '</a>';
+		    
+		    jQuery.i18n.prop('attacksAgainstTerrainMessage');
+		    document.getElementById('attacksAgainstTerrainLabel').innerHTML='<a href="#attacksAgainstTerrainTab" data-toggle="tab">' + attacksAgainstTerrainMessage + '</a>';
+		    
 	    	initGame();
 	      }
 	    });
@@ -69,15 +85,38 @@
           <div class="startTimeLabel" id="startTimeLabel"></div>
           <div class="formattedStartTime" data-bind="text: formattedStartTime"></div>
           <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><div id="damageChartRemindersLabel"></div></button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#damageChartRemindersModal"><div id="damageChartRemindersLabel"></div></button>
       </div>
-      <div id="myModal" class="modal fade">
+      <div id="damageChartRemindersModal" class="modal fade">
 		  <div class="modal-dialog">
 		      <div class="modal-content">
 		          <!-- dialog body -->
 		          <div class="modal-body">
 		              <button type="button" class="close" data-dismiss="modal">&times;</button>
-		              Hello world!
+		              <ul class="nav nav-tabs">
+  						  <li class="active"><div id="handToHandAttacksLabel" /></li>
+  						  <li><div id="rangedAttackNoCoverLabel" /></li>
+  						  <li><div id="rangedAttackNormalCoverLabel" /></li>
+  						  <li><div id="rangedAttackCoveredByMobileFrameLabel" /></li>
+  						  <li><div id="attacksAgainstTerrainLabel" /></li>
+  					  </ul>
+  					  <div class="tab-content">
+	    		      	  <div class="tab-pane active" id="handToHandAttacksTab">
+	                          <img src="./img/damage/handToHandAttacks.png" />
+	                      </div>
+	    		      	  <div class="tab-pane" id="rangedAttackNoCoverTab">
+	                          <img src="./img/damage/rangedAttackNoCover.png" />
+	                      </div>
+	    		      	  <div class="tab-pane" id="rangedAttackNormalCoverTab">
+	                          <img src="./img/damage/rangedAttackNormalCover.png" />
+	                      </div>
+	    		      	  <div class="tab-pane" id="rangedAttackCoveredByMobileFrameTab">
+	                          <img src="./img/damage/rangedAttackCoveredByMobileFrame.png" />
+	                      </div>
+	    		      	  <div class="tab-pane" id="attacksAgainstTerrainTab">
+	                          <img src="./img/damage/attacksAgainstTerrain.png" />
+	                      </div>
+	                  </div>	
 		          </div>
 		  	  </div>
 		  </div>
