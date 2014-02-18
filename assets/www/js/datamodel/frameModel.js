@@ -314,7 +314,18 @@ function FrameModel(company) {
 	};
 	
 	self.isFrameStillActive = function() {
-		alert('self.company().name() : ' + self.company.name());
+		//alert('self.company().name() : ' + self.company.name());
+		var nbSystems = parseFloat(self.nbWild()) + 
+						parseFloat(self.nbDefensive()) + 
+						parseFloat(self.nbMovement()) + 
+						parseFloat(self.nbSurveillanceCommunication()) + 
+						parseFloat(self.nbHandToHand()) + 
+						parseFloat(self.nbDirectFire()) + 
+						parseFloat(self.nbArtilleryRange());
+		
+		if (nbSystems === 0) {
+			self.company.removeFrame(self);
+		} // if
 	};
 	
 	self.resetDiceValues = function() {

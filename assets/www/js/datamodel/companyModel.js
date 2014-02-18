@@ -68,8 +68,16 @@ function CompanyModel() {
 	};
 
 	self.setNbFrames = function(pNbFrames) {
-		self.nbFrames = pNbFrames;
+		self.nbFrames(pNbFrames);
 	};
+	
+	self.removeFrame = function(frame) {
+		if (parseFloat(self.nbFrames()) > 0) {
+			self.nbFrames(self.nbFrames() - 1);
+			
+			//self.frames().remove(frame);
+		} // if
+    }
 	
 	self.setNbStations = function(pNbStations) {
 		self.nbStations(pNbStations);
