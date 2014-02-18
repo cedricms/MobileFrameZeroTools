@@ -74,8 +74,6 @@ function CompanyModel() {
 	self.removeFrame = function(frame) {
 		if (parseFloat(self.nbFrames()) > 0) {
 			self.nbFrames(self.nbFrames() - 1);
-			
-			//self.frames().remove(frame);
 		} // if
     }
 	

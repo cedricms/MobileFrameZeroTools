@@ -50,7 +50,7 @@ function nextRound() {
 
 			for ( var companyIndex = 0; companyIndex < companies.length; companyIndex++) {
 				var company = companies[companyIndex];
-				var companyName = company.getName();
+				var companyName = company.name();
 				jQuery.i18n.prop('doYouWantToCountDownTheDoomsDayClockMessage');
 				var countDownConfirmationMessage = companyName + doYouWantToCountDownTheDoomsDayClockMessage + ' ' + parseFloat(gameModel.getDoomsdayClock()) + ')';
 				var countDownAction = confirm(countDownConfirmationMessage);
