@@ -1,17 +1,56 @@
-function FrameModel() {
+function FrameModel(company) {
 	var self = this;
+	
+	self.company = company;
 
 	self.id = ko.observable(0);
 	self.name = ko.observable('');
+	
+	self.nbWild = ko.observable(2);
+	self.removeWild = function() {
+		if (parseFloat(self.nbWild()) > 0) {
+			self.nbWild(self.nbWild() - 1);
+			
+			self.isFrameStillActive();
+		} // if
+    }
+	self.wildValue1 = ko.observable(0);
+	self.wildValue2 = ko.observable(0);
+	self.rollWild = function() {
+		self.wildValue1(0);
+		self.wildValue2(0);
+		
+		if (parseFloat(self.nbWild()) > 0) {
+			self.wildValue1(Math.floor(Math.random() * 6) + 1);
+		} // if
+		
+		if (parseFloat(self.nbWild()) > 1) {
+			self.wildValue2(Math.floor(Math.random() * 6) + 1);
+		} // if
+    }
+	
+	self.wildValue1Css = ko.computed(function() {
+        return 'whited' + parseFloat(self.wildValue1());
+    }, self);
+	
+	self.wildValue2Css = ko.computed(function() {
+        return 'whited' + parseFloat(self.wildValue2());
+    }, self);
+	
 	self.nbDefensive = ko.observable(0);
 	self.removeDefensive = function() {
 		if (parseFloat(self.nbDefensive()) > 0) {
 			self.nbDefensive(self.nbDefensive() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.defensiveValue1 = ko.observable(0);
 	self.defensiveValue2 = ko.observable(0);
 	self.rollDefensive = function() {
+		self.defensiveValue1(0);
+		self.defensiveValue2(0);
+		
 		if (parseFloat(self.nbDefensive()) > 0) {
 			self.defensiveValue1(Math.floor(Math.random() * 6) + 1);
 		} // if
@@ -33,12 +72,18 @@ function FrameModel() {
 	self.removeMovement = function() {
 		if (parseFloat(self.nbMovement()) > 0) {
 			self.nbMovement(self.nbMovement() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.movementValue1 = ko.observable(0);
 	self.movementValue2 = ko.observable(0);
 	self.movementValue3 = ko.observable(0);
 	self.rollMovement = function() {
+		self.movementValue1(0);
+		self.movementValue2(0);
+		self.movementValue3(0);
+		
 		if (parseFloat(self.nbMovement()) > 0) {
 			self.movementValue1(Math.floor(Math.random() * 6) + 1);
 		} // if
@@ -68,11 +113,16 @@ function FrameModel() {
 	self.removeSurveillanceCommunication = function() {
 		if (parseFloat(self.nbSurveillanceCommunication()) > 0) {
 			self.nbSurveillanceCommunication(self.nbSurveillanceCommunication() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.surveillanceCommunicationValue1 = ko.observable(0);
 	self.surveillanceCommunicationValue2 = ko.observable(0);
 	self.rollSurveillanceCommunication = function() {
+		self.surveillanceCommunicationValue1(0);
+		self.surveillanceCommunicationValue2(0);
+		
 		if (parseFloat(self.nbSurveillanceCommunication()) > 0) {
 			self.surveillanceCommunicationValue1(Math.floor(Math.random() * 6) + 1);
 		} // if
@@ -94,12 +144,18 @@ function FrameModel() {
 	self.removeHandToHand = function() {
 		if (parseFloat(self.nbHandToHand()) > 0) {
 			self.nbHandToHand(self.nbHandToHand() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.handToHandValue1 = ko.observable(0);
 	self.handToHandValue2 = ko.observable(0);
 	self.handToHandValue3 = ko.observable(0);
 	self.rollHandToHand = function() {
+		self.handToHandValue1(0);
+		self.handToHandValue2(0);
+		self.handToHandValue3(0);
+		
 		if (parseFloat(self.nbHandToHand()) > 0) {
 			self.handToHandValue1(Math.floor(Math.random() * 6) + 1);
 			self.handToHandValue2(Math.floor(Math.random() * 6) + 1);
@@ -126,12 +182,18 @@ function FrameModel() {
 	self.removeDirectFire = function() {
 		if (parseFloat(self.nbDirectFire()) > 0) {
 			self.nbDirectFire(self.nbDirectFire() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.directFireValue1 = ko.observable(0);
 	self.directFireValue2 = ko.observable(0);
 	self.directFireValue3 = ko.observable(0);
 	self.rollDirectFire = function() {
+		self.directFireValue1(0);
+		self.directFireValue2(0);
+		self.directFireValue3(0);
+		
 		if (parseFloat(self.nbDirectFire()) > 0) {
 			self.directFireValue1(Math.floor(Math.random() * 6) + 1);
 			self.directFireValue2(Math.floor(Math.random() * 6) + 1);
@@ -158,12 +220,18 @@ function FrameModel() {
 	self.removeArtilleryRange = function() {
 		if (parseFloat(self.nbArtilleryRange()) > 0) {
 			self.nbArtilleryRange(self.nbArtilleryRange() - 1);
+			
+			self.isFrameStillActive();
 		} // if
     }
 	self.artilleryRangeValue1 = ko.observable(0);
 	self.artilleryRangeValue2 = ko.observable(0);
 	self.artilleryRangeValue3 = ko.observable(0);
 	self.rollArtilleryRange = function() {
+		self.artilleryRangeValue1(0);
+		self.artilleryRangeValue2(0);
+		self.artilleryRangeValue3(0);
+		
 		if (parseFloat(self.nbArtilleryRange()) > 0) {
 			self.artilleryRangeValue1(Math.floor(Math.random() * 6) + 1);
 			self.artilleryRangeValue2(Math.floor(Math.random() * 6) + 1);
@@ -245,7 +313,14 @@ function FrameModel() {
 		self.nbRockets = pNbRockets;
 	};
 	
+	self.isFrameStillActive = function() {
+		alert('self.company().name() : ' + self.company.name());
+	};
+	
 	self.resetDiceValues = function() {
+		self.wildValue1(parseFloat(0));
+		self.wildValue2(parseFloat(0));
+		
 		self.defensiveValue1(parseFloat(0));
 		self.defensiveValue2(parseFloat(0));
 		

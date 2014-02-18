@@ -44,7 +44,7 @@ function CompanyService(pDb) {
             	    for (var i=0; i<len; i++){
             	    	var frameRow = frameResults.rows.item(i);
             	    	
-            	    	var frameModel = new FrameModel();
+            	    	var frameModel = new FrameModel(companyModel);
             	    	frameModel.id(frameRow.frameId);
             	    	frameModel.name(frameRow.frameName);
             	    	frameModel.framePictureUrl(frameRow.framePictureUrl);

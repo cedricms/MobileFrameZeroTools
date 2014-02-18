@@ -280,6 +280,62 @@
   max-width: 20px;
 }
 
+.blued0 {
+  background-image: url( '../img/dice/blued0.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.whited1 {
+  background-image: url( '../img/dice/whited1.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.whited2 {
+  background-image: url( '../img/dice/whited2.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.whited3 {
+  background-image: url( '../img/dice/whited3.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.whited4 {
+  background-image: url( '../img/dice/whited4.png' );
+  background-size: 20px 20px;
+  height: 25px;
+  margin : 5px
+  max-width: 25px;
+}
+
+.whited5 {
+  background-image: url( '../img/dice/whited5.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
+.whited6 {
+  background-image: url( '../img/dice/whited6.png' );
+  background-size: 20px 20px;
+  height: 20px;
+  margin : 5px
+  max-width: 20px;
+}
+
 body {
   background: #eee;
 }
