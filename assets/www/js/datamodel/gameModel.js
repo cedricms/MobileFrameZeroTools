@@ -76,6 +76,41 @@ function GameModel() {
 		
         return startTimeHours + ':' + startTimeMinutes + ' (' + deltaHour + ':' + deltaMinute + ':' + deltaSecond + ')';
     });
+	self.endTime = ko.observable(new Date());
+	self.formattedEndTime = ko.computed(function() {
+		var endTime = new Date();
+		
+		endTimeHours = self.endTime().getHours();
+		if (endTimeHours < 10) {
+			endTimeHours = '0' + endTimeHours;
+		} // if
+		
+		endTimeMinutes = self.endTime().getMinutes();
+		if (endTimeMinutes < 10) {
+			endTimeMinutes = '0' + endTimeMinutes;
+		} // if
+		
+        return startTimeHours + ':' + endTimeMinutes;
+    });
+	self.formattedGameDuration = ko.computed(function() {
+		deltaHour = self.hour();
+		deltaMinute = self.minute();
+		deltaSecond = self.second();
+
+		if (deltaHour < 10) {
+			deltaHour = '0' + deltaHour;
+		} // if
+		
+		if (deltaMinute < 10) {
+			deltaMinute = '0' + deltaMinute;
+		} // if
+		
+		if (deltaSecond < 10) {
+			deltaSecond = '0' + deltaSecond;
+		} // if
+		
+        return deltaHour + ':' + deltaMinute + ':' + deltaSecond;
+    });
 	self.companies = ko.observableArray();
 	self.doomsdayClock = ko.observable(11);
 

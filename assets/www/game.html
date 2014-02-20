@@ -15,6 +15,7 @@
     <script type="text/javascript" charset="utf-8" src="./js/datamodel/gameModel.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/service/companyService.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/mof0Game.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/Chart.min.js"></script>
     
     <script type="text/javascript">
       // load I18N bundles
@@ -39,6 +40,13 @@
 		    
 		    jQuery.i18n.prop('startTimeMessage');
 		    document.getElementById('startTimeLabel').innerHTML = startTimeMessage;
+		    document.getElementById('startTimeModalLabel').innerHTML = startTimeMessage;
+		    
+		    jQuery.i18n.prop('endTimeMessage');
+		    document.getElementById('endTimeLabel').innerHTML = endTimeMessage;
+		    
+		    jQuery.i18n.prop('gameDurationMessage');
+		    document.getElementById('gameDurationLabel').innerHTML = gameDurationMessage;
 		    
 		    jQuery.i18n.prop('nextRoundMessage');
 		    document.getElementById('nextRoundButton').innerHTML='<a class="smallButton" href="Javascript:nextRound();">' + nextRoundMessage + '</a>';
@@ -126,14 +134,35 @@
 		      <div class="modal-content">
 		          <!-- dialog body -->
 		          <div class="modal-body">
-		          	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		              <div class="row">
+		          	      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                  </div>
 		              </div>
-		              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		                  <div class="startTimeLabel" id="startTimeLabel"></div>
-                          <div class="startTime" data-bind="text: formattedStartTime"></div>
-                      </div>	
-		          </div>
+		              <div class="row">
+		                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                      <div class="startTimeLabel" id="startTimeModalLabel"></div>
+                              <div class="startTime" data-bind="text: formattedStartTime"></div>
+                          </div>
+                      </div>
+                      <div class="row">
+		                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                      <div class="startTimeLabel" id="endTimeLabel"></div>
+                              <div class="startTime" data-bind="text: formattedEndTime"></div>
+                          </div>
+                      </div>
+		              <div class="row">
+		                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                      <div class="startTimeLabel" id="gameDurationLabel"></div>
+                              <div class="startTime" data-bind="text: formattedGameDuration"></div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <canvas id="endOfGameChart" width="500" height="500"></canvas>
+                          </div>
+                      </div>
+                  </div>
 		  	  </div>
 		  </div>
 	  </div>
