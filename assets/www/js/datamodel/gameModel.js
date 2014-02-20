@@ -45,6 +45,35 @@ function GameModel() {
 			startTimeMinutes = '0' + startTimeMinutes;
 		} // if
 		
+        return startTimeHours + ':' + startTimeMinutes;
+    });
+	self.formattedStartTimeAndDelta = ko.computed(function() {
+		deltaHour = self.hour();
+		deltaMinute = self.minute();
+		deltaSecond = self.second();
+
+		if (deltaHour < 10) {
+			deltaHour = '0' + deltaHour;
+		} // if
+		
+		if (deltaMinute < 10) {
+			deltaMinute = '0' + deltaMinute;
+		} // if
+		
+		if (deltaSecond < 10) {
+			deltaSecond = '0' + deltaSecond;
+		} // if
+		
+		startTimeHours = self.startTime().getHours();
+		if (startTimeHours < 10) {
+			startTimeHours = '0' + startTimeHours;
+		} // if
+		
+		startTimeMinutes = self.startTime().getMinutes();
+		if (startTimeMinutes < 10) {
+			startTimeMinutes = '0' + startTimeMinutes;
+		} // if
+		
         return startTimeHours + ':' + startTimeMinutes + ' (' + deltaHour + ':' + deltaMinute + ':' + deltaSecond + ')';
     });
 	self.companies = ko.observableArray();

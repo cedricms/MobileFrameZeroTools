@@ -1,5 +1,6 @@
 var gameModel;
 var companies;
+var gameRefreshIntervalId;
 
 function initGame() {
 	// Init DB connection
@@ -27,7 +28,7 @@ function initGame() {
 	
 	//gameModel.updateScorePerAsset();
 	
-	window.setInterval(updateGame, 1000);
+	gameRefreshIntervalId = window.setInterval(updateGame, 1000);
 }
 
 function addCompany(companyModel) {
@@ -79,5 +80,7 @@ function nextRound() {
 }
 
 function endOfGame() {
-	alert('End of game!');
+	window.clearInterval(gameRefreshIntervalId);
+	
+	$('#endOfGameModal').modal('show');
 }

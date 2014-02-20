@@ -83,7 +83,7 @@
           <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
           <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
           <div class="startTimeLabel" id="startTimeLabel"></div>
-          <div class="formattedStartTime" data-bind="text: formattedStartTime"></div>
+          <div class="formattedStartTime" data-bind="text: formattedStartTimeAndDelta"></div>
           <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#damageChartRemindersModal"><div id="damageChartRemindersLabel"></div></button>
       </div>
@@ -117,6 +117,22 @@
 	                          <img src="./img/damage/attacksAgainstTerrain.png" />
 	                      </div>
 	                  </div>	
+		          </div>
+		  	  </div>
+		  </div>
+	  </div>
+      <div id="endOfGameModal" class="modal fade">
+		  <div class="modal-dialog">
+		      <div class="modal-content">
+		          <!-- dialog body -->
+		          <div class="modal-body">
+		          	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		              </div>
+		              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		                  <div class="startTimeLabel" id="startTimeLabel"></div>
+                          <div class="startTime" data-bind="text: formattedStartTime"></div>
+                      </div>	
 		          </div>
 		  	  </div>
 		  </div>
