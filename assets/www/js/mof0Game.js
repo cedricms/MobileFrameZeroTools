@@ -84,7 +84,7 @@ function endOfGame() {
 	
 	//Get the context of the canvas element we want to select
 	var ctx = document.getElementById("endOfGameChart").getContext("2d");
-	var data = {
+	/*var data = {
 			labels : ["January","February","March","April","May","June","July"],
 			datasets : [
 				{
@@ -102,7 +102,56 @@ function endOfGame() {
 					data : [28,48,40,19,96,27,100]
 				}
 			]
-		}
+		}*/
+	var data = new Array();
+	var labels = new Array();
+	var iLabel = 0;
+	while (iLabel < 11) {
+		labels[iLabel] = 11 - iLabel;
+		iLabel++;
+	} // while
+	
+	data['labels'] = labels;
+	
+	var datasets = new Array();
+	
+	var lCompanies = gameModel.companies();
+
+	for ( var companyIndex = 0; companyIndex < lCompanies.length; companyIndex++) {
+		var company = lCompanies[companyIndex];
+		
+		var dataset = new Array();
+		
+		var redLineColor = 150 - (companyIndex * 20);
+		var greenLineColor = 200 - (companyIndex * 15);
+		var blueLineColor = 250 - (companyIndex * 10);
+		
+		dataset['fillColor'] = 'rgba(' + redLineColor + ',' + greenLineColor + ',' + blueLineColor + ',0.5)';
+		dataset['strokeColor'] = 'rgba(' + redLineColor + ',' + greenLineColor + ',' + blueLineColor + ',1)';
+		dataset['pointColor'] = 'rgba(' + redLineColor + ',' + greenLineColor + ',' + blueLineColor + ',1)';
+		dataset['pointStrokeColor'] = '#fff';
+		dataset['data'] = new Array();
+		
+		datasets[companyIndex] = dataset;
+	} // for
+	
+	var turn = 11;
+	while (turn > 0) {		
+		var scores = gameModel.gameScoresPerTurn[11 - turn];
+		
+		for (var scoreIndex = 0; scoreIndex < scores.length; scoreIndex++) {
+			var score = scores[scoreIndex];
+			
+			var dataset = datasets[scoreIndex];
+			var dataValues = dataset['data'];
+			dataValues[turn - 1] = score;
+		} // for
+		
+		turn--;
+	} // while
+	
+	data['datasets'] = datasets;
+	
 	var endOfGameChart = new Chart(ctx).Line(data);
 	
 	gameModel.endTime(new Date());

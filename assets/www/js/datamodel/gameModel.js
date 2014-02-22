@@ -112,6 +112,7 @@ function GameModel() {
         return deltaHour + ':' + deltaMinute + ':' + deltaSecond;
     });
 	self.companies = ko.observableArray();
+	self.gameScoresPerTurn = new Array();
 	self.doomsdayClock = ko.observable(11);
 
 	self.getCompanies = function() {
@@ -126,7 +127,24 @@ function GameModel() {
 		self.doomsdayClock(pDoomsdayClock);
 	};
 	
+	self.saveGameScoresPerTurn = function() {
+		var scores = new Array();
+		
+		var lCompanies = this.companies();
+
+		for ( var companyIndex = 0; companyIndex < lCompanies.length; companyIndex++) {
+			var company = lCompanies[companyIndex];
+			
+			var scoreValue = (company.nbFrames() + company.nbStations()) * company.scorePerAsset();
+			
+			scores[companyIndex] = scoreValue;
+		} // for
+		
+		self.gameScoresPerTurn[11 - self.doomsdayClock()] = scores;
+	};
+	
 	self.decrimentDoomsdayClock = function() {
+		self.saveGameScoresPerTurn();
 		self.doomsdayClock(self.doomsdayClock() - 1);
 		
 		var lCompanies = this.companies();
