@@ -88,45 +88,50 @@
     <h1 class="pageTitle" id="applicationTitle"></h1>
     <div class="pageSection">
       <div class="gameRoundsBar">
+        <div class="pull-left text-center" style="vertical-align: middle;">
           <div class="roundsUntilDoomsDayLabel" id="roundsUntilDoomsDayLabel"></div>
           <div class="roundsUntilDoomsDay" data-bind="text: doomsdayClock"></div>
-          <div class="startTimeLabel" id="startTimeLabel"></div>
-          <div class="formattedStartTime" data-bind="text: formattedStartTimeAndDelta"></div>
-          <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#damageChartRemindersModal"><div id="damageChartRemindersLabel"></div></button>
+        </div>
+        <div class="nextRoundButton pull-right" id="nextRoundButton"></div>
+        <div class="startTimeLabel" id="startTimeLabel"></div>
+        <div class="formattedStartTime" data-bind="text: formattedStartTimeAndDelta"></div>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#damageChartRemindersModal"><div id="damageChartRemindersLabel"></div></button>
       </div>
       <div id="damageChartRemindersModal" class="modal fade">
 		  <div class="modal-dialog">
-		      <div class="modal-content">
-		          <!-- dialog body -->
-		          <div class="modal-body">
-		              <button type="button" class="close" data-dismiss="modal">&times;</button>
-		              <ul class="nav nav-tabs">
-  						  <li class="active"><div id="handToHandAttacksLabel" /></li>
-  						  <li><div id="rangedAttackNoCoverLabel" /></li>
-  						  <li><div id="rangedAttackNormalCoverLabel" /></li>
-  						  <li><div id="rangedAttackCoveredByMobileFrameLabel" /></li>
-  						  <li><div id="attacksAgainstTerrainLabel" /></li>
-  					  </ul>
-  					  <div class="tab-content">
-	    		      	  <div class="tab-pane active" id="handToHandAttacksTab">
-	                          <img src="./img/damage/handToHandAttacks.png" />
-	                      </div>
-	    		      	  <div class="tab-pane" id="rangedAttackNoCoverTab">
-	                          <img src="./img/damage/rangedAttackNoCover.png" />
-	                      </div>
-	    		      	  <div class="tab-pane" id="rangedAttackNormalCoverTab">
-	                          <img src="./img/damage/rangedAttackNormalCover.png" />
-	                      </div>
-	    		      	  <div class="tab-pane" id="rangedAttackCoveredByMobileFrameTab">
-	                          <img src="./img/damage/rangedAttackCoveredByMobileFrame.png" />
-	                      </div>
-	    		      	  <div class="tab-pane" id="attacksAgainstTerrainTab">
-	                          <img src="./img/damage/attacksAgainstTerrain.png" />
-	                      </div>
-	                  </div>	
-		          </div>
-		  	  </div>
+        <div class="modal-content">
+          <!-- dialog body -->
+          <div class="modal-body clearfix">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="row">
+              <ul class="nav nav-pills nav-stacked col-xs-6 col-sm-3 col-md-2">
+                <li><a href="#" id="handToHandAttacksLabel"></a></li>
+                <li><a href="#" id="rangedAttackNoCoverLabel"></a></li>
+                <li><a href="#" id="rangedAttackNormalCoverLabel"></a></li>
+                <li><a href="#" id="rangedAttackCoveredByMobileFrameLabel"></a></li>
+                <li><a href="#" id="attacksAgainstTerrainLabel"></a></li>
+              </ul>
+              <div class="tab-content col-xs-6 col-sm-9 col-md-10">
+                <div class="tab-pane active" id="handToHandAttacksTab">
+                  <img src="./img/damage/handToHandAttacks.png" class="img-responsive" />
+                </div>
+                <div class="tab-pane" id="rangedAttackNoCoverTab">
+                  <img src="./img/damage/rangedAttackNoCover.png" class="img-responsive" />
+                </div>
+                <div class="tab-pane" id="rangedAttackNormalCoverTab">
+                  <img src="./img/damage/rangedAttackNormalCover.png" class="img-responsive" />
+                </div>
+                <div class="tab-pane" id="rangedAttackCoveredByMobileFrameTab">
+                  <img src="./img/damage/rangedAttackCoveredByMobileFrame.png" class="img-responsive" />
+                </div>
+                <div class="tab-pane" id="attacksAgainstTerrainTab">
+                  <img src="./img/damage/attacksAgainstTerrain.png" class="img-responsive" />
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+          </div>
+        </div>
 		  </div>
 	  </div>
       <div id="endOfGameModal" class="modal fade">
@@ -142,7 +147,7 @@
 		              <div class="row">
 		                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		                      <div class="startTimeLabel" id="startTimeModalLabel"></div>
-                              <div class="startTime" data-bind="text: formattedStartTime"></div>
+                            <div class="startTime" data-bind="text: formattedStartTime"></div>
                           </div>
                       </div>
                       <div class="row">
@@ -163,40 +168,122 @@
                           </div>
                       </div>
                   </div>
-		  	  </div>
-		  </div>
-	  </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          &nbsp;
+            </div>
         </div>
       </div>
+  
       <div data-bind="foreach: companies" class="row">
         <!-- pre data-bind="text: ko.toJSON($data, null, 2)"></pre-->
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="panel company-view clearfix">
-            <button class="btn btn-default pull-right visible-xs" style="padding: 2rem 1rem" onclick="$(this).siblings('.frames-view').toggleClass('hidden-xs');"><span class="caret"></span></button>
-            <div class="pull-right well initiative" data-bind="text: companyScore"></div>
-            <h2 data-bind="text: name"></h2>
-            <div class="nbStations" data-bind="text: nbStations"></div>
-            <div class="nbStationsLabel" id="nbStationsLabel"></div>
-            <button class="addStation" data-bind="click: addStation" type="button">&nbsp;</button>
-            <button class="removeStation" data-bind="click: removeStation" type="button">&nbsp;</button>
+          <div class="company-view clearfix">
+            <div class="clearfix">
+              <div class="pull-right initiative" data-bind="text: companyScore"></div>
+              <h2 class="company-name" data-bind="text: name"></h2>
+            </div>
+            <div class="company-actions clearfix">
+              <div class="station-wrapper pull-left">
+                <div class="nbStations" data-bind="text: nbStations"></div>
+                <div class="nbStationsLabel" id="nbStationsLabel"></div>
+                <button class="addStation btn btn-default" data-bind="click: addStation" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="removeStation btn btn-default" data-bind="click: removeStation" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+              </div>
+              <button class="btn btn-default pull-right visible-xs" style="padding: 1rem;" onclick="$(this).parent().siblings('.frames-view').toggleClass('hidden-xs');">Show frames <span class="caret"></span></button>
+            </div>
             <div class="frames-view hidden-xs">
               <div data-bind="foreach: frames">
-                <h3 data-bind="text: name"></h3>
-                <div class="frameSystem" data-bind="visible: nbWild"><span data-bind="text: nbWild"></span> x <img src="./img/dice/Wild.png"><button class="systemDamage" data-bind="click: removeWild" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollWild" type="button">&nbsp;&nbsp;</button><div data-bind="css: wildValue1Css">&nbsp;</div><div data-bind="css: wildValue2Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbDefensive"><span data-bind="text: nbDefensive"></span> x <img src="./img/dice/Defense.png"><button class="systemDamage" data-bind="click: removeDefensive" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollDefensive" type="button">&nbsp;&nbsp;</button><div data-bind="css: defensiveValue1Css">&nbsp;</div><div data-bind="css: defensiveValue2Css">&nbsp;</div></div>
-                <div class="frameSystem"><span data-bind="text: nbMovement"></span> x <img src="./img/dice/Move.png"><button class="systemDamage" data-bind="click: removeMovement" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollMovement" type="button">&nbsp;&nbsp;</button><div data-bind="css: movementValue1Css">&nbsp;</div><div data-bind="css: movementValue2Css">&nbsp;</div><div data-bind="css: movementValue3Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbSurveillanceCommunication"><span data-bind="text: nbSurveillanceCommunication"></span> x <img src="./img/dice/Spotting.png"><button class="systemDamage" data-bind="click: removeSurveillanceCommunication" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollSurveillanceCommunication" type="button">&nbsp;&nbsp;</button><div data-bind="css: surveillanceCommunicationValue1Css">&nbsp;</div><div data-bind="css: surveillanceCommunicationValue2Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbHandToHand"><span data-bind="text: nbHandToHand"></span> x <img src="./img/dice/HtH.png"><button class="systemDamage" data-bind="click: removeHandToHand" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollHandToHand" type="button">&nbsp;&nbsp;</button><div data-bind="css: handToHandValue1Css">&nbsp;</div><div data-bind="css: handToHandValue2Css">&nbsp;</div><div data-bind="css: handToHandValue3Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbDirectFire"><span data-bind="text: nbDirectFire"></span> x <img src="./img/dice/Direct.png"><button class="systemDamage" data-bind="click: removeDirectFire" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollDirectFire" type="button">&nbsp;&nbsp;</button><div data-bind="css: directFireValue1Css">&nbsp;</div><div data-bind="css: directFireValue2Css">&nbsp;</div><div data-bind="css: directFireValue3Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbArtilleryRange"><span data-bind="text: nbArtilleryRange"></span> x <img src="./img/dice/Artillery.png"><button class="systemDamage" data-bind="click: removeArtilleryRange" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollArtilleryRange" type="button">&nbsp;&nbsp;</button><div data-bind="css: artilleryRangeValue1Css">&nbsp;</div><div data-bind="css: artilleryRangeValue2Css">&nbsp;</div><div data-bind="css: artilleryRangeValue3Css">&nbsp;</div></div>
-                <div class="frameSystem" data-bind="visible: nbRockets"><span data-bind="text: nbRockets"></span> x <img src="./img/dice/One-Shot Rocket.png"><button class="systemDamage" data-bind="click: removeRockets" type="button">&nbsp;&nbsp;</button><button class="rollingDice" data-bind="click: rollRockets" type="button">&nbsp;&nbsp;</button><div data-bind="css: rocketsValue1Css">&nbsp;</div></div>
+                <div class="frame-set">
+                  <h3 data-bind="text: name"></h3>
+                  <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbWild">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbWild"></span> x <img src="./img/dice/Wild.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeWild" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollWild" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: wildValue1Css"></div>
+                        <div class="die" data-bind="css: wildValue2Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbDefensive">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbDefensive"></span> x <img src="./img/dice/Defense.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeDefensive" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollDefensive" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: defensiveValue1Css"></div>
+                        <div class="die" data-bind="css: defensiveValue2Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbMovement"></span> x <img src="./img/dice/Move.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeMovement" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollMovement" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: movementValue1Css"></div>
+                        <div class="die" data-bind="css: movementValue2Css"></div>
+                        <div class="die" data-bind="css: movementValue3Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbSurveillanceCommunication">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbSurveillanceCommunication"></span> x <img src="./img/dice/Spotting.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeSurveillanceCommunication" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollSurveillanceCommunication" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: surveillanceCommunicationValue1Css"></div>
+                        <div class="die" data-bind="css: surveillanceCommunicationValue2Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbHandToHand">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbHandToHand"></span> x <img src="./img/dice/HtH.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeHandToHand" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollHandToHand" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: handToHandValue1Css"></div>
+                        <div class="die" data-bind="css: handToHandValue2Css"></div>
+                        <div class="die" data-bind="css: handToHandValue3Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbDirectFire">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbDirectFire"></span> x <img src="./img/dice/Direct.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeDirectFire" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollDirectFire" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: directFireValue1Css"></div>
+                        <div class="die" data-bind="css: directFireValue2Css"></div>
+                        <div class="die" data-bind="css: directFireValue3Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbArtilleryRange">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbArtilleryRange"></span> x <img src="./img/dice/Artillery.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeArtilleryRange" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollArtilleryRange" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: artilleryRangeValue1Css"></div>
+                        <div class="die" data-bind="css: artilleryRangeValue2Css"></div>
+                        <div class="die" data-bind="css: artilleryRangeValue3Css"></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2" data-bind="visible: nbRockets">
+                      <div class="frameSystem">
+                        <span data-bind="text: nbRockets"></span> x <img src="./img/dice/One-Shot Rocket.png">
+                        <button class="systemDamage btn btn-default" data-bind="click: removeRockets" type="button"></button>
+                        <button class="rollingDice btn btn-default pull-right" data-bind="click: rollRockets" type="button"></button>
+                        <br>
+                        <div class="die" data-bind="css: rocketsValue1Css"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </body>

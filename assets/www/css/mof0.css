@@ -15,15 +15,6 @@
     font-style: normal;
 }
 
-.addStation {
-  background-image: url( '../img/icons/add.png' );
-  background-size: 16px 16px;
-  float : left;
-  height: 20px;  
-  margin : 5px
-  width: 20px;
-}
-
 .blued0 {
   background-image: url( '../img/dice/blued0.png' );
   background-size: 20px 20px;
@@ -550,34 +541,31 @@ img.mf0FrameThumbnail {
 
 }
 
-.nbStations {
-  float : left;
-}
-
+.nbStations,
 .nbStationsLabel {
   float : left;
+  margin-top: 0.5rem;
 }
-
-.removeStation {
-  background-image: url( '../img/icons/delete.png' );
-  background-size: 16px 16px;
-  height: 20px;
-  margin : 5px
-  width: 20px;
+.nbStationsLabel {
+  margin-right: 0.5rem;
 }
 
 .roundsUntilDoomsDay {
-  color: #333;
+  color: #fff;
   float : left;
   font-weight: bold;
   margin-bottom : 1rem;
   margin-right : 2rem;
   margin-top : 1rem;
+  font-size: 1.5em;
+  background: #999;
+  padding: 1rem;
 }
 
 .roundsUntilDoomsDayLabel {
   float : left;
   margin : 1rem;
+  font-weight: bold;
 }
 
 div.smallButton {
@@ -637,39 +625,82 @@ a.smallButton:focus {
 }
 
 /* Gameplay page */
-.company-view {
+.company-view {.
   padding: 0 1rem 1rem;
+  background: #fff;
+  margin-top: 2rem;
+}
+.company-name {
+  background: #999;
+  color: #fff;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1;
+}
+.company-actions {
+  padding: 0.5rem;
 }
 .frames-view h3 {
   font-size: 1em;
-  border-top: solid 1px #eee;
-  padding-top: 0.5rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  padding: 1rem 0;
+}
+.frame-set {
+  border: solid 1px #d1d1d1;
+  border-radius: 0.5rem;
+  margin: 0 0.5rem 1rem;
+  padding: 0 1rem;
+  background: #eee;
 }
 .initiative {
+  line-height: 1;
   font-size: 1.5em;
   font-weight: bold;
   margin-top: 1rem;
+  background: #f33;
+  color: #fff;
+  padding: 1rem;
+  margin: 0;
+  border-left: solid 1px #fff;
+}
+.station-wrapper {
+  padding: 0.5rem 1rem;
+  display: inline-block;
 }
 .sys-panel {
   display: inline-block; margin: 0 0.5rem 0.5rem 0;
 }
-
+.die {
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem;
+}
 .rollingDice {
-  background-image: url( '../img/icons/rollingDice.png' );
+  background: url( '../img/icons/rollingDice.png' ) no-repeat center center transparent;
   background-size: 20px 20px;
-  height: 25px;
-  margin : 5px
-  width: 25px;
+  height: 3rem;
+  margin : 5px;
+  width: 3rem;
 }
 
 .systemDamage {
-  background-image: url( '../img/icons/damage.png' );
+  background: url( '../img/icons/damage.png' ) no-repeat center center transparent;
   background-size: 20px 20px;
-  height: 25px;
-  margin : 5px
-  width: 25px;
+  height: 3rem;
+  margin : 5px;
+  width: 3rem;
 }
 
 .frameSystem {
-  margin: 0 0.5rem 0.5rem 0;
+  background: #fff;
+  padding: 0.5rem;
+  margin: 0 0 2rem;
 }
