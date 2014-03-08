@@ -314,7 +314,6 @@ function FrameModel(company) {
 	};
 	
 	self.isFrameStillActive = function() {
-		//alert('self.company().name() : ' + self.company.name());
 		var nbSystems = parseFloat(self.nbWild()) + 
 						parseFloat(self.nbDefensive()) + 
 						parseFloat(self.nbMovement()) + 
@@ -324,6 +323,7 @@ function FrameModel(company) {
 						parseFloat(self.nbArtilleryRange());
 		
 		if (nbSystems === 0) {
+			//alert('self.company().name() : ' + self.company.name());
 			self.company.removeFrame(self);
 		} // if
 	};

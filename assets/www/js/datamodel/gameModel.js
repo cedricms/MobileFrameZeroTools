@@ -15,6 +15,8 @@ function GameModel() {
 	self.second = ko.observable(0);
 	self.minute = ko.observable(0);
 	self.hour = ko.observable(0);
+	
+	self.isUpdateScorePerAssetCalculated = false;
 
 	self.startTime = ko.observable(new Date());
 	self.currentTime = ko.observable(new Date());
@@ -241,9 +243,12 @@ function updateScorePerAssetForMinNbFrames(currentCompanies, minNbFrames) {
 		var currentCompany = currentCompanies[companiesIndex];
 
 		if (currentCompany.scorePerAssetFramesCalculated() === false) {
+			//alert('currentCompany.scorePerAssetFramesCalculated() ' + currentCompany.scorePerAssetFramesCalculated());
 			if (parseFloat(currentCompany.nbFrames()) === minNbFrames) {
 				currentCompany.scorePerAsset(currentCompany.scorePerAsset() + 1);
 				currentCompany.scorePerAssetFramesCalculated(true);
+				//alert('updateScorePerAssetForMinNbFrames ' + currentCompany.name());
+				//alert('currentCompany.scorePerAssetFramesCalculated() ' + currentCompany.scorePerAssetFramesCalculated());
 			} // if
 		} // if
 	} // for

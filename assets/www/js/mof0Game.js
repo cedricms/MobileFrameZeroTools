@@ -37,8 +37,9 @@ function addCompany(companyModel) {
 
 function updateGame() {
 	gameModel.updateCurrentTime();
-	if (gameModel.doomsdayClock() === 11) {
+	if ((gameModel.doomsdayClock() === 11) && (!gameModel.isUpdateScorePerAssetCalculated)) {
 		gameModel.updateScorePerAsset();
+		gameModel.isUpdateScorePerAssetCalculated = true;
 	} // if
 }
 
