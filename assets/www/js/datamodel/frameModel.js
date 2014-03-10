@@ -92,8 +92,22 @@ function FrameModel(company) {
 			self.movementValue2(Math.floor(Math.random() * 6) + 1);
 		} // if
 		
-		if ((parseFloat(self.nbDirectFire()) === 0) || (parseFloat(self.nbArtilleryRange()) === 0)) {
+		if ((parseFloat(self.nbDirectFire()) === 0) && (parseFloat(self.nbArtilleryRange()) === 0)) {
 			self.movementValue3(Math.floor(Math.random() * 8) + 1);
+		} // if
+    }
+	
+	self.isMovementVisible = function() {
+		if (parseFloat(self.nbMovement()) > 0) {
+			return true;
+		}
+		else {
+			if ((parseFloat(self.nbDirectFire()) === 0) && (parseFloat(self.nbArtilleryRange()) === 0)) {
+				return true;
+			}
+			else {
+				return false;
+			} // if
 		} // if
     }
 	
