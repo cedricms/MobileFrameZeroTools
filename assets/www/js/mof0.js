@@ -1,4 +1,4 @@
-var applicationVersion = "1.1.1";
+var applicationVersion = "1.1.2";
 var dbVersion = "1.1";
 var dbSize = 1000000;
 var dropFrameSQL = 'DROP TABLE IF EXISTS frame';
